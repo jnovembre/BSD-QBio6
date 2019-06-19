@@ -1,0 +1,17 @@
+Title:
+Unweighted Percentages of Weekly Outpatient Visits for ILI and Google Flu Trends data
+
+
+Description:
+
+We retrieved the weekly unweighted percentages of patient visits due to influenza-like illness (ILI), reported through the U.S. Outpatient Influenza-like Illness Surveillance Network (ILINet), from http://www.cdc.gov/flu/weekly/ on 10th December 2013. Here, ILI is defined as fever with a temperature of 100°F or greater, accompanied by a cough or a sore throat. Note that the data recorded for a given week can be updated in subsequent weeks, if the CDC have reason to believe that an updated figure would be more accurate. Here, we focus our analysis on the latest data available on the date of retrieval.
+ 
+We obtained the weekly time series of query volume for searches relating to ILI symptoms from Google Flu Trends (http://www.google.org/flutrends) on 18th December 2013. This time series is restricted to searches made in the United States, and has been shown by Ginsberg et al. to be correlated with the percentage of physician visits in which a patient presents with influenza-like symptoms. The creators of Google Flu Trends state that their algorithm for identifying influenza related searches is constantly evaluated against figures reported by the CDC and is occasionally updated to reflect changes in human online search behaviour. Since publication of the work carried out by Ginsberg et al., the algorithm underwent updates in 2009 and 2013. Data analysed here is therefore an amalgamation of two different Google Flu Trends algorithms, with the transition occurring in August 2013.
+
+In both the patient visit and search engine query time series, weeks start on Sundays and end on Saturdays.
+
+You can read the paper here:
+Preis T, Moat HS (2014) Adaptive nowcasting of influenza outbreaks using Google searches. Royal Society Open Science 1: 140095. http://dx.doi.org/10.1098/rsos.140095
+
+Data downloaded from Dryad:
+Preis T, Moat HS (2014) Data from: Adaptive nowcasting of influenza outbreaks using Google searches. Dryad Digital Repository. http://dx.doi.org/10.5061/dryad.r06h2

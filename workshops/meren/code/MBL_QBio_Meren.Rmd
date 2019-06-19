@@ -1,0 +1,362 @@
+---
+title: "QBio4 :: Microbiome workshop"
+subtitle: 'A glimpse into the microbial jungle in your mouth'
+
+author:
+- A. Murat Eren^[Department of Medicine, University of Chicago] ^[Marine Biological Laboratory]
+- Alon Shaiber^[The Biophysical Sciences Program at the University of Chicago.]
+output:
+  pdf_document:
+    highlight: tango
+fig_height: 2
+---
+
+```{r include=FALSE}
+quick_test_run <- FALSE
+```
+
+**Our planet *is* microbial**. The astonishing number of microbial organisms that occupy terrestrial and marine habitats of Earth represent a a biomass that exceeds every living organism that can be seen by naked eye, combined. They can survive in a wide range of environmental and chemical gradients: so even the most extreme environments we can find on Earth have some microbial ambassadors, carrying the flag of life to places where you don't want to go. They also are the engine of our planet really as they govern large and critical biogeochemical cycles that make Earth a habitable planet for much less talented organisms (such as ourselves) by doing the real tough jobs you don't want to do. Pretty much they are the best.
+
+**Our own body is microbial, too**. Just to put things into perspective, for every human cell that make up our own body, there is one or more bacterial cells that live on us. Starting from the moment we are born, microbes are with us throughout our jouney in life and even a litle after that: they help us maintain our health by extracting energy from things we can't digest, by synthesizing vitamins or metabolizing xenobiotics for us, and help us return all the things we borrowed in pristine conditions so other things can be built from us. They are just beautiful like that.
+
+Microbiologists who realized early on that **a complete understanding of life is only possible through a complete understanding of microbes** have been studying the evolution and ecology of microbes everywhere relentlessly for many decades. Of course, the emergence of advanced molecular and computational approaches had a huge influence on this quest, and allowed people like Meren and Alon to be relevant to fundamental questions of mirobiology with their computational skills. **As a group (http://merenlab.org) we seek answers in very large seqeuncing datasets about microbial life**. How do they respond to changing environments? How do they evolve? What roles do they play in health and disease? To investigate these qeustions, we study all sorts of environments: from human gut to the surface ocean, from mosquito ovaries to sewage ecosystems.
+
+Where does the oral cavity fit here? **The oral cavity is also colonized by bacteria** just like every other surface on your body. A complete microbial understanding of this environment has always been essential for medical reasons, but besides its immediate relevance for overall health, we believe **the oral cavity represents a fascinating environment to study the ecology of microbes**. Imagine how every microbial cell can go anywhere in the mouth due to the lack of any physical barriers, and continuous flow of saliva. But, their distribution is far from being random in that jungle of microbial life you all maintain in your mouths. And we are very curious to see whether we can make better sense of how they are distributed to later learn what makes them do that.
+
+**The purpose of this workshop** is to give you a glimpse of that invisible jungle in your mouth by making sense of high-throughput seqeuncing data from the oral cavity using `R` and `ggplot`.
+
+**At the end of this workshop** you will have an idea about how the community structures of naturally occurring microbes that live in a given environment can be studied with currently available molecular tools, sequencing technologies, and computational approaches. You will also gain more insights into the power of exploratory data visualization with `ggplot`, and the power of `R` in manipulating data.
+
+**When you are done here**, you will know *whether the microbes live on your tongue are more similar to the ones that live on your cheek, or whether they are more similar to the ones that live on the tongue of the person next to you*.
+
+# Setting the stage
+
+The primary raw data we will be playing with throughout this tutorial come from the Human Microbiome Project (HMP, https://hmpdacc.org/), a National Institutes of Health (http://www.nih.gov) initiative that attempted to make sense of the 'normal microbiome' of healthy individuals. The HMP recruited many healthy volunteers, and collected multiple samples from each one of them to study microbes that lived in the heahlty human gut, urogenitary tract, oral and nasal cavities, as well as skin.
+
+Here we will focus only on the oral cavity here to characterize the microbial communities of this particular environment (because the oral cavity is the best), and we will do this in a highly resolved manner using 'oligotypes'. The dataset we will re-analyze essentially comes from the supplementary tables of our 2014 study (http://www.pnas.org/content/111/28/E2875.short), which is available to you in PDF form in the `text` directory. In the same directory you can also find a copy of Carl Zimmer's take on our study, "[The Zoo in the Mouth](http://phenomena.nationalgeographic.com/2014/06/25/the-zoo-in-the-mouth/)".
+
+---
+
+OK. First things first. We will need the following libraries throughout this tutorial for statistical analyses (`vegan`), re-formatting the input data (`reshape2`), and to visualize it (`ggplot2`):
+
+```{r, message=FALSE}
+library(vegan)
+library(reshape2)
+library(ggplot2)
+```
+
+If you are missing any of these libraries, you can install them using `install.packages("LIBRARY_NAME_HERE")` notation.
+
+There are two data files for you to read in. The first one is the observation matrix that shows the distribution of each oligotype across each sample:
+
+```{r}
+oligotypes <- read.table('../data/oligotypes.txt',
+                        header = TRUE,
+                        sep="\t")
+```
+
+The second data file contains data about our samples:
+
+```{r}
+samples <- read.table('../data/samples.txt',
+                       header = TRUE,
+                       sep="\t")
+```
+
+
+```{r include=FALSE}
+if(quick_test_run == TRUE){
+  oligotypes <- oligotypes[1:100, ]
+  samples <- samples[1:100, ]
+}
+```
+
+Feel free to take a look at its format:
+
+```{r}
+head(samples)
+```
+
+Samples in our data describes two main environments:
+
+```{r}
+levels(samples$environment)
+```
+
+And more specifically, ten body sites:
+
+```{r}
+levels(samples$site)
+```
+
+While we have 148 individuals:
+
+```{r}
+length(levels(samples$individual))
+```
+
+We have a total of 1475 samples:
+
+```{r}
+length(levels(samples$sample))
+```
+
+Fine. We have everything we need.
+
+# A visualization-driven exploration of the data
+
+## MDS 
+For this exploration, we're going to use multi-dimensional scaling, a commonly used technique to make sense of large dimensional data sets. In particular, MDS takes as input a "distance" matrix (say the distance between samples, sequences, etc.), and tries to find a projections onto few dimensions (typically 2) that can be used to find "clusters" of similar samples. 
+
+To see how this works, let's load some non-biological data. 
+```{r}
+load("../data/travel_times.RData")
+```
+
+The matrix `travel_time` contains the number of minutes it would take you to drive between two of the major US cities listed. You can take a look at the data by calling
+
+```{r, eval = FALSE}
+View(travel_times)
+```
+
+Now we're going to apply MDS to the data, and find which two cities are "similar" (i.e., close to reach by car).
+```{r}
+fit_mds <- cmdscale(travel_times, k = 2) # use two dimensions
+```
+
+Let's plot the results
+```{r, eval = FALSE}
+cities_names <- rownames(travel_times)
+plot(fit_mds)
+text(fit_mds, labels = cities_names)
+```
+Not bad! Now, let's try with our microbial community.
+
+## Back to the oral cavity
+Here we create an ordination of our data using MDS:
+
+```{r echo=TRUE, results="hide"}
+# generate the mds object using the Morisita-Horn distance
+# (this will take some time)
+mds <- metaMDS(oligotypes[,-1], distance='horn')
+```
+
+We take a very quick look at the resulting ordination:
+
+```{r fig.height = 4}
+# show it
+plot(mds)
+```
+
+We can all agree that this looks quite useless.
+
+Instead of the `plot` function, we could use [`ggplot`](http://ggplot.yhathq.com/) to have more control over our visualization needs by adding ad hoc information into our plots in an intuitive manner. But `ggplot` will not like the way `mds` object is formatted. But we can turn that object into a data frame rich with information:
+
+```{r fig.height = 3}
+# generate a data frame
+mds_df <- data.frame(MDS1 = mds$points[,1],
+                     MDS2 = mds$points[,2],
+                     individual=with(samples, get("individual")),
+                     environment=with(samples, get("environment")),
+                     site=with(samples, get("site")))
+
+# take a peek
+head(mds_df)
+```
+
+Well, this is more like it. Now we can take a look this with `ggplot`:
+
+```{r fig.height = 3}
+p <- ggplot(data = mds_df, aes(MDS1, MDS2))
+p <- p + geom_point(size = 1)
+p
+```
+
+This is not much better than the previous plot, but this time we can easily manipulate our visual objects. Let's say we color our points in this display by `environment` to ask this very question: *from the perspective of microbes, do our guts look like our mouths?*:
+
+```{r fig.height = 3}
+p <- ggplot(data = mds_df, aes(MDS1, MDS2))
+p <- p + geom_point(aes(color=environment), size=1)
+p
+```
+
+This is relieving.
+
+Let's remove all gut samples to focus solely on oral microbes:
+
+```{r}
+# take the subset of both data frames:
+oral_oligotypes <- oligotypes[!grepl("_ST", oligotypes$sample), ]
+oral_samples <- samples[samples$environment == "ORAL_CAVITY", ]
+
+# set the factors straight:
+oral_samples$sample <- factor(oral_samples$sample)
+oral_samples$site <- factor(oral_samples$site)
+```
+
+Since we changed the shape of the data quite a bit, it is better to re-compute the ordination of our samples:
+
+```{r echo=TRUE, results="hide"}
+# new mds object:
+oral_mds <- metaMDS(oral_oligotypes[,-1], distance='horn')
+
+# generating a data frame from it:
+oral_mds_df <- data.frame(MDS1 = oral_mds$points[,1],
+                          MDS2 = oral_mds$points[,2],
+                          individual=with(oral_samples, get("individual")),
+                          site=with(oral_samples, get("site")))
+
+# taking a quick look from it because why not:
+head(oral_mds_df)
+```
+
+Alright! Let's take a quick look:
+
+```{r fig.height = 3}
+p <- ggplot(data = oral_mds_df, aes(MDS1, MDS2))
+p <- p + geom_point(size=1)
+p
+```
+
+What a chaos. What if we color based on individuals:
+
+```{r}
+p <- ggplot(data = oral_mds_df, aes(MDS1, MDS2))
+p <- p + geom_point(aes(color=individual), size=1)
+p
+```
+
+Ouch. We don't see anything, because the legend takes the entire space. Let's disable the legend and try again:
+
+```{r fig.height = 3}
+p <- ggplot(data = oral_mds_df, aes(MDS1, MDS2))
+p <- p + geom_point(aes(color=individual), size=1)
+p <- p + theme(legend.position="none")
+p
+```
+
+Much better. But this doesn't seem to have any structure. Why?
+
+OK. How about we color samples based on oral sites:
+
+```{r fig.height = 3}
+p <- ggplot(data = oral_mds_df, aes(MDS1, MDS2))
+p <- p + geom_point(aes(color=site), size=1)
+p <- p + theme(legend.position="none")
+p
+```
+
+Aha!
+
+What does this tell us?
+
+(It would be great to do an ANOVA here to show oral sites explain a much more significant amount of variance in the dataset before moving on to the next chapter)
+
+# Making publication-ready visualizations with R
+
+Let's say we wish to put some circles around our gorups to help visualize their distribution and dispersal.
+
+The function below will help us do that by returning all the `x` and `y` coordinates to draw a perfect ellipse on an ordination. It is coming from the depths of the library `vegan`, and here we simply are hacking it so we can use it to put ellipses on an ordination drawn by `ggplot`, rather than `vegan`:
+
+```{r}
+veganCovEllipse <- function (cov_matrix, center){
+  theta <- (0:100) * 2 * pi/100
+  circle <- cbind(cos(theta), sin(theta))
+
+  # here we have a perfect circle around the point zero, and the following line will
+  # turn it into an ellipse by centering and multiplying that innocent circle with the
+  # Choleski-decomposed input covariance matrix, which will represents the variation
+  # among the distribution of samples that belong to a single group on the ordination
+  # (this part will be much clear when you look at the for loop in the next step where
+  # this function is called). if you are not familiar, the notation `%*%` is for
+  # matrix multiplication. yes, you got it. this entire thing is absolute magic!
+  ell <- t(center + t(circle %*% chol(cov_matrix)))
+
+  return(as.data.frame(ell))
+}
+```
+
+Using the magic up above, we will generate a new data frame, `ellipses_df`, to keep track of ellipses around our data points by going through each group in the for loop below:
+
+```{r}
+ellipses_df <- data.frame()
+
+# mighty for loop .. it looks ugly, but is very simple:
+for(g in levels(oral_mds_df$site)){
+  # get a smaller data frame just for site:
+  s_df <- oral_mds_df[oral_mds_df$site==g, ]
+
+  # calculate its center and its covariance matrix:
+  center <- c(mean(s_df$MDS1), mean(s_df$MDS2))
+  cov_matrix <- cov.wt(cbind(s_df$MDS1, s_df$MDS2))$cov
+
+  # get the ellipse:
+  ellipse <-veganCovEllipse(cov_matrix, center)
+
+  # add the new ellipse to the data frame
+  ellipses_df <- rbind(ellipses_df, cbind(ellipse, group=g))
+}
+
+# let's name the columns in our data frame more appropriately:
+names(ellipses_df) <- c('x_coord', 'y_coord', 'group')
+```
+
+OK. You must be curious about what comes out of this black magic. Let's take a look at this new data frame:
+
+```{r}
+head(ellipses_df)
+```
+
+Don't let it fool you, this data frame has many entries since it is supposed to draw elliptic objects on our ordination:
+
+> can you predict how many points should it have by looking at the function `veganCovEllipse`?
+
+```{r}
+nrow(ellipses_df)
+```
+
+We still have the `ggplot` object in memory, let's add the data frame we just put together:
+
+```{r fig.height = 3}
+p <- p + geom_path(data=ellipses_df,
+                   aes(x=x_coord, y=y_coord, colour=group),
+                   size=1,
+                   linetype=1)
+p
+```
+
+There is always room for improvement:
+
+```{r fig.height = 3}
+p <- p + geom_polygon(data=ellipses_df,
+                      aes(x=x_coord, y=y_coord, group=group, fill=group),
+                      alpha=0.15)
+p
+```
+
+It would have been great if we knew exactly what these ellipses represent. Let's add some labels at the center of each. For this, we first need to compute the group means of our samples:
+
+```{r}
+oral_mds_group_means = aggregate(oral_mds_df[,1:2], 
+                                 list(group=with(oral_samples, get('site'))), 
+                                 mean)
+```
+
+Basically this is a new data frame that looks like this:
+
+```{r}
+oral_mds_group_means
+```
+
+And we can extend the `ggplot` object with one more layer:
+
+```{r fig.height = 3}
+p <- p + annotate("text",
+                  x=oral_mds_group_means$MDS1,
+                  y=oral_mds_group_means$MDS2,
+                  label=oral_mds_group_means$group,
+                  size=5, 
+                  fontface = 2)
+p
+```
+

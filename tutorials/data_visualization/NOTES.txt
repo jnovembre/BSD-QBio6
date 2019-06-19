@@ -1,0 +1,20 @@
+Instructor notes
+================
+
+Things to bring:
++ Water bottle.
++ Adapter for connecting to projector.
++ Power cord for laptop.
++ Printout of handout.
++ Printout of slides.
+
+In-class setup:
++ Use Terminal (not iTerm).
++ Use "My Settings" Terminal theme (with Consolas font)
++ Simplify bash prompt.
++ Clean up Desktop and quit applications (particularly Slack).
++ Arrange PDF of slides and Terminal on screen.
++ Start up R with the wrong working directory.
+
+
+
