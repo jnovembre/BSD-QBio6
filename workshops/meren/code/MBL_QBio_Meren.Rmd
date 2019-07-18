@@ -1,10 +1,10 @@
 ---
-title: "QBio4 :: Microbiome workshop"
+title: "QBio5 :: Microbiome workshop"
 subtitle: 'A glimpse into the microbial jungle in your mouth'
 
 author:
 - A. Murat Eren^[Department of Medicine, University of Chicago] ^[Marine Biological Laboratory]
-- Alon Shaiber^[The Biophysical Sciences Program at the University of Chicago.]
+- Evan Kiefl^[The Biophysical Sciences Program at the University of Chicago.]
 output:
   pdf_document:
     highlight: tango
@@ -15,15 +15,15 @@ fig_height: 2
 quick_test_run <- FALSE
 ```
 
-**Our planet *is* microbial**. The astonishing number of microbial organisms that occupy terrestrial and marine habitats of Earth represent a a biomass that exceeds every living organism that can be seen by naked eye, combined. They can survive in a wide range of environmental and chemical gradients: so even the most extreme environments we can find on Earth have some microbial ambassadors, carrying the flag of life to places where you don't want to go. They also are the engine of our planet really as they govern large and critical biogeochemical cycles that make Earth a habitable planet for much less talented organisms (such as ourselves) by doing the real tough jobs you don't want to do. Pretty much they are the best.
+**Our planet *is* microbial**. The astonishing number of microbial organisms that occupy terrestrial and marine habitats of Earth represent a biomass that exceeds every living organism that can be seen by naked eye, combined. They can survive in a wide range of environmental and chemical gradients, so even the most extreme environments we can find on Earth have some microbial ambassadors, carrying the flag of life to places where you don't want to go. They also are the engine of our planet as they govern large and critical biogeochemical cycles that make Earth a habitable planet for much less talented organisms (such as ourselves) by doing the real tough jobs you don't want to do. Pretty much they are the best.
 
 **Our own body is microbial, too**. Just to put things into perspective, for every human cell that make up our own body, there is one or more bacterial cells that live on us. Starting from the moment we are born, microbes are with us throughout our jouney in life and even a litle after that: they help us maintain our health by extracting energy from things we can't digest, by synthesizing vitamins or metabolizing xenobiotics for us, and help us return all the things we borrowed in pristine conditions so other things can be built from us. They are just beautiful like that.
 
-Microbiologists who realized early on that **a complete understanding of life is only possible through a complete understanding of microbes** have been studying the evolution and ecology of microbes everywhere relentlessly for many decades. Of course, the emergence of advanced molecular and computational approaches had a huge influence on this quest, and allowed people like Meren and Alon to be relevant to fundamental questions of mirobiology with their computational skills. **As a group (http://merenlab.org) we seek answers in very large seqeuncing datasets about microbial life**. How do they respond to changing environments? How do they evolve? What roles do they play in health and disease? To investigate these qeustions, we study all sorts of environments: from human gut to the surface ocean, from mosquito ovaries to sewage ecosystems.
+Microbiologists who realized early on that **a complete understanding of life is only possible through a complete understanding of microbes** have been studying the evolution and ecology of microbes everywhere relentlessly for many decades. Of course, the emergence of advanced molecular and computational approaches had a huge influence on this quest, and allowed people like Meren and Evan to be relevant to fundamental questions of microbiology with their computational skills. **As a group (http://merenlab.org) we seek answers in very large sequencing datasets about microbial life**. How do they respond to changing environments? How do they evolve? What roles do they play in health and disease? To investigate these questions, we study all sorts of environments: from human gut to the surface ocean, from mosquito ovaries to sewage ecosystems.
 
 Where does the oral cavity fit here? **The oral cavity is also colonized by bacteria** just like every other surface on your body. A complete microbial understanding of this environment has always been essential for medical reasons, but besides its immediate relevance for overall health, we believe **the oral cavity represents a fascinating environment to study the ecology of microbes**. Imagine how every microbial cell can go anywhere in the mouth due to the lack of any physical barriers, and continuous flow of saliva. But, their distribution is far from being random in that jungle of microbial life you all maintain in your mouths. And we are very curious to see whether we can make better sense of how they are distributed to later learn what makes them do that.
 
-**The purpose of this workshop** is to give you a glimpse of that invisible jungle in your mouth by making sense of high-throughput seqeuncing data from the oral cavity using `R` and `ggplot`.
+**The purpose of this workshop** is to give you a glimpse of that invisible jungle in your mouth by making sense of high-throughput sequencing data from the oral cavity using `R` and `ggplot`.
 
 **At the end of this workshop** you will have an idea about how the community structures of naturally occurring microbes that live in a given environment can be studied with currently available molecular tools, sequencing technologies, and computational approaches. You will also gain more insights into the power of exploratory data visualization with `ggplot`, and the power of `R` in manipulating data.
 
@@ -31,9 +31,9 @@ Where does the oral cavity fit here? **The oral cavity is also colonized by bact
 
 # Setting the stage
 
-The primary raw data we will be playing with throughout this tutorial come from the Human Microbiome Project (HMP, https://hmpdacc.org/), a National Institutes of Health (http://www.nih.gov) initiative that attempted to make sense of the 'normal microbiome' of healthy individuals. The HMP recruited many healthy volunteers, and collected multiple samples from each one of them to study microbes that lived in the heahlty human gut, urogenitary tract, oral and nasal cavities, as well as skin.
+The primary raw data we will be playing with throughout this tutorial come from the Human Microbiome Project (HMP, https://hmpdacc.org/), a National Institutes of Health (http://www.nih.gov) initiative that attempted to make sense of the 'normal microbiome' of healthy individuals. The HMP recruited many healthy volunteers, and collected multiple samples from each one of them to study microbes that lived in the healthy human gut, urogenitary tract, oral and nasal cavities, as well as skin.
 
-Here we will focus only on the oral cavity here to characterize the microbial communities of this particular environment (because the oral cavity is the best), and we will do this in a highly resolved manner using 'oligotypes'. The dataset we will re-analyze essentially comes from the supplementary tables of our 2014 study (http://www.pnas.org/content/111/28/E2875.short), which is available to you in PDF form in the `text` directory. In the same directory you can also find a copy of Carl Zimmer's take on our study, "[The Zoo in the Mouth](http://phenomena.nationalgeographic.com/2014/06/25/the-zoo-in-the-mouth/)".
+Here we will focus only on the oral cavity to characterize the microbial communities of this particular environment (because the oral cavity is the best), and we will do this in a highly resolved manner using 'oligotypes'. The dataset we will re-analyze essentially comes from the supplementary tables of our 2014 study (http://www.pnas.org/content/111/28/E2875.short), which is available to you in PDF form in the `text` directory. In the same directory you can also find a copy of Carl Zimmer's take on our study, "[The Zoo in the Mouth](http://phenomena.nationalgeographic.com/2014/06/25/the-zoo-in-the-mouth/)".
 
 ---
 
@@ -51,16 +51,16 @@ There are two data files for you to read in. The first one is the observation ma
 
 ```{r}
 oligotypes <- read.table('../data/oligotypes.txt',
-                        header = TRUE,
-                        sep="\t")
+                         header = TRUE,
+                         sep="\t")
 ```
 
 The second data file contains data about our samples:
 
 ```{r}
 samples <- read.table('../data/samples.txt',
-                       header = TRUE,
-                       sep="\t")
+                      header = TRUE,
+                      sep="\t")
 ```
 
 
@@ -218,7 +218,7 @@ p <- p + geom_point(size=1)
 p
 ```
 
-What a chaos. What if we color based on individuals:
+What chaos. What if we color based on individuals:
 
 ```{r}
 p <- ggplot(data = oral_mds_df, aes(MDS1, MDS2))
@@ -254,7 +254,7 @@ What does this tell us?
 
 # Making publication-ready visualizations with R
 
-Let's say we wish to put some circles around our gorups to help visualize their distribution and dispersal.
+Let's say we wish to put some circles around our groups to help visualize their distribution and dispersal.
 
 The function below will help us do that by returning all the `x` and `y` coordinates to draw a perfect ellipse on an ordination. It is coming from the depths of the library `vegan`, and here we simply are hacking it so we can use it to put ellipses on an ordination drawn by `ggplot`, rather than `vegan`:
 
