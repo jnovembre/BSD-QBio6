@@ -13,7 +13,7 @@ knitr::opts_chunk$set(fig.width=6, fig.height=4, fig.path='Figs/',
 # Population genetics workshop
 
 Instructor: **Matthias Steinrücken**  
-Course Assistant: **Maryn Carlson**  
+Course Assistant: **Zach Miller**  
 
 ### Welcome 
 
@@ -47,7 +47,7 @@ The files with these genotype frequencies are your starting points.
 
 ### Note about logistics
 
-We will use some of functions from the `dplyr` and `ggplot2` and `reshape2` libaries so first let's load them:
+We will use some functions from the `dplyr` and `ggplot2` and `reshape2` libaries so first let's load them:
 ```{r}
 library(dplyr)
 library(ggplot2)
@@ -57,7 +57,7 @@ If you get an error message saying there is no package titled `dplyr`,`ggplot2`,
 
 We will not be outputting files - but you may want to set your working directory to the `sandbox` sub-directory in case you want to output some files. 
 
-The `MBL_WorkshopJN.Rmd` file has the R code that you can run.  I provide code for most steps, but some you will need ot devise for yourselves to answer the questions that are part of the workshop narrative. 
+The `MBL_WorkshopJN.Rmd` file has the R code that you can run. Code is provided for most steps, but some you will need to devise for yourselves to answer the questions that are part of the workshop narrative. 
 
 ### Initial view of the data
 
@@ -76,7 +76,7 @@ You should see that there are columns each with distinct names.
 ```
 CHR        SNP A1 A2 nA1A1 nA1A2 nA2A2
 ```
-- CHR: The chromosome number.  In this case all SNPs are from chromosome 2.
+- CHR: The chromosome number.  In this case all SNPs are from chromosome 15.
 - SNP: The rsid of a SNP is a unique identifier for a SNP and you can use the rsid to look up information about a SNP using online resource such as dbSNP or SNPedia. 
 - A1: The minor allele at the SNP.
 - A2: The major allele.
@@ -124,7 +124,6 @@ g <- mutate(g, p1 = p11 + 0.5*p12, p2 = p22 + 0.5*p12)
 Run `head(g)` again and confirm that `g` now has the extra columns for the genotype and allele frequencies. 
 
 And let's plot the frequency of the major allele (A2) vs the frequency of the minor allele (A1).  The `ggplot2` library has the ability to make "quick plots" with the command `qplot`.  Let's try it here: 
-
 ```{r}
 qplot(p1, p2, data=g)
 ```
@@ -198,7 +197,7 @@ Let's look at the top few p-values:
 head(g$pval)
 ```
 
-How should we interpret these?  A p-value gives us the frequency at which the observed departure from expectations (or a more extreme departure) would occur if the null hypothesis is true.  As an agreed upon standard (of the frequentist paradigm for statistical hypothesis testing), if the observation is relatively rare under the null (e.g. p-value < 5%), we reject the null hypothesis, and we would infer that the given SNP departs from Hardy-Weinberg expectations.  This is problematic here though.   The problem is that we are testing many, many SNPs (Use `dim(g)` to remind yourself how many rows/SNPs are in the dataset).  Even if the null is universally true, 5% of our SNPs would be expected to be rejected using the standard frequentist paradigm.  This is called the multiple testing problem.  As an example, if we have 20,000 SNPs, that all obey the null hypothesis, we would on average naively reject the null for ~1000 SNPs based on the p-values < 0.05.   
+How should we interpret these?  A p-value gives us the frequency at which the observed departure from expectations (or a more extreme departure) would occur if the null hypothesis (the SNP follows HW proportions) is true.  As an agreed upon standard (of the frequentist paradigm for statistical hypothesis testing), if the observation is relatively rare under the null (e.g. p-value < 5%), we reject the null hypothesis, and we would infer that the given SNP departs from Hardy-Weinberg expectations.  This is problematic here though.   The problem is that we are testing many, many SNPs (Use `dim(g)` to remind yourself how many rows/SNPs are in the dataset).  Even if the null is universally true, 5% of our SNPs would be expected to be rejected using the standard frequentist paradigm.  This is called the multiple testing problem.  As an example, if we have 20,000 SNPs, that all obey the null hypothesis, we would on average naively reject the null for ~1000 SNPs based on the p-values < 0.05.   
 
 We clearly need some methods to deal with the "multiple testing problem".  Two frameworks are the Bonferroni approach and false-discovery-rate (FDR) approaches.  We will not say more about these here.  Instead, we will do two simple checks to see though if our data are globally consistent with the null.  
 
@@ -208,7 +207,7 @@ First, let's see how many tests have p-values less than 0.05.  Is it much larger
 sum(g$pval < 0.05, na.rm = TRUE)
 ```
 
-Wow - we see many more.  This is our first sign that though by eye these data show qualitiative similarities to HW, statistically they are not fitting Hardy-Weinberg well enough. 
+Wow - we see many more.  This is our first sign that although by eye these data show qualitiative similarities to HW, statistically they are not fitting Hardy-Weinberg well enough. 
 
 Let's look at this another way.  A classic result from Fisher is that under the null hypothesis the p-values of a well-designed test should be distributed uniformly between 0 and 1.  What do we see here? 
 
