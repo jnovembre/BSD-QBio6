@@ -1,0 +1,221 @@
+---
+title: "Data visualization tutorial---Instructor Notes"
+output:
+  pdf_document:
+    keep_tex: false
+    latex_engine: pdflatex
+    template: readable.tex
+author:
+  name: Peter Carbonetto
+  affiliation: University of Chicago
+date: July 22, 2019
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: single
+graphics: yes
+endnote: no
+thanks: "This document is for the Data Visualization tutorial for the BSD qBio Bootcamp, MBL, 2019. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: pcarbo@uchicago.edu."
+---
+
+```{r knitr-options, echo=FALSE}
+knitr::opts_chunk$set(results = "hide")
+```
+
+Setup
+-----
+
++ WiFi.
+
++ Power outlets.
+
++ Pace & questions (e.g., keyboard shortcuts).
+
++ Reading what I type.
+
++ Tutorial packet.
+
++ TAs.
+
++ Locating your team.
+
++ Computer clutter.
+
+Run `sessionInfo()`
+-------------------
+
+Check the version of R that you are using:
+
+```{r check-version}
+sessionInfo()
+```
+
+Clear your R environment
+------------------------
+
+The R environment is where all variables (and functions) are stored and
+accessed. You should start with an empty environment. Run this:
+
+```{r check-env}
+ls()
+```
+
+If this outputs names of objects, it means your environment is not
+empty, and you should restart R with a clean environment. Do either:
+
++ `rm(list = ls())`.
+
++ Or, in RStudio, **Session > Clear Workspace**.
+
+Test plot
+---------
+
+If the text is too small on the projector, use the following code to
+fix the size of the text for all subsequent plots:
+
+```{r adjust-plot-settings, eval=FALSE}
+theme_update(text = element_text(size = 30),
+             axis.text = element_text(size = 30))
+```
+
+Load data
+---------
+
+```{r prepare-data, echo=FALSE, message=FALSE, warning=FALSE}
+library(readr)
+data.file  <- "Food_Inspections.csv.gz"
+dat        <- read_csv(data.file)
+class(dat) <- "data.frame"
+cols       <- c(2:5,7,8,11,13,15,16)
+colnames   <- c("dba","aka","license","type","address","city","date",
+                "results","latitude","longitude")
+dat        <- dat[cols]
+names(dat) <- colnames
+get.third.entry <- function(x) { return(x[3]) }
+out      <- strsplit(dat$date,"/")
+dat$year <- sapply(out,get.third.entry)
+dat$year <- as.numeric(dat$year)
+```
+
+Some examples of R code to check that the data were read correctly,
+and to inspect the table:
+
+```{r inspect-data}
+nrow(dat)
+ncol(dat)
+names(dat)
+summary(dat)
+object.size(dat)
+```
+
+Prepare the data for plotting
+-----------------------------
+
+Code to filter rows that don't have the necessary data:
+
+```{r filter-rows} 
+dat <- subset(dat,
+              type == "Restaurant" &
+              city == "CHICAGO" &
+              !is.na(latitude) &
+              !is.na(longitude) &
+              !is.na(license))
+```
+
+Example code to extract data on pizza restaurants:
+
+```{r get-pizza-data}
+dat <- subset(dat,
+  grepl("pizz",dba,ignore.case = TRUE) |
+  grepl("pizz",aka,ignore.case = TRUE))
+```
+
+Example code to sort the rows of the table by year of inspection:
+
+```{r sort-rows-by-year}
+rows <- order(dat$year)
+dat  <- dat[rows,]
+```
+
+Example code to create a new data frame containing one row per pizza
+location:
+
+```{r select-unique-licenses}
+rows <- which(!duplicated(dat$license))
+dat  <- dat[rows,]
+```
+
+Your first plot
+---------------
+
+Create a table containing the number of newly inspected
+restaurants by year:
+
+```{r count-inspections-by-year}
+counts <- table(dat$year)
+```
+
+Convert the "counts" to a data frame:
+
+```{r convert-counts}
+counts <- as.data.frame(counts)
+names(counts) <- c("year","count")
+```
+
+Your second plot
+----------------
+
+```{r create-map-1, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(cowplot)
+```
+
+Create a plot showing a map of the pizza restaurants throughout the
+city:
+
+```{r create-map-2}
+a  <- aes(x = longitude,
+          y = latitude)
+p2 <- ggplot(dat,a)
+g  <- geom_point()
+p2 <- ggplot_add(g,p2)
+```
+
+Create a contour plot from the pizza locations, and overlay the points
+on top of it:
+
+```{r create-map-3}
+a  <- aes(x = longitude,
+          y = latitude)
+p2 <- ggplot(dat,a)
+g  <- geom_density_2d()
+p2 <- ggplot_add(g,p2)
+g  <- geom_point()
+p2 <- ggplot_add(g,p2)
+```
+
+Add colour corresponding to year:
+
+```{r create-map-4}
+a  <- aes(x     = longitude,
+          y     = latitude,
+          color = year)
+p2 <- ggplot(dat,a)
+g  <- geom_point()
+p2 <- ggplot_add(g,p2)
+```
+
+Highlight more recent pizza restaurants in warmer (red) colours:
+
+```{r create-map-5}
+out <- scale_color_gradient2(low = "white",
+         mid = "orange",high = "red",
+		 midpoint = 2014)
+p2  <- ggplot_add(out,p2)
+```
+
+Save the combined plot as a PNG file:
+
+```{r save-plot, eval=FALSE}
+ggsave("plots.png",p12,dpi = 150)
+```

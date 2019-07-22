@@ -64,6 +64,10 @@ $if(graphics)$
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 $endif$
 
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
 $if(title)$
 \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
 $endif$ 
@@ -164,7 +168,7 @@ $endif$
 
 \vskip 6.5pt
 
-\noindent $if(anonymous)$\doublespacing$else$$if(spacing)$\$spacing$spacing$endif$$endif$ $body$
+\noindent $if(anonymous)$\doublespacing$else$$if(spacing)$\$spacing$spacing$endif$$endif$ \setlength{\parindent}{0em} \setlength{\parskip}{1ex} $body$
 
 \newpage
 \singlespacing 
