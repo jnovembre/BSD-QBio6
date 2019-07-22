@@ -727,11 +727,7 @@ Dryad repository][cfw-data].
 were downloaded in CSV format from [here][food-inspection-data] on
 August 3, 2018.
 
-An xkcd bar chart
------------------
-
-$$\includegraphics[width=4in]{images/xkcd.png}$$
-(From http://xkcd.com/688.)
+$$\includegraphics[width=3in]{images/xkcd.png}$$
 
 [mansueto]: https://miurban.uchicago.edu
 [box]: https://uchicago.box.com
