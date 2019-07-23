@@ -8,7 +8,7 @@ output:
 author:
   name: Peter Carbonetto
   affiliation: University of Chicago
-date: July 22, 2019
+date: July 23, 2019
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
