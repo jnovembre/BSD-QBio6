@@ -727,19 +727,17 @@ Dryad repository][cfw-data].
 were downloaded in CSV format from [here][food-inspection-data] on
 August 3, 2018.
 
-$$\includegraphics[width=3in]{images/xkcd.png}$$
+An xkcd bar chart
+-----------------
+
+$$\includegraphics[width=4in]{images/xkcd.png}$$
+(From http://xkcd.com/688.)
 
 [mansueto]: https://miurban.uchicago.edu
-[box]: https://uchicago.box.com
 [ggplot2]: http://ggplot2.tidyverse.org
 [wilke]: https://serialmentor.com/dataviz
-[wilke-pdf]: https://uchicago.box.com/v/wilke
-[svmiller]: https://github.com/svmiller
-[svmiller-repo]: https://github.com/svmiller/svm-r-markdown-templates
-[bbc-story]: http://www.bbc.com/future/story/20170202-how-fast-food-reveals-secrets-of-the-economy
 [chicago-data-portal]: https://data.cityofchicago.org
 [food-inspection-data]: https://data.cityofchicago.org/Health-Human-Services/Food-Inspections/4ijn-s7e5
-[chicago-community-map]: https://home.chicagopolice.org/community/community-map
 [cfw-paper]: https://doi.org/10.1038/ng.3609
 [cfw-data]: https://doi.org/10.5061/dryad.2rs41
 [hmdp-paper]: https://doi.org/10.1371/journal.pgen.1002038
@@ -747,6 +745,5 @@ $$\includegraphics[width=3in]{images/xkcd.png}$$
 [gemma]: https://github.com/genetics-statistics/GEMMA
 [ucsc-browser]: http://genome.ucsc.edu
 [cc-by-human]: https://creativecommons.org/licenses/by/4.0
-[cc-by-legal]: https://creativecommons.org/licenses/by/4.0/legalcode
 [mit-license]: http://opensource.org/licenses/mit-license.html
 [osi]: http://opensource.org
