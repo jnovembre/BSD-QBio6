@@ -81,7 +81,7 @@ ggplot2, plot some fuel economy data from the EPA:
 
 ```{r first-plot, fig.show="hide"}
 epa <- read.csv("epa.csv")
-ggplot(mpg,aes(displ,cty,color = class)) + geom_point()
+ggplot(mpg, aes(displ, cty, color = class)) + geom_point()
 ```
 
 Hands-on exercise: "Rising Dough, Rising Neighbourhoods"
@@ -150,9 +150,9 @@ easier to write. (Note that "DBA" is an abbreviation of "doing
 business as".)
 
 ```{r remove-columns}
-cols     <- c(2:5,7,8,11,13,15,16)
-colnames <- c("dba","aka","license","type","address","city","date",
-              "results","latitude","longitude")
+cols     <- c(2:5, 7, 8, 11, 13, 15, 16)
+colnames <- c("dba", "aka", "license", "type", "address", "city",
+              "date", "results", "latitude", "longitude")
 dat        <- dat[cols]
 names(dat) <- colnames
 ```
@@ -162,7 +162,7 @@ new column, "year".
 
 ```{r extract-year}
 get.third.entry <- function(x) { return(x[3]) }
-out      <- strsplit(dat$date,"/")
+out      <- strsplit(dat$date, "/")
 dat$year <- sapply(out,get.third.entry)
 dat$year <- as.numeric(dat$year)
 ```
@@ -254,15 +254,15 @@ ahead and plot it! First, specify the data frame, and the mapping
 between variables (columns) and plotting elements:
 
 ```{r create-barchart-1}
-a <- aes(x = year,y = count)
-p <- ggplot(counts,a)
+a <- aes(x = year, y = count)
+p <- ggplot(counts, a)
 ```
 
 Specify *how* to plot the data points:
 
 ```{r create-barchart-2}
 g <- geom_col()
-p <- ggplot_add(g,p)
+p <- ggplot_add(g, p)
 ```
 
 Where is the plot? The `print` function tells R to draw the plot to
@@ -277,7 +277,7 @@ label:
 
 ```{r create-barchart-5}
 out <- labs(y = "number of locations")
-p   <- ggplot_add(out,p)
+p   <- ggplot_add(out, p)
 ```
 
 Here is equivalent code that is more concise (and more commonly used),
@@ -285,7 +285,7 @@ but also more difficult to understand because it is less clear what
 the "`+`" does:
 
 ```{r create-barchart-6, fig.show="hide"}
-p <- ggplot(counts,aes(x = year,y = count)) +
+p <- ggplot(counts,aes(x = year, y = count)) +
   geom_col(width = 0.5) +
   labs(y = "number of locations")
 ```
@@ -453,8 +453,8 @@ Instructions
   the tutorial materials; use `getwd()` to check this.
 
 + Some of the programming challenges require uploading an image file
-  containing a plot. You can use `ggsave` to save your plot as a file.
-  Any standard image format (e.g., PDF, PNG) is acceptable.
+  containing a plot. Use `ggsave` to save your plot as a file.  Any
+  standard image format (e.g., PDF, PNG) is acceptable.
 
 + No additional R packages are needed beyond what you used in the
   examples above.
@@ -476,7 +476,7 @@ taken in 878 male mice from the Hybrid Mouse Diversity Panel
 data into your R environment, run this code:
 
     ```{r read-hdmp-data}
-    hmdp <- read.csv("hmdp.csv",stringsAsFactors = FALSE)
+    hmdp <- read.csv("hmdp.csv", stringsAsFactors = FALSE)
     ```
 
     This will create a data frame, `hmdp`, containing BMD data on
@@ -488,8 +488,8 @@ for abnormal BMD. Association *p*-values were computed using
 the following code:
 
     ```{r read-gwscan-results}
-    gwscan <- read.csv("gwscan.csv",stringsAsFactors = FALSE)
-    gwscan <- transform(gwscan,chr = factor(chr,1:19))
+    gwscan <- read.csv("gwscan.csv", stringsAsFactors = FALSE)
+    gwscan <- transform(gwscan, chr = factor(chr, 1:19))
     ```
 
     This will create a data frame, `gwscan`. Each row of the data
@@ -505,8 +505,8 @@ the following code:
   read the genotype data into your R environment:
 
     ```{r read-genotypes}
-    geno <- read.csv("geno_rs29477109.csv",stringsAsFactors = FALSE)
-    geno <- transform(geno,id = as.character(id))
+    geno <- read.csv("geno_rs29477109.csv", stringsAsFactors = FALSE)
+    geno <- transform(geno, id = as.character(id))
     ```
 
     This will create a new data frame, `geno`, with 1,038 rows
@@ -590,7 +590,7 @@ test called the "Conditioned Fear" test.
       plot, does the apparatus used affect these behavioral test
       measurements?
 
-[^1]: R code: `logit <- function(x) log((x + 0.001)/(1 - x + 0.001))`
+[^1]: R code: `logit <- function(x) log((x + 0.001) / (1 - x + 0.001))`
 
 Part B: Exploratory analysis of bone-mineral density data
 ---------------------------------------------------------
@@ -672,7 +672,7 @@ and phenotype. From the genome-wide scan of abnormal BMD, you should
 find that rs29477109 is the SNP most strongly associated with
 abnormal BMD. Here you will look closely at the relationship between
 BMD and the genotype at this SNP. In developing your visualization,
-consider the following:
+consider that:
 
      + The samples listed in the phenotype and genotype tables are not
        the same. So you will need to align the two tables to properly
@@ -727,7 +727,7 @@ Dryad repository][cfw-data].
 were downloaded in CSV format from [here][food-inspection-data] on
 August 3, 2018.
 
-$$\includegraphics[width=3in]{images/xkcd.png}$$
+$$\includegraphics[width=4in]{images/xkcd.png}$$
 
 [mansueto]: https://miurban.uchicago.edu
 [ggplot2]: http://ggplot2.tidyverse.org
