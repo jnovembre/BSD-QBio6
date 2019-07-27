@@ -18,8 +18,8 @@ output:
 ---
 # BSD qBio$^5$ @ MBL
 
-## Group Schedule: *Callithrix jacchus*
- ![](https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Callithrix_jacchus.png)     
+## Group Schedule: *Octopus bimaculoides*
+ ![](https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Octopus_bimaculoides.png)     
 
 ### Sunday, September 8 
 
@@ -33,9 +33,9 @@ output:
 ### Monday, September 9 
 
 ------------------    ---------------------------------------------------------------
-**8:30-10:00**        Basic comp. I (LBG70N) Advanced comp. I (LB263)                
+**8:30-10:00**        Basic comp. I (LBG70S) Advanced comp. I (LB374)                
 **10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
-**10:30-12:00**       Basic comp. I (LBG70N) Advanced comp. I (LB263)                
+**10:30-12:00**       Basic comp. I (LBG70S) Advanced comp. I (LB374)                
 **12:00-12:45**       Lunch (SWC)                                                    
 **1:00-2:30**         Basic comp. II (LBG70S) Advanced comp. II (LB374)              
 **2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
@@ -51,9 +51,9 @@ output:
 **10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
 **10:30-12:00**       Free time                                                      
 **12:00-1:00**        Lunch (SWC)                                                    
-**1:00-2:30**         Data visualization (LBG70S)                                    
+**1:00-2:30**         Defensive programming (CH1)                                    
 **2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
-**2:45-4:30**         Data visualization (LBG70S)                                    
+**2:45-4:30**         Defensive programming (CH1)                                    
 **5:00-6:30**         Dinner (SWC)                                                   
 **7:15-9:00**         MBL Talk 1 (Lillie)                                            
 ------------------    ---------------------------------------------------------------
@@ -61,13 +61,13 @@ output:
 ### Wednesday, September 11 
 
 ------------------    ---------------------------------------------------------------
-**8:30-10:00**        Boat tour (be at the dock 15 mins before scheduled departure)  
+**8:30-10:00**        Visit Marine Resources Center (MRC)                            
 **10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
-**10:30-12:00**       Visit Marine Resources Center (MRC)                            
+**10:30-12:00**       Boat tour (be at the dock 15 mins before scheduled departure)  
 **12:00-1:00**        Lunch (SWC)                                                    
-**1:00-2:30**         Defensive programming (CH1)                                    
+**1:00-2:30**         Data visualization (LBG70S)                                    
 **2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
-**2:45-4:30**         Defensive programming (CH1)                                    
+**2:45-4:30**         Data visualization (LBG70S)                                    
 **5:00-6:30**         Dinner (SWC)                                                   
 **7:15-8:00**         Free time                                                      
 ------------------    ---------------------------------------------------------------
@@ -89,13 +89,13 @@ output:
 ### Friday, September 13 
 
 ------------------    ---------------------------------------------------------------
-**8:30-10:00**        Workshop Palmer (LB374)                                        
+**8:30-10:00**        Workshop Steinrücken (LBG70N)                                  
 **10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
-**10:30-12:00**       Workshop Palmer (LB374)                                        
+**10:30-12:00**       Workshop Steinrücken (LBG70N)                                  
 **12:00-1:00**        Lunch (SWC)                                                    
-**1:00-2:30**         Workshop Steinrücken (LBG70N)                                  
+**1:00-2:30**         Workshop Eren (LB263)                                          
 **2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
-**2:45-4:30**         Workshop Steinrücken (LBG70N)                                  
+**2:45-4:30**         Workshop Eren (LB263)                                          
 **5:00-6:30**         Dinner (SWC)                                                   
 **7:15-8:30**         MBL Talk 3 -  N. Patel (Speck)                                 
 ------------------    ---------------------------------------------------------------
@@ -103,9 +103,9 @@ output:
 ### Saturday, September 14 
 
 ------------------    ---------------------------------------------------------------
-**8:30-10:00**        Workshop Eren (LB263)                                          
+**8:30-10:00**        Workshop Palmer (LB374)                                        
 **10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
-**10:30-12:00**       Workshop Eren (LB263)                                          
+**10:30-12:00**       Workshop Palmer (LB374)                                        
 **12:00-1:00**        Lunch (SWC)                                                    
 **1:00-2:30**         Statistics for a data rich world (LBG70S)                      
 **2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
