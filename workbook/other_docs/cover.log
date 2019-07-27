@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  23 JUL 2019 17:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  27 JUL 2019 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -261,33 +261,33 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 (./cover.aux)
 \openout1 = `cover.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 8.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 16.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    ... okay on input line 16.
 LaTeX Font Info:    Try loading font information for T1+LinuxLibertineT-TLF on 
-input line 8.
+input line 16.
 
 (/usr/share/texlive/texmf-dist/tex/latex/libertine/T1LinuxLibertineT-TLF.fd
 File: T1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for T1/Li
 nuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 8.
+(Font)              scaled to size 10.0pt on input line 16.
 \c@mv@tabular=\count88
 \c@mv@boldtabular=\count89
 
@@ -358,127 +358,145 @@ e
 <BSDLogo.jpg, id=1, 1156.32pt x 173.448pt>
 File: BSDLogo.jpg Graphic file (type jpg)
 <use BSDLogo.jpg>
-Package pdftex.def Info: BSDLogo.jpg  used on input line 10.
+Package pdftex.def Info: BSDLogo.jpg  used on input line 18.
 (pdftex.def)             Requested size: 345.0pt x 51.74896pt.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 24.88pt on input line 14.
+(Font)              scaled to size 24.88pt on input line 22.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 24.88pt on input line 14.
+(Font)              scaled to size 24.88pt on input line 22.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <24.88> on input line 14.
+(Font)              <24.88> on input line 22.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <20.74> on input line 14.
+(Font)              <20.74> on input line 22.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 14.
+(Font)              <17.28> on input line 22.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 20.74pt on input line 14.
+(Font)              scaled to size 20.74pt on input line 22.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 17.28pt on input line 14.
+(Font)              scaled to size 17.28pt on input line 22.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 24.88pt on input line 14.
+(Font)              scaled to size 24.88pt on input line 22.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 20.74pt on input line 14.
+(Font)              scaled to size 20.74pt on input line 22.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 17.28pt on input line 14.
+(Font)              scaled to size 17.28pt on input line 22.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 24.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 24.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 24.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 24.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 24.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 5.0pt on input line 24.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 8.0pt on input line 24.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 6.0pt on input line 24.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 5.0pt on input line 24.
 <../../logo_group/Arabidopsis_thaliana.png, id=2, 142.131pt x 112.13895pt>
 File: ../../logo_group/Arabidopsis_thaliana.png Graphic file (type png)
 <use ../../logo_group/Arabidopsis_thaliana.png>
 Package pdftex.def Info: ../../logo_group/Arabidopsis_thaliana.png  used on inp
-ut line 18.
+ut line 28.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
 <../../logo_group/Caenorhabditis_elegans.png, id=4, 142.131pt x 112.13895pt>
 File: ../../logo_group/Caenorhabditis_elegans.png Graphic file (type png)
 <use ../../logo_group/Caenorhabditis_elegans.png>
 Package pdftex.def Info: ../../logo_group/Caenorhabditis_elegans.png  used on i
-nput line 19.
+nput line 29.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
 <../../logo_group/Danio_rerio.png, id=5, 142.131pt x 112.13895pt>
 File: ../../logo_group/Danio_rerio.png Graphic file (type png)
 <use ../../logo_group/Danio_rerio.png>
-Package pdftex.def Info: ../../logo_group/Danio_rerio.png  used on input line 2
+Package pdftex.def Info: ../../logo_group/Danio_rerio.png  used on input line 3
 0.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
 <../../logo_group/Drosophila_melanogaster.png, id=6, 142.131pt x 112.13895pt>
 File: ../../logo_group/Drosophila_melanogaster.png Graphic file (type png)
 <use ../../logo_group/Drosophila_melanogaster.png>
 Package pdftex.def Info: ../../logo_group/Drosophila_melanogaster.png  used on 
-input line 21.
+input line 31.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Macaca_mulatta.png, id=7, 142.131pt x 112.13895pt>
-File: ../../logo_group/Macaca_mulatta.png Graphic file (type png)
-<use ../../logo_group/Macaca_mulatta.png>
-Package pdftex.def Info: ../../logo_group/Macaca_mulatta.png  used on input lin
-e 22.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Callithrix_jacchus.png, id=7, 189.70876pt x 151.56625pt>
+File: ../../logo_group/Callithrix_jacchus.png Graphic file (type png)
+<use ../../logo_group/Callithrix_jacchus.png>
+Package pdftex.def Info: ../../logo_group/Callithrix_jacchus.png  used on input
+ line 32.
+(pdftex.def)             Requested size: 103.50105pt x 82.69331pt.
 <../../logo_group/Mus_musculus.png, id=8, 142.131pt x 112.13895pt>
 File: ../../logo_group/Mus_musculus.png Graphic file (type png)
 <use ../../logo_group/Mus_musculus.png>
 Package pdftex.def Info: ../../logo_group/Mus_musculus.png  used on input line 
-23.
+33.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
 <../../logo_group/Octopus_bimaculoides.png, id=9, 142.131pt x 112.13895pt>
 File: ../../logo_group/Octopus_bimaculoides.png Graphic file (type png)
 <use ../../logo_group/Octopus_bimaculoides.png>
 Package pdftex.def Info: ../../logo_group/Octopus_bimaculoides.png  used on inp
-ut line 24.
+ut line 34.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
 <../../logo_group/Papilio_polytes.png, id=10, 142.131pt x 112.13895pt>
 File: ../../logo_group/Papilio_polytes.png Graphic file (type png)
 <use ../../logo_group/Papilio_polytes.png>
 Package pdftex.def Info: ../../logo_group/Papilio_polytes.png  used on input li
-ne 25.
+ne 35.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
 <../../logo_group/Spinosaurus_aegyptiacus.png, id=11, 142.131pt x 112.13895pt>
 File: ../../logo_group/Spinosaurus_aegyptiacus.png Graphic file (type png)
 <use ../../logo_group/Spinosaurus_aegyptiacus.png>
 Package pdftex.def Info: ../../logo_group/Spinosaurus_aegyptiacus.png  used on 
-input line 26.
+input line 36.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
 <../../logo_group/Tetrahymena_thermophila.png, id=12, 142.131pt x 112.13895pt>
 File: ../../logo_group/Tetrahymena_thermophila.png Graphic file (type png)
 <use ../../logo_group/Tetrahymena_thermophila.png>
 Package pdftex.def Info: ../../logo_group/Tetrahymena_thermophila.png  used on 
-input line 27.
+input line 37.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
 <../../logo_group/Tiktaalik_roseae.png, id=13, 142.131pt x 112.13895pt>
 File: ../../logo_group/Tiktaalik_roseae.png Graphic file (type png)
 <use ../../logo_group/Tiktaalik_roseae.png>
 Package pdftex.def Info: ../../logo_group/Tiktaalik_roseae.png  used on input l
-ine 28.
+ine 38.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
 <../../logo_group/Xenopus_laevis.png, id=14, 142.131pt x 112.13895pt>
 File: ../../logo_group/Xenopus_laevis.png Graphic file (type png)
 <use ../../logo_group/Xenopus_laevis.png>
 Package pdftex.def Info: ../../logo_group/Xenopus_laevis.png  used on input lin
-e 29.
+e 39.
 (pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 33.
+(Font)              scaled to size 14.4pt on input line 43.
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./BSDLogo.jpg> <../../logo
 _group/Arabidopsis_thaliana.png> <../../logo_group/Caenorhabditis_elegans.png (
 PNG copy)> <../../logo_group/Danio_rerio.png> <../../logo_group/Drosophila_mela
-nogaster.png> <../../logo_group/Macaca_mulatta.png> <../../logo_group/Mus_muscu
-lus.png> <../../logo_group/Octopus_bimaculoides.png> <../../logo_group/Papilio_
-polytes.png> <../../logo_group/Spinosaurus_aegyptiacus.png> <../../logo_group/T
-etrahymena_thermophila.png> <../../logo_group/Tiktaalik_roseae.png> <../../logo
-_group/Xenopus_laevis.png>] (./cover.aux) ) 
+nogaster.png> <../../logo_group/Callithrix_jacchus.png> <../../logo_group/Mus_m
+usculus.png> <../../logo_group/Octopus_bimaculoides.png> <../../logo_group/Papi
+lio_polytes.png> <../../logo_group/Spinosaurus_aegyptiacus.png> <../../logo_gro
+up/Tetrahymena_thermophila.png> <../../logo_group/Tiktaalik_roseae.png> <../../
+logo_group/Xenopus_laevis.png>] (./cover.aux) ) 
 Here is how much of TeX's memory you used:
- 3968 strings out of 492982
- 64773 string characters out of 6134895
- 103406 words of memory out of 5000000
- 7477 multiletter control sequences out of 15000+600000
- 52350 words of font info for 36 fonts, out of 8000000 for 9000
+ 3991 strings out of 492982
+ 65152 string characters out of 6134895
+ 103434 words of memory out of 5000000
+ 7493 multiletter control sequences out of 15000+600000
+ 84008 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,4n,37p,231b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts
-/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/share/texlive/texmf-dist/fonts/enc/d
-vips/libertine/lbtn_nh77jq.enc}</usr/share/texlive/texmf-dist/fonts/type1/publi
-c/libertine/LinLibertineT.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/libertine/LinLibertineTB.pfb>
-Output written on cover.pdf (1 page, 1562609 bytes).
+ 39i,8n,37p,231b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/f
+onts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/share/texlive/texmf-dist/fonts/e
+nc/dvips/libertine/lbtn_nh77jq.enc}</usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/libertine/LinLibertineT.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/libertine/LinLibertineTB.pfb>
+Output written on cover.pdf (1 page, 1532774 bytes).
 PDF statistics:
  43 PDF objects out of 1000 (max. 8388607)
  13 compressed objects within 1 object stream
