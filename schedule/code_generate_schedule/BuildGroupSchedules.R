@@ -21,7 +21,7 @@ activities <- inner_join(activities, group_names)
 # Create a column for starting time; arrange all events by group and start time
 activities <- activities %>% 
   rowwise() %>% 
-  mutate(StartTime = paste0("9/", Day, "/2018 ", strsplit(Time, "-")[[1]][1], " ", AMPM)) %>% 
+  mutate(StartTime = paste0("9/", Day, "/2019 ", strsplit(Time, "-")[[1]][1], " ", AMPM)) %>% 
   mutate(StartTime = parse_date_time(StartTime, "%m/%d/%Y %I:%M %p", tz = "America/New_York")) %>% 
   arrange(Group, StartTime)
 
@@ -51,7 +51,7 @@ output:
     latex_engine: xelatex
     keep_tex: true
 ---")
-  cat("\n# BSD qBio$^4$ @ MBL")
+  cat("\n# BSD qBio$^5$ @ MBL")
   cat("\n\n")
   cat(paste0("## Group Schedule: *", group_name_long, "*"))
   cat("\n")
@@ -91,7 +91,7 @@ output:
   cat("
 **Rooms** *CH1:* ground floor room in Candle House; *LB263:* Loeb 263; *LB374:* Loeb 374; 
 *LBG70N/S:* Loeb lower level, room G70; *Lillie:* Lillie Auditorium; 
-*Lillie 103*; *MBL Club*; *Meigs:* Meigs room, Swope Center; 
+*Meigs:* Meigs room, Swope Center; 
 *MRC:* Marine Resources Center; 
 *Speck:* Speck Auditorium, Rowe Lab; *SWC:* Swope cafeteria.
   \n")
@@ -125,7 +125,7 @@ output:
     keep_tex: true
     pandoc_args: ["numberLines"]
 ---')
-cat("\n# BSD qBio$^4$ @ MBL")
+cat("\n# BSD qBio$^5$ @ MBL")
 cat("\n\n")
 cat(paste0("## General Schedule"))
 cat("\n")
