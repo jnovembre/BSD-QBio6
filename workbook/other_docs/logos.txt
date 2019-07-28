@@ -1,0 +1,12 @@
+\includegraphics[width=0.25\linewidth]{../logo_groups/Arabidopsis_thaliana.png}
+\includegraphics[width=0.25\linewidth]{../../logo_group/Caenorhabditis_elegans.png}
+\includegraphics[width=0.25\linewidth]{../../logo_group/Danio_rerio.png}\\
+\includegraphics[width=0.25\linewidth]{../../logo_group/Drosophila_melanogaster.png}
+\includegraphics[width=0.25\linewidth]{../../logo_group/Macaca_mulatta.png}
+\includegraphics[width=0.25\linewidth]{../../logo_group/Mus_musculus.png}\\
+\includegraphics[width=0.25\linewidth]{../../logo_group/Octopus_bimaculoides.png}
+\includegraphics[width=0.25\linewidth]{../../logo_group/Papilio_polytes.png}
+\includegraphics[width=0.25\linewidth]{../../logo_group/Spinosaurus_aegyptiacus.png}\\
+\includegraphics[width=0.25\linewidth]{../../logo_group/Tetrahymena_thermophila.png}
+\includegraphics[width=0.25\linewidth]{../../logo_group/Tiktaalik_roseae.png}
+\includegraphics[width=0.25\linewidth]{../../logo_group/Xenopus_laevis.png}

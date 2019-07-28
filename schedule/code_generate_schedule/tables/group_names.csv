@@ -1,0 +1,13 @@
+Group,Long,Short,Pic
+G1,Arabidopsis thaliana,A.thaliana,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Arabidopsis_thaliana.png
+G2,Caenorhabditis elegans,C.elegans,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Caenorhabditis_elegans.png
+G3,Danio rerio,D.rerio,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Danio_rerio.png
+G4,Drosophila melanogaster,D.melanogaster,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Drosophila_melanogaster.png
+G5,Callithrix jacchus,C.jacchus,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Callithrix_jacchus.png
+G6,Mus musculus,M.musculus,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Mus_musculus.png
+G7,Octopus bimaculoides,O.bimaculoides,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Octopus_bimaculoides.png
+G8,Papilio polytes,P.polytes,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Papilio_polytes.png
+G9,Spinosaurus aegyptiacus,S.aegyptiacus,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Spinosaurus_aegyptiacus.png
+G10,Tetrahymena thermophila,T.thermophila,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Tetrahymena_thermophila.png
+G11,Tiktaalik rosea,T.roseae,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Tiktaalik_roseae.png
+G12,Xenopus laevis,X.laevis,https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Xenopus_laevis.png

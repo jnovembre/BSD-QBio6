@@ -1,0 +1,505 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  23 JUL 2019 17:32
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**../other_docs/cover.tex
+(../other_docs/cover.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/libertine/libertine.sty
+Package: libertine 2018/01/03 (Bob Tennent) Supports Libertine and Biolinum fon
+ts for all LaTeX engines.
+
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks14
+\XKV@tempa@toks=\toks15
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex))
+\XKV@depth=\count87
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/mweights/mweights.sty
+Package: mweights 2017/03/30 (Bob Tennent) Support package for multiple-weight 
+font packages. 
+LaTeX Info: Redefining \bfseries on input line 22.
+LaTeX Info: Redefining \mdseries on input line 30.
+LaTeX Info: Redefining \rmfamily on input line 38.
+LaTeX Info: Redefining \sffamily on input line 66.
+LaTeX Info: Redefining \ttfamily on input line 94.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+Package: fontaxes 2014/03/23 v1.0d Font selection axes
+LaTeX Info: Redefining \upshape on input line 29.
+LaTeX Info: Redefining \itshape on input line 31.
+LaTeX Info: Redefining \slshape on input line 33.
+LaTeX Info: Redefining \scshape on input line 37.
+)
+LaTeX Info: Redefining \oldstylenums on input line 490.
+
+(/usr/share/texlive/texmf-dist/tex/latex/libertine/LinLibertine_I.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/mathastext/mathastext.sty
+Package: mathastext 2016/11/06 v1.3r Use the text font in math mode (JFB)
+\mst@exists@muskip=\muskip10
+\mst@forall@muskip=\muskip11
+\mst@prime@muskip=\muskip12
+\mst@do@nonletters=\toks16
+\mst@do@easynonletters=\toks17
+\mst@do@az=\toks18
+\mst@do@AZ=\toks19
+\symmtoperatorfont=\mathgroup4
+\symmtletterfont=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathnormalbold' in version `nor
+mal'
+(Font)                  T1/LinuxLibertineT-TLF/bx/it --> T1/LinuxLibertineT-TLF
+/bx/it on input line 1102.
+LaTeX Font Info:    Overwriting math alphabet `\mathnormalbold' in version `bol
+d'
+(Font)                  T1/LinuxLibertineT-TLF/bx/it --> T1/LinuxLibertineT-TLF
+/bx/it on input line 1102.
+LaTeX Font Info:    Overwriting symbol font `mtletterfont' in version `normal'
+(Font)                  T1/LinuxLibertineT-TLF/m/it --> T1/LinuxLibertineT-TLF/
+m/it on input line 1102.
+LaTeX Font Info:    Overwriting symbol font `mtletterfont' in version `bold'
+(Font)                  T1/LinuxLibertineT-TLF/m/it --> T1/LinuxLibertineT-TLF/
+bx/it on input line 1102.
+LaTeX Font Info:    Overwriting symbol font `mtoperatorfont' in version `normal
+'
+(Font)                  T1/LinuxLibertineT-TLF/m/n --> T1/LinuxLibertineT-TLF/m
+/n on input line 1102.
+LaTeX Font Info:    Overwriting symbol font `mtoperatorfont' in version `bold'
+(Font)                  T1/LinuxLibertineT-TLF/m/n --> T1/LinuxLibertineT-TLF/b
+x/n on input line 1102.
+LaTeX Font Info:    Overwriting math alphabet `\Mathbf' in version `normal'
+(Font)                  T1/LinuxLibertineT-TLF/bx/n --> T1/LinuxLibertineT-TLF/
+bx/n on input line 1102.
+LaTeX Font Info:    Overwriting math alphabet `\Mathbf' in version `bold'
+(Font)                  T1/LinuxLibertineT-TLF/bx/n --> T1/LinuxLibertineT-TLF/
+bx/n on input line 1102.
+LaTeX Font Info:    Overwriting math alphabet `\Mathit' in version `normal'
+(Font)                  T1/LinuxLibertineT-TLF/m/it --> T1/LinuxLibertineT-TLF/
+m/it on input line 1102.
+LaTeX Font Info:    Overwriting math alphabet `\Mathit' in version `bold'
+(Font)                  T1/LinuxLibertineT-TLF/m/it --> T1/LinuxLibertineT-TLF/
+bx/it on input line 1102.
+LaTeX Font Info:    Overwriting math alphabet `\Mathsf' in version `normal'
+(Font)                  T1/LinuxBiolinumT-TLF/m/n --> T1/LinuxBiolinumT-TLF/m/n
+ on input line 1102.
+LaTeX Font Info:    Overwriting math alphabet `\Mathsf' in version `bold'
+(Font)                  T1/LinuxBiolinumT-TLF/m/n --> T1/LinuxBiolinumT-TLF/bx/
+n on input line 1102.
+LaTeX Font Info:    Overwriting math alphabet `\Mathtt' in version `normal'
+(Font)                  T1/LinuxLibertineMonoT-TLF/m/n --> T1/LinuxLibertineMon
+oT-TLF/m/n on input line 1102.
+LaTeX Font Info:    Overwriting math alphabet `\Mathtt' in version `bold'
+(Font)                  T1/LinuxLibertineMonoT-TLF/m/n --> T1/LinuxLibertineMon
+oT-TLF/bx/n on input line 1102.
+
+** Latin letters in the normal (resp. bold) math versions are now
+** set up to use the fonts T1/LinuxLibertineT-TLF/m(bx)/it
+** Other characters (digits, ...) and \log-like names will be
+** typeset with the n shape.
+** ! and ?
+** punctuation: , . : ; and \colon
+LaTeX Info: Redefining \relbar on input line 1248.
+** minus as endash
+** \hbar
+** + and =
+LaTeX Info: Redefining \Relbar on input line 1350.
+** adding = ; and + to \nfss@catcodes
+** parentheses ( ) [ ] and slash /
+** alldelims: < > \backslash \setminus | \vert \mid \{ and \}
+LaTeX Font Info:    Redeclaring math delimiter \backslash on input line 1396.
+LaTeX Font Info:    Redeclaring math symbol \setminus on input line 1408.
+LaTeX Info: Redefining \models on input line 1417.
+** \# \mathdollar \% \& 
+** \i and \j 
+LaTeX Info: Redefining \i on input line 1988.
+LaTeX Info: Redefining \j on input line 1989.
+** \HUGE has been (re)-defined.
+** mathastext has declared larger sizes for subscripts.
+** To keep LaTeX defaults, use option `defaultmathsizes'.
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 99.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+No file cover.aux.
+\openout1 = `cover.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 8.
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Try loading font information for T1+LinuxLibertineT-TLF on 
+input line 8.
+
+(/usr/share/texlive/texmf-dist/tex/latex/libertine/T1LinuxLibertineT-TLF.fd
+File: T1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for T1/Li
+nuxLibertineT-TLF.
+)
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 8.
+\c@mv@tabular=\count88
+\c@mv@boldtabular=\count89
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count90
+\scratchdimen=\dimen105
+\scratchbox=\box26
+\nofMPsegments=\count91
+\nofMParguments=\count92
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count93
+\MPscratchDim=\dimen106
+\MPnumerator=\count94
+\makeMPintoPDFobject=\count95
+\everyMPtoPDFconversion=\toks21
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+
+LaTeX Warning: File `BSDLogo.jpg' not found on input line 10.
+
+
+! Package pdftex.def Error: File `BSDLogo.jpg' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 ...udegraphics[width=\linewidth]{BSDLogo.jpg}
+                                                  
+? 
+LaTeX Font Info:    Try loading font information for T1+LinuxLibertineMonoT-TLF
+ on input line 10.
+
+(/usr/share/texlive/texmf-dist/tex/latex/libertine/T1LinuxLibertineMonoT-TLF.fd
+File: T1LinuxLibertineMonoT-TLF.fd 2017/03/20 (autoinst) Font definitions for T
+1/LinuxLibertineMonoT-TLF.
+)
+LaTeX Font Info:    Font shape `T1/LinuxLibertineMonoT-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 10.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 24.88pt on input line 14.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 24.88pt on input line 14.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <24.88> on input line 14.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <20.74> on input line 14.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 14.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 20.74pt on input line 14.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 17.28pt on input line 14.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 24.88pt on input line 14.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 20.74pt on input line 14.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 17.28pt on input line 14.
+<../../logo_group/Arabidopsis_thaliana.png, id=1, 142.131pt x 112.13895pt>
+File: ../../logo_group/Arabidopsis_thaliana.png Graphic file (type png)
+<use ../../logo_group/Arabidopsis_thaliana.png>
+Package pdftex.def Info: ../../logo_group/Arabidopsis_thaliana.png  used on inp
+ut line 18.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Caenorhabditis_elegans.png, id=3, 142.131pt x 112.13895pt>
+File: ../../logo_group/Caenorhabditis_elegans.png Graphic file (type png)
+<use ../../logo_group/Caenorhabditis_elegans.png>
+Package pdftex.def Info: ../../logo_group/Caenorhabditis_elegans.png  used on i
+nput line 19.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Danio_rerio.png, id=4, 142.131pt x 112.13895pt>
+File: ../../logo_group/Danio_rerio.png Graphic file (type png)
+<use ../../logo_group/Danio_rerio.png>
+Package pdftex.def Info: ../../logo_group/Danio_rerio.png  used on input line 2
+0.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Drosophila_melanogaster.png, id=5, 142.131pt x 112.13895pt>
+File: ../../logo_group/Drosophila_melanogaster.png Graphic file (type png)
+<use ../../logo_group/Drosophila_melanogaster.png>
+Package pdftex.def Info: ../../logo_group/Drosophila_melanogaster.png  used on 
+input line 21.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Macaca_mulatta.png, id=6, 142.131pt x 112.13895pt>
+File: ../../logo_group/Macaca_mulatta.png Graphic file (type png)
+<use ../../logo_group/Macaca_mulatta.png>
+Package pdftex.def Info: ../../logo_group/Macaca_mulatta.png  used on input lin
+e 22.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Mus_musculus.png, id=7, 142.131pt x 112.13895pt>
+File: ../../logo_group/Mus_musculus.png Graphic file (type png)
+<use ../../logo_group/Mus_musculus.png>
+Package pdftex.def Info: ../../logo_group/Mus_musculus.png  used on input line 
+23.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../../logo_group/Arabidops
+is_thaliana.png> <../../logo_group/Caenorhabditis_elegans.png (PNG copy)> <../.
+./logo_group/Danio_rerio.png>]
+<../../logo_group/Octopus_bimaculoides.png, id=18, 142.131pt x 112.13895pt>
+File: ../../logo_group/Octopus_bimaculoides.png Graphic file (type png)
+<use ../../logo_group/Octopus_bimaculoides.png>
+Package pdftex.def Info: ../../logo_group/Octopus_bimaculoides.png  used on inp
+ut line 24.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Papilio_polytes.png, id=19, 142.131pt x 112.13895pt>
+File: ../../logo_group/Papilio_polytes.png Graphic file (type png)
+<use ../../logo_group/Papilio_polytes.png>
+Package pdftex.def Info: ../../logo_group/Papilio_polytes.png  used on input li
+ne 25.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Spinosaurus_aegyptiacus.png, id=20, 142.131pt x 112.13895pt>
+File: ../../logo_group/Spinosaurus_aegyptiacus.png Graphic file (type png)
+<use ../../logo_group/Spinosaurus_aegyptiacus.png>
+Package pdftex.def Info: ../../logo_group/Spinosaurus_aegyptiacus.png  used on 
+input line 26.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Tetrahymena_thermophila.png, id=21, 142.131pt x 112.13895pt>
+File: ../../logo_group/Tetrahymena_thermophila.png Graphic file (type png)
+<use ../../logo_group/Tetrahymena_thermophila.png>
+Package pdftex.def Info: ../../logo_group/Tetrahymena_thermophila.png  used on 
+input line 27.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Tiktaalik_roseae.png, id=22, 142.131pt x 112.13895pt>
+File: ../../logo_group/Tiktaalik_roseae.png Graphic file (type png)
+<use ../../logo_group/Tiktaalik_roseae.png>
+Package pdftex.def Info: ../../logo_group/Tiktaalik_roseae.png  used on input l
+ine 28.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Xenopus_laevis.png, id=23, 142.131pt x 112.13895pt>
+File: ../../logo_group/Xenopus_laevis.png Graphic file (type png)
+<use ../../logo_group/Xenopus_laevis.png>
+Package pdftex.def Info: ../../logo_group/Xenopus_laevis.png  used on input lin
+e 29.
+(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 14.4pt on input line 33.
+ [2 <../../logo_group/Drosophila_melanogaster.png> <../../logo_group/Macaca_mul
+atta.png> <../../logo_group/Mus_musculus.png> <../../logo_group/Octopus_bimacul
+oides.png> <../../logo_group/Papilio_polytes.png> <../../logo_group/Spinosaurus
+_aegyptiacus.png> <../../logo_group/Tetrahymena_thermophila.png> <../../logo_gr
+oup/Tiktaalik_roseae.png> <../../logo_group/Xenopus_laevis.png>] (./cover.aux) 
+) 
+Here is how much of TeX's memory you used:
+ 3988 strings out of 492982
+ 65578 string characters out of 6134895
+ 102406 words of memory out of 5000000
+ 7492 multiletter control sequences out of 15000+600000
+ 52970 words of font info for 38 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 39i,5n,37p,245b,392s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr
+/share/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/share
+/texlive/texmf-dist/fonts/enc/dvips/libertine/lbtn_d6jdyt.enc}</usr/share/texli
+ve/texmf-dist/fonts/type1/public/libertine/LinLibertineMT.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb>
+Output written on cover.pdf (2 pages, 691599 bytes).
+PDF statistics:
+ 50 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+
