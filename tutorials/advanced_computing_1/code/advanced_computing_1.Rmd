@@ -1,87 +1,105 @@
 ---
 title: "Advanced Computing 1 -- Data wrangling and plotting"
-author: "Stefano Allesina"
-output: 
+output:
   pdf_document:
-    highlight: kate
-    template: default
+    keep_tex: false
+    latex_engine: pdflatex
+    template: style/readable.tex
+author:
+  name: Stefano Allesina
+  affiliation: University of Chicago
+date: Aug 2019
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: single
+graphics: yes
+endnote: no
+thanks: "This document is included as part of the Advanced Computing I packet for the U Chicago BSD qBio5 boot camp, @MBL, 2019. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: sallesina@uchicago.edu."
+abstract: "
+
+- **Goal:** learn how to manipulate large data sets by writing efficient, consistent, and compact code. Introduce the use of `dplyr`, `tidyr`, and the pipeline operator `%>%`. Produce beautiful graphs and figures for scientific publications using `ggplot2`.
+
+
+- **Audience:** experienced `R` users, familiar with the data type `data.frame`, loops, functions, and having some notions of data bases. 
+
+
+- **Installation:** the following packages need to be installed: `ggplot2`, `dplyr`, `tidyr`, `lubridate`, `ggthemes`"
 ---
 
-# Data Wrangling and Plotting
-
-- **Goal:** learn how to manipulate large data sets by writing efficient, consistent, and compact code. Introduce the use of `dplyr`, `tidyr`, and the "pipeline" operator `%>%`. Produce beautiful graphs and figures for scientific publications using `ggplot2`.
-
-- **Audience:** experienced `R` users, familiar with the data type `data.frame`, loops, functions, and having some notions of data bases.
-
-- **Installation:** the following packages need to be installed: `ggplot2`, `dplyr`, `tidyr`, `lubridate`, `ggthemes`
+```{r setup, echo=FALSE, eval=TRUE}
+knitr::opts_chunk$set(eval = FALSE, echo = TRUE)
+```
 
 # Data wrangling
 
 As biologists living in the XXI century, we are often faced with tons of data, possibly replicated over several organisms, treatments, or locations. We would like to streamline and automate our analysis as much as possible, writing scripts that are easy to read, fast to run, and easy to debug. Base `R` can get the job done, but often the code contains complicated operations (think of the cases in which you used `lapply` only because of its speed), and a lot of `$` signs and brackets.
 
-We're going to learn about the packages `dplyr` and `tidyr`, which can be used to manipulate large data frames in a simple and straightforward way. These tools are also much faster than the corresponding base `R` commands, are very compact, and can be concatenated into "pipelines". 
-
-To start, we need to import the libraries:
-```{r, echo=TRUE, message=FALSE, eval=FALSE}
-library(dplyr)
-library(tidyr)
+To start, we need to import `tidyverse`:
+```{r, echo=TRUE, message=FALSE}
+library(tidyverse)
 ```
 
-Then, we need a dataset to play with. We take a dataset containing all the Divvy bikes trips in Chicago in July 2014:
-```{r, eval=FALSE}
-divvy <- read.csv("../data/Divvy_Trips_July_2014.csv") 
+`tidyverse` is a fantastic bundle of packages: a collection of `R` packages designed to manipulate large data frames in a simple and straightforward way. These tools are also much faster than the corresponding base `R` commands, and allow you to write compact code by concatenating commands to build "pipelines". Moreover, all of the packages in the bundle share the same philosophy, and are seamlessly integrated. By default, calling `library(tidyverse)` loads the packages `readr`, `tidyr` and `dplyr` (to read, organize and manipulate data), `ggplot2` (data plotting), `stringr` (string manipulation) and a few others; many others ancillary packages that are part of the `tidyverse` can be loaded if needed.
+
+Then, we need a dataset to play with. We take a dataset containing all the papers published by UofC researchers in *Nature* or *Science* between 1999 and July 2019:
+
+```{r}
+pubs <- read.csv("../data/UC_Nat_Sci_1999-2019.csv") 
 ```
 
-## A new data type, `tbl`
+## A new data type, `tibble`
 
-This is now a data frame:
-```{r, eval=FALSE}
-is.data.frame(divvy)
+The data are stored in a `data.frame`:
+```{r}
+is.data.frame(pubs)
 ```
 
-`dplyr` ships with a new data type, called a `tbl`. To convert from data frame, use
-```{r, eval=FALSE}
-divvy <- tbl_df(divvy)
-divvy
+`tidyverse` ships with a new data type, called a `tibble`. It also comes with its improved function to read data:
+```{r}
+pubs <- read_csv("../data/UC_Nat_Sci_1999-2019.csv") 
+pubs
 ```
 
-The nice feature of `tbl` objects is that they will print only what fits on the screen, and also give you useful information on the size of the data, as well as the type of data  in each column. Other than that, a `tbl` object behaves very much like a `data.frame`. In some rare cases, you want to transform the `tbl` back into a `data.frame`. For this, use the function `as.data.frame(tbl_object)`.
+which automatically reads the data as a `tibble`. The nice feature of `tibble` objects is that they will print only what fits on the screen, and also give you useful information on the size of the data, as well as the type of data  in each column. Other than that, a `tibble` object behaves very much like a `data.frame`. If you want to transform the `tibble` back into a `data.frame`, use the function `as.data.frame(my_tibble)`; the function `as_tibble(my_data_frame)` transforms a `data.frame` into a tibble.
 
 We can take a look at the data using one of several functions:
 
-* `head(divvy)` shows the first few (10 by default) rows
-* `tail(divvy)` shows the last few (10 by default) rows
-* `glimpse(divvy)` a summary of the data (similar to `str` in base R)
-* `View(divvy)` open in spreadsheet-like window
+* `head(pubs)` shows the first few rows
+* `tail(pubs)` shows the last few rows
+* `glimpse(pubs)` a summary of the data (similar to `str` in base `R`)
+* `View(pubs)` open data in spreadsheet-like window
 
 ## Selecting rows and columns
 
-There are many ways to subset the data, either by row (subsetting the *observations*), or by column (subsetting the *variables*). For example, suppose we want to count how many trips (of the > 410k) are very short. The column `tripduration` contains the length of the trip in seconds. Let's select only the trips that lasted less than 3 minutes:
+There are many ways to subset the data, either by row (subsetting the *observations*), or by column (subsetting the *variables*). For example, let's select only articles published after 2009:
 
-```{r, eval=FALSE}
-filter(divvy, tripduration < 180)
+```{r}
+filter(pubs, Year > 2009)
 ```
 
-You can see that "only" 11,099 trips lasted less than three minutes. We have used the command `filter(tbl, conditions)` to select certain observations. We can combine several conditions, by listing them side by side, possibly using logical operators.
+You can see that 515 of the 953 documents were published in the last 10 years. We have used the command `filter(tbl, conditions)` to select certain observations. We can combine several conditions, by listing them side by side, possibly using logical operators.
 
 > **Exercise:** what does this do?
->```{r, eval=FALSE}
- filter(divvy, gender == "Male", tripduration > 60, tripduration < 180)
+>```{r}
+ filter(pubs, Year == 2008, `Source title` == "Nature", `Cited by` > 100)
  ```
 
-We can also select particular variables using the function `select(tbl, cols to select)`. For example, select `from_station_name` and `from_station_id`:
+Note that the "back ticks" can be used to type column names that contain spaces and non-standard characters. This is nice, because otherwise the name of the column would need to be altered (as done automatically by `read.csv`, sometimes creating column names that are difficult to interpret or type).
 
-```{r, eval=FALSE}
-select(divvy, from_station_name, from_station_id)
+We can also select particular variables using the function `select(tbl, cols to select)`. For example, select only `Authors` and `Title`:
+
+```{r}
+select(pubs, Authors, Title)
 ```
 
-How many stations are represented in the data set? We can use the function `distinct(tbl)` to retain only the rows that differ from each other:
+How many years are represented in the data set? We can use the function `distinct(tbl)` to retain only the rows that differ from each other:
 
-```{r, eval=FALSE}
-distinct(select(divvy, from_station_name, from_station_id))
+```{r}
+distinct(select(pubs, Year))
 ```
 
-Showing that there are 300 stations, once we removed the duplicates. 
+Where we first extracted only the column `Year`, and then retained only distinct values.
 
 Other ways to subset observations:
 
@@ -91,99 +109,108 @@ Other ways to subset observations:
 
 - `slice(tbl, 50:100)` extract the rows between `50` and `100`
 
-- `top_n(tbl, 10, tripduration)` extract the first `10` rows, once ordered by `tripduration`
+- `top_n(tbl, 10, Year)` extract the first `10` rows, once ordered by `Year`
 
 More ways to select columns:
 
-- `select(divvy, contains("station"))` select all columns containing the word `station`
+- `select(pubs, contains("Cited"))` select all columns containing the word `Cited`
 
-- `select(divvy, -gender, -tripduration)` exclude the columns `gender` and `tripduration`
+- `select(pubs, -Authors, -Year)` exclude the columns `Authors` and `Year`
 
-- `select(divvy, matches("year|time"))` select all columns whose names match a regular expression
+- `select(pubs, matches("astring|anotherstring"))` select all columns whose names match a regular expression.
 
 ## Creating pipelines using `%>%`
 
-We've been calling nested functions, such as `distinct(select(divvy, ...))`. If you have to add another layer or two, the code would become unreadable. `dplyr` allows you to "un-nest" these functions and create a "pipeline", in which you concatenate commands separated by the special operator `%>%`. For example:
+We've been calling nested functions, such as `distinct(select(pubs, ...))`. If you have to add another layer or two, the code would become unreadable. `dplyr` allows you to "un-nest" these functions and create a "pipeline", in which you concatenate commands separated by the special operator `%>%`. For example:
 
-```{r, eval=FALSE}
-divvy %>% # take a data table
-  select(from_station_name, from_station_id) %>% # select two columns
+```{r}
+pubs %>% # take a data table
+  select(Year) %>% # select a columns
   distinct() # remove duplicates
 ```
 
-does exactly the same as the command above, but is much more readable. By concatenating many commands, you can create incredibly complex pipelines while retaining readability.
+does exactly the same as the command we've run above, but is much more readable. By concatenating many commands, you can create incredibly complex pipelines while retaining readability.
 
 ## Producing summaries
 
-Sometimes we need to calculate statistics on certain columns. For example, calculate the average trip duration. We can do this using `summarise`:
-```{r, eval=FALSE}
-divvy %>% summarise(avg = mean(tripduration))
+Sometimes we need to calculate statistics on certain columns. For example, calculate the average number of citations. We can do this using `summarise`:
+```{r}
+pubs %>% summarise(avg = mean(`Cited by`))
 ```
 
-which returns a `tbl` object with just the average trip duration. You can combine multiple statistics (use `first`, `last`, `min`, `max`, `n` [count the number of rows], `n_distinct` [count the number of distinct rows], `mean`, `median`, `var`, `sd`, etc.):
+which returns a `tibble` object with just the average number of citations. You can combine multiple statistics (use `first`, `last`, `min`, `max`, `n` [count the number of rows], `n_distinct` [count the number of distinct rows], `mean`, `median`, `var`, `sd`, etc.):
 
-```{r, eval=FALSE}
-divvy %>% summarise(avg = mean(tripduration), 
-                    sd = sd(tripduration), 
-                    median = median(tripduration))
+```{r}
+pubs %>% summarise(avg = mean(`Cited by`), 
+                    sd = sd(`Cited by`), 
+                    median = median(`Cited by`))
 ```
 
 ## Summaries by group
 
-One of the most useful features of `dplyr` is the ability to produce statistics for the data once subsetted by *groups*. For example, we would like to measure whether men take longer trips than women. We can then group the data by `gender`, and calculate the mean `tripduration` once the data is split into groups:
+One of the most useful features of `dplyr` is the ability to produce statistics for the data once subsetted by *groups*. For example, we would like to compute the average number of citations by journal and year:
 
-```{r, eval=FALSE}
-divvy %>% group_by(gender) %>% summarise(mean = mean(tripduration))
+```{r}
+pubs %>% 
+  group_by(`Source title`, Year) %>% 
+  summarise(avg = mean(`Cited by`))
 ```
 
-showing that women tend to take longer trips than men. 
-
-> **Exercise:** count the number of trips for Male, Female, and unspecified gender.
+> **Exercise:** count the number of articles by UofC researcher in *Nature* and *Science* by `Source title` and `Year`.
 
 ## Ordering the data 
+
 To order the data according to one or more variables, use `arrange()`:
-```{r, eval=FALSE}
-divvy %>% select(trip_id, tripduration) %>% arrange(tripduration)
-divvy %>% select(trip_id, tripduration) %>% arrange(desc(tripduration))
+
+```{r}
+pubs %>% select(Title, `Cited by`) %>% arrange(`Cited by`)
+pubs %>% select(Title, `Cited by`) %>% arrange(desc(`Cited by`))
 ```
 
 ## Renaming columns
 To rename one or more columns, use `rename()`:
-```{r, eval=FALSE}
-divvy %>% rename(tt = tripduration)
+```{r}
+pubs %>% rename(Cites = `Cited by`)
 ```
 
-## Adding new variables using mutate
-If you want to add one or more new columns, use the function `mutate`:
-
-```{r, eval=FALSE}
-divvy %>% select(from_station_id, to_station_id) %>% 
-  mutate(mylink = paste0(from_station_id, "->", to_station_id))
+If you want to retain the new name(s), simply overwrite the object:
+```{r}
+pubs <- pubs %>% rename(Cites = `Cited by`, Journal = `Source title`)
 ```
 
-use the function `transmute()` to create a new column and drop the original columns. You can also use `mutate` and `transmute` on grouped data:
+## Adding new variables using `mutate`
+If you want to add one or more new columns, use the function `mutate`. For example, suppose we want to count the number of authors for each document. Authors are separated by commas (with small errors, but let's disregard that), and therefore a strategy would be to first count the number of commas, and then add 1:
 
-```{r, eval=FALSE}
-# A more complex pipeline
-divvy %>% 
-  select(trip_id, gender, tripduration) %>%  # select only three columns
-  rename(t = tripduration) %>% # rename a column
-  group_by(gender) %>% # create a group for each gender value
-  mutate(zscore = (t - mean(t) ) / sd(t)) %>% # compute z-score for t, according to gender
+```{r}
+pubs <- pubs %>% mutate(Num_authors = str_count(Authors, ",") + 1)
+```
+
+use the function `transmute()` to create a new column and drop the original columns. You can also use `mutate` and `transmute` on grouped data. 
+
+When writing code, it is good practice to separate the operations by line:
+
+```{r}
+# A more complex example: for each paper, 
+# compute the percentile rank of citations 
+# compared to other papers of the same year
+pubs %>% 
+  group_by(Year) %>% # group papers according to year
+  mutate(pr = percent_rank(Cites)) %>% # compute % rank by Citations
   ungroup() %>% # remove group information
-  arrange(desc(t), zscore, gender) %>% # order by t (decreasing), zscore, and gender
+  arrange(Year, desc(pr), Authors) %>% # order by Year then % rank (decreasing) 
   head(20) # display first 20 rows
 ```
+
+in this way, you can easily comment out a part of the pipeline (or add another piece in the middle).
 
 # Data plotting
 The most salient feature of scientific graphs should be clarity. Each figure should make crystal-clear a) what is being plotted; b) what are the axes; c) what do colors, shapes, and sizes represent; d) the message the figure wants to convey. Each figure is accompanied by a (sometimes long) caption, where the details can be explained further, but the main message should be clear from glancing at the figure (often, figures are the first thing editors and referees look at).
 
-Many scientific publications contain very poor graphics: labels are missing, scales are unintelligible, there is no explanation of some graphical elements. Moreover, some color graphs are impossible to understand if printed in black and white, or difficult to discern for color-blind people.
+Many scientific publications contain very poor graphics: labels are missing, scales are unintelligible, there is no explanation of some graphical elements. Moreover, some color graphs are impossible to understand if printed in black and white, or difficult to discern for color-blind people (8% of men, 0.5% of women).
 
 Given the effort that you put in your science, you want to ensure that it is well presented and accessible. The investment to master some plotting software will be rewarded by pleasing graphics that convey a clear message.
 
-In this section, we introduce `ggplot2`, a plotting package for `R` This package was developed by Hadley Wickham who contributed many important packages to `R` (including `dplyr`). Unlike many other plotting systems, `ggplot2` is deeply rooted in a  "philosophical" vision. The goal is to conceive a grammar for all graphical representation of data.  Leland Wilkinson and collaborators proposed The Grammar of
-Graphics. It follows the idea of a well-formed sentence that is composed of a subject, a predicate, and an object. The Grammar of Graphics likewise aims at describing a well-formed graph by a grammar that captures a very wide range of statistical and scientific graphics. This might be more clear with an example -- Take a simple two-dimensional scatterplot. How can we describe it? We have:
+In this section, we introduce `ggplot2`, a plotting package for `R` This package was developed by Hadley Wickham who contributed many important packages to `R` (including `dplyr`), and who is the force behing `tidyverse`. Unlike many other plotting systems, `ggplot2` is deeply rooted in a  "philosophical" vision. The goal is to conceive a grammar for all graphical representation of data.  Leland Wilkinson and collaborators proposed The Grammar of Graphics. It follows the idea of a well-formed sentence that is composed of a subject, a predicate, and an object. The Grammar of Graphics likewise aims at describing a well-formed graph by a grammar that captures a very wide range of statistical and scientific graphics. This might be more clear with an example -- Take a simple two-dimensional scatterplot. How can we describe it? We have:
 
 - **Data** The data we want to plot.
 
@@ -204,59 +231,37 @@ Exactly like in the grammar of a natural language, we can easily change the mean
 
 ## Basic `ggplot2`
 
-`ggplot2` ships with a simplified graphing function, called `qplot`. In this introduction we are not going to use it, and we concentrate instead on the function `ggplot`, which gives you complete control over your plotting. First, we need to load the package. While we are at it, let's also load a package extending its theming system:
+`ggplot2` ships with a simplified graphing function, called `qplot`. In this introduction we are not going to use it, and we concentrate instead on the function `ggplot`, which gives you complete control over your plotting. First, we need to load the package (note that `ggplot2` is automatically loaded by `tidyverse`). While we are at it, let's also load a package extending its theming system:
 
 ```{r}
 library(ggplot2)
 library(ggthemes)
 ```
 
-And then, let's get a small data set, containing the data on the Divvy stations:
+A particularity of `ggplot2` is that it accepts exclusively data organized in tables (a `data.frame` or a `tibble` object). Thus, all of your data needs to be converted into a table format for plotting. 
+
+For our first plot, we're going to produce a barplot showing the number of papers in `Science` and `Nature` by UofC researcher for each `Year`. To start:
 
 ```{r}
-divvy_stations <- read.csv("../data/Divvy_Stations_July_2014.csv")
+ggplot(data = pubs)
 ```
 
-A particularity of `ggplot2` is that it accepts exclusively data organized in tables (a `data.frame` or a `tbl` object). Thus, all of your
-data needs to be converted into a data frame format for plotting. 
+As you can see, nothing is drawn: we need to specify what we would like to associate to the *x* axis (i.e., we want to set the *aesthetic mappings*):
 
-Let's look at the data:
-```{r, eval = FALSE}
-head(divvy_stations)
+```{r}
+ggplot(data = pubs) + aes(x = Year)
 ```
 
-For our first plot, we're going to plot the position of the stations, using the latitude (*y* axis) and longitude (*x* axis). First, we need to specify a dataset to use:
+Note that we concatenate pieces of our "sentence" using the `+` sign! We've got the axes, but still no graph... we need to specify a geometry. Let's use barplot:
 
-```{r, eval = FALSE}
-ggplot(data = divvy_stations)
+```{r}
+ggplot(data = pubs) + aes(x = Year) + geom_bar()
 ```
 
-As you can see, nothing is drawn: we need to specify what we would like to associate to the *x* axis, and what to the *y* axis (i.e., we want to set the *aesthetic mappings*):
+As you can see, we wrote a well-formed sentence, composed of **data** + **mapping** + **geometry**, and this has produced a well-formed plot. We can add other mappings, for example, showing the journal in which the paper was published:
 
-```{r, eval = FALSE}
-ggplot(data = divvy_stations) + aes(x = longitude, y = latitude)
-```
-
-Note that we concatenate pieces of our "sentence" using the `+` sign! We've got the axes, but still no graph... we need to specify a geometry. Let's use points:
-
-```{r, eval = FALSE}
-ggplot(data = divvy_stations) + aes(x = longitude, y = latitude) + geom_point()
-```
-
-You can now see the outline of Chicago, with the lake on the right (east), the river separating the Loop from the West Loop, etc. As you can see, we wrote a well-formed sentence, composed of **data** + **mapping** + **geometry**. We can add other mappings, for example, showing the capacity of the station using different point sizes:
-
-```{r, eval = FALSE}
-ggplot(data = divvy_stations) + 
-  aes(x = longitude, y = latitude, size = dpcapacity) + 
-  geom_point()
-```
-
-or colors
-
-```{r, eval = FALSE}
-ggplot(data = divvy_stations) + 
-  aes(x = longitude, y = latitude, colour = dpcapacity) + 
-  geom_point()
+```{r}
+ggplot(data = pubs) + aes(x = Year, fill = Journal) + geom_bar()
 ```
 
 ## Scatterplots
@@ -264,123 +269,107 @@ Using `ggplot2`, one can produce very many types of graphs. The package works ve
 
 The main feature of `ggplot2` is that you can tinker with your graph fairly easily, and with a common grammar. You don't have to settle on a certain presentation of the data until you're ready, and it is very easy to switch from one type of graph to another.
 
-For example, let's calculate the median `tripduration` by `birthdate`, to see whether older people tend to take longer or shorter trips:
+For example, let's plot the number of citations in the `y` axis, the year in the `x` axis. We want a scatterplot, which is produced by the geometry `geom_point`:
 
-```{r, eval = FALSE}
-duration_byyr <- divvy %>% 
-  filter(is.na(birthyear) == FALSE) %>% # remove records without birthdate
-  filter(birthyear > 1925) %>% # remove ultra centenarian people (probably, errors)
-  group_by(birthyear) %>% # group by birth year
-  summarise(median_duration  = median(tripduration)) # calculate median for each group
-
-pl <- ggplot(data = duration_byyr) + # data
-  aes(x = birthyear, y = median_duration) + # aesthetic mappings
+```{r}
+pl <- ggplot(data = pubs) + # data
+  aes(x = Year, y = Cites) + # aesthetic mappings
   geom_point() # geometry
 
 pl # or show(pl)
 ```
 
-We can add a smoother by typing
-```{r, eval = FALSE}
+This does not look very good, because some papers have a much larger number of citations than other. We can attempt plotting the `log(Cites + 1)` instead (the `+1` is added because some papers might have 0 citations):
+
+```{r}
+pl <- ggplot(data = pubs) + # data
+  aes(x = Year, y = log(Cites + 1)) + # aesthetic mappings
+  geom_point() # geometry
+
+pl # or show(pl)
+```
+
+Much nicer! Now we can add a smoother by typing:
+
+```{r}
 pl + geom_smooth() # spline by default
 pl + geom_smooth(method = "lm", se = FALSE) # linear model, no standard errors
 ```
 
-> **Exercise:** repeat the plot of the median, but grouping the data by `gender` as well as `birthyear`. Set the aesthetic mapping `colour` to plot the results by gender.
+> **Exercise:** repeat the plot of the citations, but showing a different `colour` for each journal; add a smoother for each journal separately. Do papers receive more citations when they're published in *Nature* or *Science*?
 
 ## Histograms, density and boxplots
 
-How many trips did each bike take? We can plot a histogram showing the number of trips per bike:
+What is the distribution of citations?
 
-```{r, eval = FALSE}
-ggplot(data = divvy, aes(x = bikeid)) + geom_histogram(binwidth = 50)
+```{r}
+ggplot(data = pubs) + aes(x = Cites) + geom_histogram()
 ```
 
-showing a quite uniform density. Speaking of which, we can draw a density plot:
+You can see that there are some papers with many more citations than others. Try log-transforming the data:
 
-```{r, eval = FALSE}
-ggplot(data = divvy, aes(x = bikeid)) + geom_density()
+```{r}
+ggplot(data = pubs) + aes(x = log(Cites + 1)) + geom_histogram()
 ```
 
-Similarly, we can produce boxplots, for example showing the tripduration for men and women (in `log10`, as the distribution is close to a lognormal):
+Now we observe an histogram much closer to a Normal distribution, meaning that the number of citations is approximately log-normally distributed. You can switch to a density plot quite easily (just change the geometry!):
 
-```{r, eval = FALSE}
-ggplot(data = divvy, aes(x = gender, y = log10(tripduration))) + geom_boxplot()
+```{r}
+ggplot(data = pubs) + aes(x = log(Cites + 1)) + geom_density()
+```
+
+Similarly, we can produce boxplots, for example showing the number of citations for papers in *Nature* and *Science* (log transformed):
+
+```{r}
+ggplot(data = pubs) + aes(x = Journal, y = log(Cites + 1)) + geom_boxplot()
 ```
 
 It is very easy to change geometry, for example switching to a violin plot:
 
-```{r, eval = FALSE}
-ggplot(data = divvy, aes(x = gender, y = log10(tripduration))) + geom_violin()
+```{r}
+ggplot(data = pubs) + aes(x = Journal, y = log(Cites + 1)) + geom_violin()
 ```
 
-## Duration by weekday
-Now we're going to test whether the trip duration varies considerably by weekday. To do so, we load the package `lubridate`, which contains many excellent functions for manipulating dates and times.
-
-```{r, eval = FALSE}
-library(lubridate)
-```
-
-we then create a new variable, `tripday` specifying the day of the week when the trip was initiated. First, we want to transform the string `starttime` into a date:
-```{r, eval = FALSE}
-head(divvy) %>% mutate(tripday = mdy_hm(starttime)) #mdy_hm specifies the date format
-```
-
-then we can call `wday` with `label = TRUE` to have a label specifying the day of the week:
-```{r, eval = FALSE}
-head(divvy) %>% mutate(tripday = wday(mdy_hm(starttime), label = TRUE))
-```
-
-Looks good! Let's perform this operation on the whole set:
-```{r, eval = FALSE}
-divvy <- divvy %>% mutate(tripday = wday(mdy_hm(starttime), label = TRUE))
-```
-
-> **Exercises:** 
+> **Exercise:** 
 >
-> - Produce a barplot (`geom_bar`) showing the number of trips by day
+> - Produce a boxplot showing the number of authors (in log) per year (use `factor(Year)` for the x axis). Is science becoming more collaborative?
 >
-> - Calculate the median trip duration per weekday. Then plot it with the command:
->
-> ```{r, eval = FALSE}
-ggplot(medianbyweekday, aes(x = tripday, y = mediantrip)) + 
-       geom_bar(stat = "identity")
-```
->
-> the command `stat = "identity"` tells `ggplot2` to interpret the `y` aesthetic mapping as the height of the barplot.
+> - Now produce a scatterplot showing the same trend, and add a smoothing function.
 
 ## Scales
 
-We can use scales to determine how the aesthetic mappings are displayed. For example, we could set the *x* axis to be in logarithmic scale, or we can choose how the colors, shapes and sizes are used. `ggplot2` uses two types of scales: `continuous` scales are used for continuos variables (e.g., real numbers); `discrete` scales for variables that can only take a certain number of values (e.g., colors, shapes, sizes).
+We can use scales to determine how the aesthetic mappings are displayed. For example, we could set the *x* axis to be in logarithmic scale, or we can choose how the colors, shapes and sizes are used. `ggplot2` uses two types of scales: `continuous` scales are used for continuos variables (e.g., real numbers); `discrete` scales for variables that can only take a certain number of values (e.g., treatments, labels, factors, etc.).
 
-For example, let's plot a histogram of `tripduration`:
-```{r, eval=FALSE}
-ggplot(divvy, aes(x = tripduration)) + geom_histogram() # no transformation
-ggplot(divvy, aes(x = tripduration)) + geom_histogram() + 
-  scale_x_continuous(trans = "log")
-ggplot(divvy, aes(x = tripduration)) + geom_histogram() + 
-  scale_x_continuous(trans = "log10")
-ggplot(divvy, aes(x = tripduration)) + geom_histogram() + 
-  scale_x_continuous(trans = "sqrt", name = "Duration in minutes")
-ggplot(divvy, aes(x = tripduration)) + geom_histogram() + scale_x_log10() # shorthand
+For example, let's plot a histogram showing the number of authors per paper:
+```{r}
+ggplot(pubs, aes(x = Num_authors)) + geom_histogram() # no transformation
+ggplot(pubs, aes(x = Num_authors)) + geom_histogram() + 
+  scale_x_continuous(trans = "log") # natural log
+ggplot(pubs, aes(x = Num_authors)) + geom_histogram() + 
+  scale_x_continuous(trans = "log10") # base 10 log
+ggplot(pubs, aes(x = Num_authors)) + geom_histogram() + 
+  scale_x_continuous(trans = "sqrt", name = "Number of authors")
+ggplot(pubs, aes(x = Num_authors)) + geom_histogram() + scale_x_log10() # shorthand
 ```
 
-We can use different color scales. We can convert the capacity to a factor, to use discrete scales:
+We can use different color scales. For example:
 
-```{r, eval = FALSE}
-pl <- ggplot(data = divvy_stations) + 
-  aes(x = longitude, y = latitude, colour = as.factor(dpcapacity)) + 
-  geom_point()
+```{r}
+pl <- ggplot(data = pubs %>% filter(Year %in% c(2000, 2005, 2010, 2015))) + 
+  aes(x = Num_authors, y = Cites, colour = factor(Year)) + 
+  geom_point() + 
+  scale_x_log10() +
+  scale_y_log10()
 pl + scale_colour_brewer()
 pl + scale_colour_brewer(palette = "Spectral")
-pl + scale_colour_brewer(palette = "Blues")
-pl + scale_colour_brewer("Station Capacity", palette = "Paired")
+pl + scale_colour_brewer(palette = "Set1")
+pl + scale_colour_brewer("year of publication", palette = "Paired")
 ```
 
-Or use the capacity as a continuous variable:
-```{r, eval = FALSE}
-pl <- ggplot(data = divvy_stations) + 
-  aes(x = longitude, y = latitude, colour = dpcapacity) + 
+Or use the number of authors a continuous variable:
+```{r}
+pl <- ggplot(data = pubs) + 
+  aes(x = Year, y = log(Cites + 1), colour = log(Num_authors)) + 
   geom_point()
 pl + scale_colour_gradient()
 pl + scale_colour_gradient(low = "red", high = "green")
@@ -393,11 +382,8 @@ Similarly, you can use scales to modify the display of the shapes of the points 
 
 Themes allow you to manipulate the look and feel of a graph with just one command. The package `ggthemes` extends the themes collection of `ggplot2` considerably. For example:
 
-```{r, eval=FALSE}
+```{r}
 library(ggthemes)
-pl <- ggplot(divvy, aes(x = tripduration)) + 
-  geom_histogram() + 
-  scale_x_continuous(trans = "log") 
 pl + theme_bw() # white background
 pl + theme_economist() # like in the magazine "The Economist"
 pl + theme_wsj() # like "The Wall Street Journal"
@@ -408,35 +394,26 @@ pl + theme_wsj() # like "The Wall Street Journal"
 In many cases, we would like to produce a multi-panel graph, in which each panel shows the data for a certain combination of parameters. In `ggplot` this is called *faceting*: the command `facet_grid` is used when you want to produce a grid of panels, in which all the panels in the same row (column) have axis-ranges in common; `facet_wrap` is used when the different panels do not have axis-ranges in common.
 
 For example:
-```{r, eval = FALSE}
-pl <- ggplot(data = divvy, aes(x = log10(tripduration))) + geom_histogram(binwidth = 0.1)
+```{r}
+pl <- ggplot(data = pubs %>% filter(Year %in% c(2000, 2005, 2010, 2015))) + 
+  aes(x = log10(Cites + 1)) + 
+  geom_histogram()
 show(pl)
-ggplot(data = divvy, aes(x = log10(tripduration), group = gender)) + 
-  geom_histogram(binwidth = 0.1) + facet_grid(~gender)
-ggplot(data = divvy, aes(x = log10(tripduration), group = gender)) + 
-  geom_histogram(binwidth = 0.1) + facet_grid(gender~.)
-```
-
-Now faceting by `tripday` and `gender`
-```{r, eval = FALSE}
-ggplot(data = divvy, aes(x = log10(tripduration), 
-                         colour = gender, 
-                         fill = gender, 
-                         group = tripday)) + 
-  geom_histogram(binwidth = 0.1) + 
-  facet_grid(tripday~gender)
+pl + facet_grid(~Year) # in the same row
+pl + facet_grid(Year~.) # col
+pl + facet_grid(Journal ~ Year) # two facet variables
+pl + facet_wrap(Journal ~ Year, scales = "free") # just wrap around
 ```
 
 ## Setting features
 
 Often, you want to simply set a feature (e.g., the color of the points, or their shape), rather than using it to display information (i.e., mapping some aestethic). In such cases, simply declare the feature outside the `aes`:
 
-```{r, eval = FALSE}
-pl <- ggplot(data = divvy_stations, aes(x = longitude, y = latitude))
-pl + geom_point()
-pl + geom_point(colour = "red")
-pl + geom_point(shape = 3)
-pl + geom_point(alpha = 0.5)
+```{r}
+pl <- ggplot(data = pubs %>% filter(Year %in% c(2000, 2005, 2010, 2015))) + 
+  aes(x = log10(Num_authors))
+pl + geom_histogram()
+pl + geom_histogram(colour = "red", fill = "lightblue")
 ```
 
 ## Saving graphs
@@ -464,196 +441,127 @@ ggsave(plot = my_plot, filename = "my_output.svg")
 
 ## Multiple layers
 
-You can overlay different plots. To do so, however, they must share some of the aesthetic mappings. The simplest case is that in which you have only one dataset:
+Finally, you can overlay different data sets, using different geometries. For example, suppose that we have two data sets: one for papers with few authors (say <10) and one for large collaborations:
 
-```{r, eval = FALSE}
-ggplot(data = divvy_stations, aes(x = longitude, y = latitude)) + 
-  geom_density2d() + 
-  geom_point()
+```{r}
+small_collab <- pubs %>% filter(Num_authors < 10)
+large_collab <- pubs %>% filter(Num_authors >= 10)
 ```
 
-in this case, the `geom_density2d` and `geom_point` shared the `aes`, and were taken from the same dataset.
+We can overlay different geometries for the same data set:
 
-Let's build a more complicated example:
-
-```{r, eval = FALSE}
-# Capacity of stations in Michigan Avenue
-data1 <- divvy_stations %>% 
-  filter(grepl("Michigan", as.character(name))) %>%
-  select(name, dpcapacity) %>%
-  rename(value = dpcapacity)
-data1
-
-# Number of trips leaving stations in Michigan Ave
-data2 <- divvy %>% 
-  filter(grepl("Michigan", as.character(from_station_name))) %>% 
-  mutate(name = from_station_name) %>% 
-  select(name) %>%
-  group_by(name) %>% 
-  summarise(value = n())
-data2
+```{r}
+ggplot(data = small_collab) + 
+  aes(x = factor(Num_authors), y = log(Cites + 1)) + 
+  geom_boxplot(fill = "lightblue") + 
+  geom_violin(fill = "NA") + 
+  geom_point(alpha = 0.25) # alpha stands for transparency
 ```
 
-Now we want to plot the capacity:
-```{r, eval = FALSE}
-pl <- ggplot(data = data1, aes(x = name, y = value)) + 
-    geom_point() + 
-    scale_y_log10() + 
-    theme(axis.text.x=element_text(angle=90, hjust=1)) # rotate labels
-```
 
-And overlay the other data set:
-```{r, eval = FALSE}
-pl + geom_point(data = data2, colour = "red")
-```
+Or combine different data sets (with the same `aes`!):
 
-which is allowed, as the two datasets have the same `aes`. Note that Divvy should increase the capacity of the station at Michigan & Oak!
+```{r}
+ggplot(data = small_collab) + 
+  aes(x = Year) + 
+  geom_bar(fill = "red", alpha = 0.5) + 
+  geom_bar(data = large_collab, fill = "blue", alpha = 0.5)
+```
 
 # Tidying up data
 
-The best data to plot is the one in *tidy form*, meaning that a) each variable has its own column, and b) each observation has its own row. When data is not in tidy form, you can use the package `tidy` to reshape it. 
+The best way to organize data for plotting and computing is the *tidy form*, meaning that a) each variable has its own column, and b) each observation has its own row. When data are not in tidy form, you can use the package `tidyr` to reshape them. 
 
-For example, suppose we want to produce a table in which we have the number of trips departing a certain station by gender. First, we create a summary:
-```{r, eval = FALSE}
-station_gender <- divvy %>% 
-  group_by(from_station_name, gender) %>% 
-  summarise(tot_trips = n()) %>% 
-  filter(gender == "Male" | gender == "Female") %>% 
-  ungroup()
+For example, suppose we want to produce a table in which for each journal and year, we report the average number of authors. First, we need to compute the values:
+
+```{r}
+avg_authors <- pubs %>% 
+  group_by(Journal, Year) %>% 
+  summarise(avg_au = mean(Num_authors))
 ```
 
-Now we would like to create two columns (for `Male` and `Female`), containing the number of trips. To do so, we **spread** the column gender:
+This table is in tidy format (also called "narrow" format); we want to create columns for each journal, and report the average in the corresponding cell. To do so, we "spread" the journals into columns:
 
-```{r, eval = FALSE}
-# Syntax:
-# my_tbl %>% spread(COL_TO_SPREAD, WHAT_TO_USE_AS_VALUE, OPTIONAL: fill = NA)
-station_gender <- station_gender %>% spread(gender, tot_trips)
-station_gender
+```{r}
+avg_authors <- avg_authors %>% spread(Journal, avg_au)
 ```
 
-Having reshaped the data, we can see that the station with the highest proportion of women is in Hyde Park:
+Note that this is not in tidy form, as two observations are in the same row (also called "messy" or "wide" format). While this is not ideal for computing, it is great for human consumption, as we can easily compare the two numbers in the same row. 
 
-```{r, eval = FALSE}
-station_gender %>% 
-  mutate(proportion_female = Female / (Male + Female)) %>% 
-  arrange(desc(proportion_female))
-```
+If we want to go back to tidy form, we can "gather" the column names, and return to tidy:
 
-In the data, we have a column from the station of departure and one for that of arrival. Suppose that for our analysis we would need only one column for the station name, and a separate column detailing whether this is the start or the end of the trip:
-
-```{r, eval = FALSE}
-all_stations <- divvy %>% select(from_station_name, to_station_name, tripduration)
-```
-
-We can **gather** the two columns creating a column specifying whether it's a from/to station, and one containing the name of the station:
-
-```{r, eval = FALSE}
-# Syntax:
-# my_tbl %>% gather(NAME_NEW_COL, NAME_CONTENT, COLS_TO_GATHER)
-all_stations %>% gather("FromTo", "StationName", 1:2)
-```
-
-Finally, sometimes we need to split the content of a column into several columns. We can use **separate** to do this quickly:
-
-```{r, eval = FALSE}
-divvy %>% select(starttime) %>% separate(starttime, into = c("Day", "Time"), sep = " ")
+```{r}
+# gather(where to store col names, 
+#        where to store values, 
+#        which columns to gather)
+avg_authors %>% gather(Journal, Average_num_authors, 2:3)
+# alternatively, if it's cleaner
+avg_authors %>% gather(Journal, Average_num_authors, -Year)
 ```
 
 # Joining tables
 
-If you have multiple data frames or `tbl` objects with columns in common, it is easy to join them (as in a database). To showcase this, we are going to create a map of all the trips in the data. First, we count the number of trips from/to each pair of stations:
+If you have multiple data frames or `tibble` objects with shared columns, it is easy to join them (as in a database). To showcase this, we are going to extract papers by very prolific authors. First, we want to compute how many papers are in the data for each "author" (actually, last-name initial combinations, which might represent different authors with common names...). First, we need a data set in which the authors have been separated:
 
-```{r, eval=FALSE}
-num_trips <- divvy %>% group_by(from_station_id, to_station_id) %>% summarise(trips = n())
-# remove trips starting and ending at the same point, for easier visualization
-num_trips <- num_trips %>% filter(from_station_id != to_station_id)
+```{r}
+by_author <- pubs %>% 
+  select(Authors, Title) %>% 
+  separate_rows(sep = ", ", Authors) %>% 
+  rename(Focal_author = Authors)
 ```
 
-Now we use `inner_join` to combine the data from `num_trips` and `divvy_stations`, creating the columns `x1` and `y1` containing the coordinates of the starting station. If we rename the columns so that their names match, the join is done automatically:
-
-```{r, eval = FALSE}
-only_id_lat_long <- divvy_stations %>% select(id, latitude, longitude)
-
-# Join the coordinates of the starting station
-num_trips <- inner_join(num_trips, 
-                        only_id_lat_long %>% 
-                          rename(from_station_id = id, 
-                                 x1 = longitude, 
-                                 y1 = latitude))
-# Join the coordinates of the ending station
-num_trips <- inner_join(num_trips, 
-                        only_id_lat_long %>% 
-                          rename(to_station_id = id, 
-                                 x2 = longitude, 
-                                 y2 = latitude))
-
-num_trips$trips <- as.numeric(num_trips$trips)
-
-# Now we can plot all the trips!
-ggplot(data = num_trips, 
-       aes(x = x1, y = y1, xend = x2, yend = y2, 
-           alpha = trips / max(trips)) )+
-  geom_curve() + scale_alpha_identity() + theme_minimal()
+Now we can count the number of appearances of each name:
+```{r}
+by_author <- by_author %>% 
+  group_by(Focal_author) %>% 
+  mutate(Tot = n()) 
 ```
 
-# Project: network analysis of Divvy data
-Now that we have an overview of the methods available, we are going to perform some simple analysis on the data. First of all, we are going to create a matrix of station-to-station flows, where the rows are the starting stations, the columns the ending stations, and coefficients in the matrix measure the number of trips.
+Where we have created a new column (`Tot`) by calling `mutate` on grouped data. Who are the authors most represented in the data?
 
-For this, we can use a combination of `dplyr` and `tidyr`:
-```{r, eval=FALSE}
-flows <- divvy %>% 
-  select(from_station_id, to_station_id) %>% 
-  group_by(from_station_id, to_station_id) %>% 
-  summarise(trips = n())
-# transform into a matrix
-flows_mat <- flows %>% spread(to_station_id, trips, fill = 0) %>% as.matrix()
-# remove the first col (use it for row name)
-rownames(flows_mat) <- flows_mat[,1]
-flows_mat <- flows_mat[,-1]
-# see one corner of the matrix
-flows_mat[1:10, 1:10]
+```{r}
+tot_author <- by_author %>% 
+  select(Focal_author, Tot) %>% 
+  distinct() %>% 
+  arrange(desc(Tot)) 
 ```
 
-Now we're going to rank stations according to their PageRank, the algorithm at the heart of Google's search engine. The idea of PageRank is to simulate a random walk on a set of web-pages: at each step, the random walker can follow a link (with a probability proportional its weight), or "teleport" to another page at random (with small probability). The walk therefore describes a Markov Chain, whose stationary distribution (Perron eigenvector) is the PageRank score for all the nodes. This value indicates how "central" and important a node in the network is.
+You can see that common Chinese name combinations are in the top few rows (meaning that probably we conflated several authors...). Let's plot an histogram:
 
-Mathematically, we want to calculate the Perron eigenvector of the matrix:
-
-$M' = (1- \epsilon) M + \epsilon U$
-
-Where $M$ is a nonnegative matrix with columns summing to 1, and $U$ is a matrix with all coefficients being 1. $\epsilon$ is the teleport probability.
-
-First, we construct the matrix $M$, by dividing each row for the corresponding row sum, and transposing:
-
-```{r, eval=FALSE}
-M <- t(flows_mat / rowSums(flows_mat))
+```{r}
+tot_author %>% ggplot() + aes(x = Tot) + geom_histogram() + scale_y_log10()
 ```
 
-Then, we choose a "teleport probability" (here $\epsilon = 0.01$), and build $M'$:
+As you can see, the vast majority of authors appears only once, and very few, appear 15 or more times. We want to extract the papers of the most prolific authors from the data that we have stored in `pubs`. For example, we want to consider authors that are represented 10 or more times in these papers. To do so, we first extract the prolific authors:
 
-```{r, eval=FALSE}
-U <- matrix(1, nrow(M), ncol(M))
-epsilon <- 0.01
-M_prime <- (1 - epsilon) * M + epsilon * U
+```{r}
+prolific <- by_author %>% filter(Tot >= 10)
 ```
 
-and calculate the PageRank
+and now we can join `pubs` and `prolific`. By calling `inner_join`, only rows that are present in both tables will be retained; because the two tables share a column (`Title`), `dplyr` can proceed automatically:
 
-```{r, eval=FALSE}
-ev <- eigen(M_prime)$vectors[,1]
-# normalize ev
-ev <- ev / sum(ev)
-page_rank <- data.frame(station_id = as.integer(rownames(M_prime)), pagerank = Re(ev))
+```{r}
+pubs %>% inner_join(prolific)
 ```
 
-Which stations are the most "central" Divvy stations in Chicago? Let's plot them out:
-```{r, message=FALSE, eval=FALSE}
-st_pr <- inner_join(divvy_stations, page_rank, by = c("id" = "station_id"))
-st_pr <- st_pr %>% mutate(lab = replace(name, pagerank < 0.0055, NA))
-ggplot(st_pr, 
-       aes(x = longitude, y = latitude, colour = pagerank, 
-           size = pagerank, label = lab)) + 
-  geom_point() + geom_text(colour = "black",hjust=0, vjust=0)
+We can use this table to compute the number of citations received by each prolific author:
+
+```{r}
+pubs %>% inner_join(prolific) %>% ggplot() + 
+  aes(x = Focal_author, y = Cites) + 
+  geom_col() + # similar to bar plot
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) # rotate labels
 ```
+
+Besides `inner_join(x, y)`, you can use:
+
+- `left_join(x, y)`: return all rows from `x`, and all columns from `x` and `y` (those with no match will show `NA`);
+
+- `right_join(x. y)`: return all rows from `y`, and all columns from `x` and `y`;
+
+- `full_join(x, y)`: return all rows and all columns from both `x` and `y`. Where there are not matching values, returns `NA` for the one missing;
+
+- `anti_join(x, y)`: return all rows from `x` where there are not matching values in `y`.
 
 ## Exercises in groups
 
@@ -667,10 +575,8 @@ The file `data/Chicago_Crimes_May2016.csv` contains a list of all the crimes rep
 
 - **Crimes in time** plot the number of violent crimes against time, faceting by community areas.
 
-- **Dangerous day** which day of the week is the most dangerous?
+- **Dangerous day** which day of the week is the most dangerous? (Hint: use the package `lubridate` to extract the day of the week)
 
 - **Dangerous time** which time of the day is the most dangerous (divide the data by hour of the day).
 
 - **Correlation between crimes** which crimes tend to have the same pattern? Divide the crimes by day and type, and plot the correlation between crimes using `geom_tile` and colouring the cells according to the correlation (see `cor` for a function that computes the correlation between different columns).
-
-
