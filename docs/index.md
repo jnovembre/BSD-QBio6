@@ -59,7 +59,7 @@ You will work on your laptop all day long. **If you don't have a laptop, please 
 
 *   **Install R**: go to [this page](https://cran.rstudio.com/), download the file corresponding to your platform, and install it. (Here's a [video](https://www.youtube.com/watch?v=5ZbjUEg4a1g) explaining how to install R and RStudio in Windows; [here](https://www.youtube.com/watch?v=5rp9bkc68y0) for Mac OSX)
 
-*   **Install RStudio**: once installed R, go to [this page](https://www.rstudio.com/products/rstudio/download2/), download the installer for your operating system (section **Installers for Supported Platforms**), and install the software.
+*   **Install RStudio**: once installed R, go to [this page](https://www.rstudio.com/products/rstudio/download/), download the installer for your operating system (section **Installers for Supported Platforms**), and install the software.
 
 *   Once installed R and RStudio, open RStudio and **install the following packages**:
 
