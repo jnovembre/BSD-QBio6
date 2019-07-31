@@ -24,10 +24,10 @@ output:
 ### Sunday, September 8 
 
 ------------------    ---------------------------------------------------------------
-**2:45-5:00**         Check-in (Swope)                                               
-**5:00-6:30**         Dinner (SWC)                                                   
-**6:30-7:00**         Team building activities (follow Course Assistants)            
-**7:15-8:30**         Introduction - Allesina and Palmer (Lillie)                    
+**3:00-4:30**         Check-in (Swope)                                               
+**4:45-5:30**         Team building activities (Swope)                               
+**5:30-6:30**         Dinner (SWC)                                                   
+**7:15-8:30**         Welcome to qBio5 - Allesina and Palmer (Lillie)                
 ------------------    ---------------------------------------------------------------
 
 ### Monday, September 9 
@@ -36,12 +36,12 @@ output:
 **8:30-10:00**        Basic comp. I (LBG70N) Advanced comp. I (LB263)                
 **10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
 **10:30-12:00**       Basic comp. I (LBG70N) Advanced comp. I (LB263)                
-**12:00-12:45**       Lunch (SWC)                                                    
+**12:00-12:45**       MBL Orientation (Meigs) + Lunch                                
 **1:00-2:30**         Basic comp. II (LBG70N) Advanced comp. II (LB263)              
 **2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
 **2:45-4:30**         Basic comp. II (LBG70N) Advanced comp. II (LB263)              
 **5:00-6:30**         Dinner (SWC)                                                   
-**7:15-9:00**         Welcome - Nishi & Prince (Speck) + PD (MBL Club)               
+**7:15-9:00**         Welcome to UChicago Biosciences - Prince (Lillie)              
 ------------------    ---------------------------------------------------------------
 
 ### Tuesday, September 10 
@@ -55,7 +55,7 @@ output:
 **2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
 **2:45-4:30**         Reproducibility of data analysis (LBG70N)                      
 **5:00-6:30**         Dinner (SWC)                                                   
-**7:15-9:00**         MBL Talk 1 (Lillie)                                            
+**7:15-9:00**         MBL Lightening Talks (Lillie)                                  
 ------------------    ---------------------------------------------------------------
 
 ### Wednesday, September 11 
@@ -83,7 +83,7 @@ output:
 **2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
 **2:45-4:30**         Data visualization (LBG70S)                                    
 **5:00-6:30**         Dinner (SWC)                                                   
-**7:15-8:30**         MBL Talk 2 (Speck)                                             
+**7:15-8:30**         Talk Patel (Lillie)                                            
 ------------------    ---------------------------------------------------------------
 
 ### Friday, September 13 
@@ -97,7 +97,7 @@ output:
 **2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
 **2:45-4:30**         Workshop Steinrücken (LBG70N)                                  
 **5:00-6:30**         Dinner (SWC)                                                   
-**7:15-8:30**         MBL Talk 3 -  N. Patel (Speck)                                 
+**7:15-8:30**         Professional Development Night with CAs                        
 ------------------    ---------------------------------------------------------------
 
 ### Saturday, September 14 
@@ -116,7 +116,7 @@ output:
 ### Sunday, September 15 
 
 ------------------    ---------------------------------------------------------------
-**10:00-10:30**       Departure for BOS                                              
+**10:00-10:30**       Leave for Chicago                                              
 ------------------    ---------------------------------------------------------------
 
 
