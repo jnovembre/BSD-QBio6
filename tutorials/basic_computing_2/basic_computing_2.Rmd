@@ -1,497 +1,925 @@
 ---
-title: "Basic Computing 2 -- Packages, Functions, Documenting code"
-author: "Stefano Allesina"
+title: "Basic Computing 2 --- Packages, functions and documenting code"
 output:
   pdf_document:
-    highlight: kate
-    template: default
-  html_document: default
+    keep_tex: false
+    latex_engine: pdflatex
+    template: readable.tex
+author:
+  name: Stefano Allesina and Peter Carbonetto
+  affiliation: University of Chicago
+date: July 31, 2019
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: single
+graphics: yes
+endnote: no
+header-includes:
+  - \usepackage[T1]{fontenc}
+  - \usepackage{textcomp}
+thanks: "This document is included as part of the Basic Computing 2---Introduction to R tutorial packet for the BSD qBio Bootcamp, MBL, 2019. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: sallesina@uchicago.edu."
+abstract: "The aims of this workshop are to: (1) learn how to install,
+  load and use the many of the freely available `R` packages; (2)
+  illustrate how to write user-defined functions, and how to organize
+  your code; use basic plotting functions; and (3) introduce the package
+  `knitr` for writing beautiful reports. *This workshop is intended
+  for biologists with basic knowledge of `R`.*"
 ---
 
-# Basic Computing 2
-
-- **Goal:** Show how to install, load and use the many freely available `R` packages. Illustrate how to write user-defined functions and how to organize code. Showcase basic plotting functions. Introduce the package `knitr` for writing beautiful reports.
-
-- **Audience:** Biologists with basic knowledge of `R`.
-
-- **Installation:** To produce well-documented code, we need to instal the package `knitr`. We will also use the package `MASS` for statistics.
-
-# Packages
-`R` is the most popular statistical computing software among biologists due to its highly specialized packages, often written from biologists for biologists. You can contribute a package too! The `RStudio` support [(`goo.gl/harVqF`)](http://goo.gl/harVqF) provides guidance on how to start developing `R` packages  and Hadley Wickham's free online book [(`r-pkgs.had.co.nz`)](http://r-pkgs.had.co.nz) will make you a pro.
-
-You can find highly specialized packages to address your research questions. Here are some suggestions for finding an appropriate package. The Comprehensive R Archive Network (CRAN) offers several ways to find specific packages for your task. You can either browse packages [(`goo.gl/7oVyKC`)](http://goo.gl/7oVyKC) and their short description or select a scientific field of interest [(`goo.gl/0WdIcu`)](http://goo.gl/0WdIcu) to browse through a compilation of packages related to each discipline.
-
-From within your `R` terminal or `RStudio` you can also call the function `RSiteSearch("KEYWORD")`, which submits a search query to the website [`search.r-project.org`](http://search.r-project.org). The website [`rseek.org`](http://rseek.org) casts an even wider net, as it not only includes package names and their documentation but also blogs and mailing lists related to `R`. If your research interests relate to high-throughput genomic data, you should have a look the packages provided by  Bioconductor [(`goo.gl/7dwQlq`)](http://goo.gl/7dwQlq).
-
-## Installing a package
-To install a package type
-
-```{r, eval = FALSE}
-install.packages("name_of_package")
+```{r knitr-opts, include=FALSE}
+knitr::opts_chunk$set(comment = "#",collapse = TRUE,results = "hide",
+                      fig.align = "center")
 ```
 
-in the Console, or choose the panel **Packages** and then click on *Install* in `RStudio`.
+Setup
+=====
 
-## Loading a package
+To produce well-documented code, you need to instal the `knitr`
+package. You will also use the package `MASS` for statistics.
 
-To load a package type
+Packages
+========
 
-```{r, eval=FALSE}
-library(name_of_package)
+`R` is the most popular statistical computing software among
+biologists due to its highly specialized packages. They are often
+written by biologists for biologists. You can contribute a package
+too! The `RStudio` website ([`goo.gl/harVqF`](http://goo.gl/harVqF))
+provides guidance on how to start developing `R` packages. See also
+Hadley Wickham's free online book
+([`r-pkgs.had.co.nz`](http://r-pkgs.had.co.nz)).
+
+You can often find highly specialized packages to address your
+research questions. Here are some suggestions for finding an
+appropriate package. The Comprehensive R Archive Network (CRAN) offers
+several ways to find specific packages for your task. You can browse
+the full list of CRAN packages
+([`goo.gl/7oVyKC`](http://goo.gl/7oVyKC)). Or you can go to the CRAN
+Task Views [`goo.gl/0WdIcu`](http://goo.gl/0WdIcu)) and browse a
+compilation of packages related to a topic or discipline.
+
+From within `R` or `RStudio`, you can also call the function
+`RSiteSearch("KEYWORD")`, which submits a search query to the website
+[`search.r-project.org`](http://search.r-project.org). The website
+[`rseek.org`](http://rseek.org) casts an even wider net, as it not
+only includes package names and their documentation, but also blogs
+and mailing lists related to `R`. If your research interests relate to
+high-throughput genomic data, or other topics in bioinformatics or
+computational biology, you should search the packages provided by
+Bioconductor [(`goo.gl/7dwQlq`)](http://goo.gl/7dwQlq).
+
+Installing a package
+--------------------
+
+Suppose you want to install the [rsvd](rsvd) package, which is a
+package for performing singular value decompositions (SVD) and
+principal components analysis (PCA) on large data sets. To install the
+package, run:
+
+```{r packages-1, eval=FALSE}
+install.packages("rsvd")
 ```
 
-or call the command into your script. If you want your script to automatically install a package in case it's missing, use this boilerplate:
+Or, in RStudio, select the **Packages** panel, then click on
+*Install*.
 
-```{r, eval = FALSE}
-if (!require(needed_package, character.only = TRUE, quietly = TRUE)) {
-    install.packages(needed_package)
-    library(needed_package, character.only = TRUE)
-}
+Loading a package
+-----------------
+
+Once it is successfully installed, to load the rsvd package into your
+R environment, run:
+
+```{r packages-2}
+library(rsvd)
 ```
 
-## Example
+Another example
+---------------
 
-For example, say we want to access the dataset `bacteria`, which reports the incidence of *H. influenzae* in Australian children. The dataset is contained in the package `MASS`.
+Suppose you would like to access the "bacteria" data set, which
+reports the incidence of *H. influenzae* in Australian children. The
+data set is included in the `MASS` package. If you try to access the
+data set before loading the package, you will get an error:
 
-First, we need to load the package:
+```{r packages-3, warning=FALSE}
+data(bacteria)
+```
 
-```{r}
+First, you need to load the package:
+
+```{r packages-4}
 library(MASS)
 ```
 
-Now we can load the data:
+Now the data set is available, and you can load it:
 
-```{r}
+```{r packages-5}
 data(bacteria)
-bacteria[1:3,]
+head(bacteria)
 ```
 
-# Do shorter titles lead to more citations?
+Random numbers
+==============
 
-To keep learning about `R`, we study a simple problem: do papers with shorter titles have more citations? This is what claimed by Letchford *et al.*, who in 2015 analyzed 140,000 papers ([dx.doi.org/10.1098/rsos.150266](http://dx.doi.org/10.1098/rsos.150266)) finding that shorter titles correlated with a larger number of citations.
+For many of your analyses, you will need to draw random numbers.
+(These are actually "pseudorandom" numbers because they are not
+perfectly random.) In fact, you will need random numbers to implement
+the analysis of citation data in the "case study" below.
 
-In the `data/citations` folder, you find information on all the articles published between 2004 and 2013 by three top disciplinary journals (*Nature Neuroscience*, *Nature Genetics*, and *Ecology Letters*), which we are going to use to explore the robustness of these findings.
+`R` has many functions to sample random numbers from different
+statistical distributions. For example, use `runif` to create a vector
+containing 10 random numbers:
 
-We start by reading the data in. This is a simple `csv` file, so that we can use
-
-```{r}
-papers <- read.csv("../data/citations/nature_neuroscience.csv")
+```{r random-numbers-1}
+runif(10)
 ```
 
-to load the data. However, running `str(papers)` shows that all the columns containing text have been automatically converted to `Factor` (categorical values, which is good when performing regressions). Because we want to manipulate these columns (for example, count how many characters are in a title), we want to avoid this automatic behavior. We can accomplish this by calling the function `read.csv` with an extra argument:
-
-```{r}
-papers <- read.csv("../data/citations/nature_neuroscience.csv", stringsAsFactors = FALSE)
-```
-
-Next, we want to take a peek at the data. How large is it?
-
-```{r}
-dim(papers)
-```
-
-Let's see the first few rows:
-
-```{r}
-head(papers, 3)
-```
-
-Now, we want to test whether papers with longer titles do accrue fewer (or more) citations than those with shorter titles. The first step is therefore to add another column to the data, containing the length of the title for each paper:
-
-```{r}
-papers$TitleLength <- nchar(papers$Title)
-```
-
-## Basic statistics in `R`
-
-In the original paper, Letchford *et al.* used rank-correlation: rank all the papers according to their title length and the number of citations. If the Kendall's Tau (rank correlation) is positive, then longer titles are associated with more citations; if Tau is negative, longer titles are associated with fewer citations. In `R` you can compute rank correlation using:
-
-```{r}
-kendall_cor <- cor(papers$TitleLength, papers$Cited.by, method = "kendall")
-kendall_cor
-```
-
-To perform a significance test, use
-
-```{r}
-cor.test(papers$TitleLength, papers$Cited.by, method = "kendall")
-```
-
-showing that the correlation between the ranks is positive and significant. We have found the opposite effect than Letchford *et al.*---longer titles are associated with **more** citations! 
-
-Now we are going to examine the data in a different way, to test whether these results are robust.
-
-## Basic plotting in `R`
-
-To plot the title length vs. number of citations, we need to learn about plotting in `R`. To produce a simple scatterplot using the base functions for plotting, simply type:
-
-```{r, eval = FALSE}
-plot(papers$TitleLength, papers$Cited.by)
-```
-
-It is hard to detect any trend in this plot, as there are a few papers with many more citations than the rest. We can transform the data by plotting on the `y`-axis the `log10` of citations + 1 (so that papers with zero citations do not cause errors):
-
-```{r, eval = FALSE}
-plot(papers$TitleLength, log10(papers$Cited.by + 1))
-```
-
-Again, it's hard to see any trend in here. Maybe we should plot the best fitting line and overlay it on top of the graph. To do so, we first need to learn about regressions in `R`.
-
-## Regressions in `R`
-
-`R` was born for statistics --- the fact that it's very easy to fit a linear regression is not surprising! To build a linear model, simply write
-
-```{r, eval=FALSE}
-# model y = a + bx + error
-my_model <- lm(y ~ x)
-```
-
-Because it's more convenient to call the code in this way, let's add a new column to the data frame with the log of citations:
-
-```{r}
-papers$LogCits <- log10(papers$Cited.by + 1)
-```
-
-And perform a linear regression:
-
-```{r}
-model_cits <- lm(papers$LogCits ~ papers$TitleLength)
-# This is the best fitting line
-model_cits
-# This is a summary of all the statistics
-summary(model_cits)
-```
-
-And plotting
-```{r, eval = FALSE}
-# plot the points
-plot(papers$TitleLength, log10(papers$Cited.by + 1))
-# add the best fitting line
-abline(model_cits, col = "red")
-```
-
-Again, we find a positive trend. One thing to consider, is that in the database we have papers spanning a decade. Naturally, older papers have had more time to accrue citations. In our models, we would like to control for this effect. First, let's plot the distribution of citations for a few years. To produce an histogram in `R`, use
-```{r, eval= FALSE}
-hist(papers$LogCits)
-# increase the number of breaks
-hist(papers$LogCits, breaks = 15)
-```
-
-Alternatively, estimate the density using
-```{r, eval= FALSE}
-plot(density(papers$LogCits))
-```
-
-Let's plot the density for years 2004, 2009, 2013:
-```{r, eval= FALSE}
-# plot the density for the older papers:
-plot(density(papers$LogCits[papers$Year == 2004]))
-lines(density(papers$LogCits[papers$Year == 2009]), col = "red")
-lines(density(papers$LogCits[papers$Year == 2013]), col = "blue")
-```
-As expected, younger papers have fewer citations. We can account for this fact in our regression model:
-
-```{r}
-model_year_length <- lm(papers$LogCits ~ as.factor(papers$Year) + papers$TitleLength)
-summary(model_year_length)
-```
-
-Using `as.factor(papers$Year)` we have fitted a model in which each year has a different baseline, and the title length influences this baseline. Again, we find that longer titles are associated with more citations.
-
-## Random numbers
-
-As a reminder, the Kendall's $\tau$ takes as input two rankings $x$ and $y$, both of length $n$. It calculates the number of "concordant pairs", in which if $x_i > x_j$ then $y_i > y_j$ and "discordant pairs". Then,
-
-$\tau = \dfrac{\text{num. concordant} - \text{num. discordant}}{\dfrac{n (n-1)}{2}}$
-
-If $x$ and $y$ were completely independent, we would expect $\tau$ to be distributed with a mean of 0. The variance of the null distribution of $\tau$ (and hence the p-value calculated above) depends on the data, and is typically approximated as a normal distribution. If you want to have a stronger result, you can use randomizations to approximate the p-value. Simply, compute $\tau$ for the actual data, and for many "fake" datasets obtained randomizing the data. Your p-value is well approximated by the proportion of $\tau$ values for the randomized sets that exceed the $\tau$ value for the actual data.
-
-To perform this randomization, or any simulation, we typically need to draw random numbers. `R` has functions to sample random numbers from very many different statistical distributions. For example:
-
-```{r}
-runif(5) # sample 5 numbers from the uniform distribution between 0 and 1
-runif(5, min = 1, max = 9) # set the limits of the uniform distribution
-rnorm(3) # three values from standard normal
-rnorm(3, mean = 5, sd = 4) # specify mean and standard deviation
-```
+**Question:** What kind of random numbers are generated by `runif`?
+How could you check this?
 
 To sample from a set of values, use `sample`:
 
-```{r}
+```{r random-numbers-2}
 v <- c("a", "b", "c", "d")
-sample(v, 2) # without replacement
-sample(v, 6, replace = TRUE) # with replacement
-sample(v) # simply shuffle the elements
+sample(v, 2)                  # Sample without replacement.
+sample(v, 6, replace = TRUE)  # Sample with replacement.
+sample(v)                     # Shuffle the elements.
 ```
 
-Let's try to write a randomization to calculate p-value associated with the $\tau$ observed for year 2006.
+The normal distribution is one of the most commonly used
+distributions, so naturally there is a function in `R` for simulating
+from the normal distribution:
 
-```{r}
-# first, we subset the data
-papers_year <- papers[papers$Year == 2006, ] # get all rows matching the year
-# compute original tau
-tau_original <- cor(papers_year$TitleLength, papers_year$Cited.by, method = "kendall")
-tau_original
+```{r random-numbers-3}
+rnorm(3)                   # Three draws from the standard normal.
+rnorm(3, mean = 5, sd = 4) # Change the mean and standard deviation.
 ```
 
-Now we want to calculate it on the "fake" data sets. To have confidence in the first two decimal digits, we should perform about ten thousand randomizations. This and similar randomization techniques are known as "bootstrapping".
+**Exercise:** The normal distribution has a very recognizable
+shape. Use `rnorm` to generate a large number of values from the
+standard normal, then use `hist` to draw a histogram of these values
+(you can adjust the number of bins in the histogram with the `n`
+argument). Is the histogram "bell shaped"? Use `mean`, `median` and
+`sd` to verify that the random numbers recover the expected
+properties of the normal distribution. Write all your code here:
 
-```{r}
-num_randomizations <- 10000
-pvalue <- 0 # initialize at 0
-for (i in 1:num_randomizations){
-  # calculate cor on shuffled data
-  tau_shuffle <- cor(papers_year$TitleLength,
-                     sample(papers_year$Cited.by), # scramble the citations at random
-                     method = "kendall")
-  if (tau_shuffle >= tau_original){
-    pvalue <- pvalue + 1
-  }
-}
-# calculate proportion
-pvalue <- pvalue / num_randomizations
-pvalue
-```
+$$
+\framebox[\textwidth]{\rule{0pt}{10em}}
+$$
 
-Note that the p-value is different (and in fact smaller) than that calculated using the normal approximation:
+Writing functions
+=================
 
-```{r}
-cor.test(papers_year$TitleLength, papers_year$Cited.by, method = "kendall")
-```
+It is good practice to subdivide your analysis into functions, and
+then write a short "master" program that calls the functions and
+performs the analysis. In this way, the code will be more legible,
+easier to debug, and you will be able to recycle the functions for
+your other projects.
 
-Whenever possible, use randomizations, rather than relying on classical tests. They are more computationally expensive, but they allow you to avoid making assumptions about your data.
+In `R`, every function has this form:
 
-## Writing functions
-
-We have written code that analyzes one year of data. If we wanted to repeat the analysis on a different year, we would have to modify the code slightly. Instead of doing that, we can write a function that allows us to select a given year, and randomize the data. To do so, we need to learn about functions.
-
-The `R` community provides about 7,000 packages. Still, sometimes there isn't an already made function capable of doing what you need. In these cases, you can write your own functions. In fact, it is in general a good idea to always divide your analysis into functions, and then write a small "master" program that calls the functions and performs the analysis. In this way, the code will be much more legible, and you will be able to recycle the functions for your other projects.
-
-A function in `R` has this form:
-```{r, eval = FALSE}
-my_function_name <- function(arguments of the function){
-  # Body of the function
-  # ...
-  # 
-  return(return_value) # this is optional
+```{r functions-1}
+my_function_name <- function (arg1, arg2, arg3) {
+  #
+  # Body of the function.
+  #
+  return(return_value)  # Not required, but most functions output something.
 }
 ```
 
-A few examples:
-```{r}
-sum_two_numbers <- function(a, b){
-  apb <- a + b  
-  return(apb)
+Here is a very simple example:
+
+```{r functions-2}
+sum_two_numbers <- function (a, b) {
+  s <- a + b
+  return(s)
 }
 sum_two_numbers(5, 7.2)
 ```
 
-You can set a default value for some of the arguments: if not specified by the user, the function will use these defaults:
+In R, a function can return only one object. If you need to return
+multiple values, organize them into a vector, matrix or list, and
+return that; e.g.,
 
-```{r}
-sum_two_numbers <- function(a = 1, b = 2){
-  apb <- a + b  
-  return(apb)
+```{r functions-3}
+sum_and_prod <- function (a, b) {
+  s <- a + b
+  p <- a * b
+  return(c(s,p))
 }
-sum_two_numbers()
-sum_two_numbers(3)
-sum_two_numbers(b = 9)
+sum_and_prod(5, 7.2)
 ```
 
-The return value is optional:
+Activity: Probability density function (PDF) of the normal distribution
+-----------------------------------------------------------------------
 
-```{r}
-my_factorial <- function(a = 6){
-  if ( (as.integer(a) != a) | (a < 1) ) {
-    print("Please enter a positive integer!")
-  } else {
-    tmp <- 1
-    for (i in 1:a){
-      tmp <- tmp * i
-    }
-    print(paste(a, "! = ", tmp, sep = ""))
+Write a function, `normpdf`, that accepts two arguments, `x` and `s`,
+and returns the density at `x` for the normal distribution with zero
+mean and standard deviation `s`.
+
+Write down the formula for the normal density at $x$ with mean zero and
+standard deviation $s$:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{3em}}
+$$
+
+Now your write your code for the `normpdf` function:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{6em}}
+$$
+
+Check that this function gives the correct answers by comparing to
+the built-in function `dnorm`.
+
+Conditional branching
+=====================
+
+When we want a block of code to be executed only when a certain
+condition is met, we can write a conditional branching point. The
+syntax is as follows:
+
+```{r if-then-1, eval=FALSE}
+if (condition is met) {
+  # Execute this block of code.
+} else {
+  # Execute this other block of code.
+}
+```
+
+For example, try running these lines of code (you might want to try
+running them a few times):
+
+```{r if-then-2}
+x <- rnorm(1)
+if (x < 0) {
+  msg <- paste(x, "is less than zero")
+} else if (x > 0) {
+  msg <- paste(x, "is greater than zero")
+} else {
+  msg <- paste(x, "is equal to zero")
+}
+print(msg)
+```
+
+We have created a conditional branching point, so that the value of
+`msg` changes depending on whether `x` is less than zero, greater
+than zero, or equal to zero. 
+
+Activity: Improved normal probability density function
+------------------------------------------------------
+
+The probability density function of the normal distribution is not
+defined if the standard devation is less than zero. When the standard
+deviation is exactly zero, the density is a "spike" at zero; it is
+`Inf` exactly at $x = 0$, and zero everywhere else. Use the `if` and
+`else` keywords, following the example above, to write an improved
+`normpdf` function that returns `NaN` whenever the standard devation
+is negative, and returns zero when the standard devatiion is exactly
+zero (unless $x = 0$, in which case it should return `Inf`):
+
+$$
+\framebox[\textwidth]{\rule{0pt}{20em}}
+$$
+
+Looping
+=======
+
+Another way to change the flow of your program is to write a loop. A
+loop is simply a series of commands that are repeated a number of
+times. For example, you want to run the same analysis on different
+data sets that you collected; you want to plot the results contained
+in a set of files; you want to test your simulation over a number of
+parameter sets; etc.
+
+`R` provides you with two ways to loop over code blocks: the `for`
+loop and the `while` loop. Let's start with the `for` loop, which is
+used to iterate over a vector or list; for each value of the vector
+(or list), a series of commands will be run, as shown by the following
+example:
+
+```{r loops-1}
+v <- 1:10
+for (i in v) {
+  a <- i ^ 2
+  print(a)
+}
+```
+
+In the code above, the variable `i` takes the value of each element of
+`v` in sequence. Inside the block within the `for` loop, you can use
+the variable `i` to perform operations.
+
+The anatomy of the `for` statement:
+
+```{r loops-2, eval=FALSE}
+for (variable in list_or_vector) {
+  execute these commands
+} # Automatically moves to the next value.
+```
+
+You should use a for loop when you know that you want to perform the
+analysis over a given set of values (e.g., files of a directory, rows
+in your data frames, sequences of a fasta file, *etc*).
+
+The `while` loop is used when the commands need to be repeated while a
+certain condition is true, as shown by the following example:
+
+```{r loops-3}
+i <- 1
+while (i <= 10) {
+  a <- i ^ 2
+  i <- i + 1 
+  print(a)
+}
+```
+
+The script gives exactly the same result as the `for` loop above. A
+key difference is that you need to include a step to update the value
+of `i`, (using `i <- i + 1`), whereas in the `for` loop it is done for
+you automatically. The anatomy of the `while` statement:
+
+```{r loops-4, eval=FALSE}
+while (condition is met) {
+  execute these commands
+} # Beware of infinite loops... remember to update the condition!
+```
+
+You can break a loop using `break`. For example:
+
+```{r loops-5}
+i <- 1
+while (TRUE) {
+  if (i > 10) {
+    break
   }
-}
-my_factorial()
-my_factorial(10)
-```
-
-You can return **only one** object. If you need to return multiple values, organize them into a vector/matrix/list and return that.
-
-```{r}
-order_two_numbers <- function(a, b){
-  if (a > b) return(c(a, b))
-  return(c(b,a))
-}
-order_two_numbers(runif(1), runif(1))
-```
-
-Having learned a little about functions, we want to write one that takes as input a vector of citations, a vector of title lengths, and a number of randomizations to perform. The function returns the value of $\tau$ as well as the associated p-value. In `R`, we can write:
-
-```{r}
-tau_citations_titlelength <- function(citations, titlelength, num_randomizations = 1000){
-  tau_original <- cor(titlelength, citations, method = "kendall")
-  pvalue <- 0 # initialize at 0
-  for (i in 1:num_randomizations){
-    # calculate cor on shuffled data
-    tau_shuffle <- cor(titlelength,
-                     sample(citations), # scramble the citations at random
-                     method = "kendall")
-    if (tau_shuffle >= tau_original){
-      pvalue <- pvalue + 1
-    }
-  }
-  # calculate proportion
-  pvalue <- pvalue / num_randomizations
-  # return a list
-  return(list(tau = tau_original,
-              pvalue = pvalue))
+  a <- i ^ 2
+  i <- i + 1
+  print(a)
 }
 ```
 
-We can write a loop that calls in turn the function for each year separately:
-```{r}
-all_years <- sort(unique(papers$Year))
-for (my_year in all_years){
-  tmp <- tau_citations_titlelength(papers$Cited.by[papers$Year == my_year],
-                            papers$TitleLength[papers$Year == my_year],
-                            1000)
-  print(paste(my_year, "-> Tau:", round(tmp$tau, 3), "pvalue:", tmp$pvalue))
+**Question:** Above, we ran three different loops that achieved the
+exact same outcome. Is one approach better than the others?
+
+Activity: Plotting the normal density
+-------------------------------------
+
+Using the `normpdf` function you wrote above, write code to compute
+the normal density for 1,000 equally spaced numbers between between -3
+and 3 (insert your code for the loop above the call to `plot`):
+
+```{r normpdf-plot-1, eval=FALSE}
+n <- 1000
+x <- seq(-3, 3, length.out = n)
+y <- rep(0, n)
+
+
+
+plot(x, y, type = "l")
+```
+
+Footnote: Vectorization
+-----------------------
+
+A nice surprise is that you should be able perform the above
+computation *without a loop.* This is because R has an advanced
+feature called *vectorization*---many operations in R, including most
+basic mathematical operations, are automatically applied to all values
+in a vector. To check whether R automatically vectorized your
+`normpdf` function, try running this code:
+
+```{r normpdf-plot-2, eval=FALSE}
+n <- 1000
+x <- seq(-3, 3, length.out = n)
+y <- normpdf(x, 1)
+plot(x, y, type = "l")
+```
+
+Vectorization is very powerful, but it may take time to get
+comfortable with it, and know when it works well.
+
+Group activity: The quadratic formula
+=====================================
+
+You may remember that there is a formula for solving for the unknown,
+$x$, in a quadratic equation, $ax^2 + bx + c = 0$. It is commonly
+called the *quadratic formula.* Write down the quadratic formula:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{3em}}
+$$
+
+In this exercise, you will work with your team to write a function,
+`solvequad`, that takes three numbers as input ($a$, $b$ and $c$) and
+returns the solution(s) $x$ that are real (*i.e.*, not complex
+numbers). **Hint:** Recall that a quadratic equation may have more
+than one real solution---or it may have none! You will need to make
+use of the `if` and `else` keywords to handle all possible
+cases. Write the code for your `solvequad` function here:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{20em}}
+$$
+
+After creating `solvequad`, check that it does the right thing by
+running these tests:
+
+```{r solve-quadratic-2, eval=FALSE}
+solvequad(4,4,1)    # Should return -1/2.
+solvequad(1,-1,-2)  # Should return 2 and -1.
+solvequad(1,1,1)    # Should return no solutions.
+```
+
+Come up with a few more test cases at
+[www.wolframalpha.com](http://www.wolframalpha.com).
+
+Case study: Do shorter titles lead to more citations?
+=====================================================
+
+To keep learning about `R`, we study the following question:
+
+$$
+\mbox{Is the length of a paper title related to the number ofcitations?}
+$$
+
+This is what Letchford *et al* claimed
+([doi:10.1098/rsos.150266](http://dx.doi.org/10.1098/rsos.150266)). In
+2015, they analyzed 140,000 papers, and they found that *shorter
+titles* were associated with a larger number of citations.
+
+In the folder containing the Basic Computing 2 tutorial materials, you
+will find data on scientific articles published between 2004 and 2013
+in three top disciplinary journals, *Nature Neuroscience*, *Nature
+Genetics* and *Ecology Letters*. These data are conatined in three CSV
+files. We are going to use these data to explore this question.
+
+Load data
+---------
+
+Start by reading in the data:
+
+```{r read-papers-data}
+data.file <- file.path("citations", "nature_neuroscience.csv")
+papers    <- read.csv(data.file, stringsAsFactors = FALSE)
+```
+
+Next, take a peek at the data. How large is it?
+
+```{r inspect-papers-data-1}
+nrow(papers)
+ncol(papers)
+```
+
+Let's see the first few rows:
+
+```{r inspect-papers-data-2}
+head(papers)
+```
+
+The goal is to test whether papers with longer titles accrue fewer (or
+perhaps more?) citations than those with shorter titles. The first
+step is to add another column to the data containing the length of the
+title for each paper:
+
+```{r create-title-length-column}
+papers$TitleLength <- nchar(papers$Title)
+```
+
+Basic statistics in `R`
+-----------------------
+
+In the original paper, Letchford *et al* used rank-correlation: rank
+all the papers according to their title length and the number of
+citations. If Kendall's $\tau$ ("rank correlation") is positive, then
+longer titles are associated with *more* citations; if $\tau$ is
+negative, longer titles are associated with *fewer* citations. In `R`,
+you can compute rank correlation using `cor`:
+
+```{r cor-kendall}
+k <- cor(papers$TitleLength, papers$Cited.by, method = "kendall")
+```
+
+To perform a significance test for correlation, use `cor.test`:
+
+```{r cor-test}
+k.test <- cor.test(papers$TitleLength, papers$Cited.by, method = "kendall")
+```
+
+Does the output of `cor.test` show that the correlation between the
+ranks is positive or negative? Is this positive or negative
+correlation significant? You should find that the correlation is
+opposite of the one reported by Letchford *et al*---longer titles are
+associated with **more** citations!
+
+Now we are going to examine the data in a different way to test
+whether this result is robust.
+
+Basic plotting in `R`
+---------------------
+
+To plot title length vs. number of citations, we need to learn
+about plotting in `R`. To produce a simple scatterplot using the base
+plotting functions, simply run:
+
+```{r plot-title-length-vs-citations-1, fig.show="hide"}
+plot(papers$TitleLength, papers$Cited.by)
+```
+
+The problem with this very simple plot is that it is hard to detect
+any trend because a few papers have many more citations than the rest,
+obscuring the data at the bottom of the plot. This suggests that
+plotting the data on the *logarithmic scale* is a better approach:
+
+```{r plot-title-length-vs-citations-2, fig.show="hide"}
+plot(papers$TitleLength, log10(papers$Cited.by))
+```
+
+**Question:** This is a better plot, but there is one problem with
+it. What is the problem? How can we fix it? Write your code to fix the
+problem:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{3em}}
+$$
+
+Again, it is hard to see any trend in here. Maybe we should plot the
+best fitting line and overlay it on top of the graph. To do so, we
+first need to learn about linear regressions in `R`.
+
+Linear regression in `R`
+------------------------
+
+`R` was born for statistics --- the fact that it is very easy to fit a
+linear regression in is not surprising! To build a linear model
+comparing columns `x` and `y` in data frame `dat`, use `lm`, which is
+the "Swiss army knife" for linear regression in `R`:
+
+```{r lm, eval=FALSE}
+model <- lm(y ~ x, dat)  # y = a + b*x + error
+```
+
+Let's perform a linear regression of the number of citations (on the
+log-scale) vs. title length. To do so, first create a new column in
+the data frame containing the counts on the log-scale:
+
+```{r log-citations}
+papers$LogCits <- log10(papers$Cited.by + 1)
+```
+
+Now you can perform a linear regression:
+
+```{r lm-title-length-vs-citations}
+model_citations <- lm(LogCits ~ TitleLength, papers)
+model_citations           # Gives best-fit line.
+summary(model_citations)  # Gives more info.
+```
+
+And we can easily add this best-fit line to our plot:
+
+```{r plot-title-length-vs-citations-3, fig.show="hide"}
+plot(papers$TitleLength, papers$LogCits)
+abline(model_citations, col = "red", lty = "dotted")
+```
+
+Once we add the best-fit line, the positive trend is more clear.
+
+One thing to consider is that this data set spans a decade. Naturally,
+older papers have had more time to accrue citations. In our models, we
+should control for this effect. But first, we should explore whether
+this is an important factor to consider.
+
+First, let's plot the distribution of the number of citations for all
+the papers. To produce an histogram in `R`, use `hist`:
+
+```{r plot-citations-histogram-1, fig.show="hide"}
+hist(papers$LogCits)
+```
+
+You can control the number of histogram bins with the `n` argument:
+
+```{r plot-citations-histogram-2, fig.show="hide"}
+hist(papers$LogCits, n = 50)
+```
+
+Alternatively, estimate the density using `density`, then plot it:
+
+```{r plot-citations-density, fig.show="hide"}
+plot(density(papers$LogCits))
+```
+
+Next, compare the distributions for papers published in 2004, 2009 and
+2013:
+
+```{r plot-citations-density-by-year, fig.show="hide"}
+plot(density(papers$LogCits[papers$Year == 2004]), col = "black")
+lines(density(papers$LogCits[papers$Year == 2009]), col = "blue")
+lines(density(papers$LogCits[papers$Year == 2013]), col = "red")
+```
+
+More recent papers should have fewer citations. Does your plot support
+this hypothesis? You can account for this in your regression model by
+incorporating the year of publication into the linear regression:
+
+```{r lm-title-length-vs-citations-2}
+model_citations_better <- lm(LogCits ~ TitleLength + Year, papers)
+summary(model_citations_better)
+```
+
+Does the regression coefficient (slope) for year confirm that older
+papers have more citations?
+
+This is an improvement, but might be even better to have a separate
+"baseline" for each year. This can be done by converting the "Year"
+column to a factor:
+
+```{r lm-title-length-vs-citations-3}
+papers$Year            <- factor(papers$Year)
+model_citations_better <- lm(LogCits ~ Year + TitleLength, papers)
+summary(model_citations_better)
+```
+
+This model has a different baseline for each year, and then title
+length influences this baseline. In this new model, are longer titles
+still associated with more citations?
+
+Computing *p*-values using randomization
+----------------------------------------
+
+Kendall's $\tau$ takes as input two rankings, $x$ and $y$, both of the
+same length, $n$. It calculates the number of "concordant pairs" (if
+$x_i > x_j$, then $y_i > y_j$) and the number of "discordant
+pairs". The final value is
+
+$$\tau = \frac{n_{\mathrm{concordant}} - n_{\mathrm{discordant}}}
+              {\frac{n (n-1)}{2}}$$
+
+If $x$ and $y$ are completely independent, we would expect $\tau$ to
+have a distribution centered at zero. The variance of the "null"
+distribution of $\tau$ depends on the data. It is typically
+approximated as a normal distribution. If you want to have a stronger
+result that does not rely on a normality assumption, you can use
+randomizations to calculate a *p*-value. Simply, compute $\tau$ for
+the actual data, as well as for many "fake" datasets obtained by
+randomizing the data. Your *p*-value is then the proportion of $\tau$
+values for the randomized sets that exceed the $\tau$ value for the
+actual data.
+
+Here, we will try to implement this randomization to calculate a
+*p*-value for papers published in 2006, and then we will compare
+against the *p*-value obtained from running `cor.test`. To do this, we
+will use a for-loop for the randomization.
+
+First, subset the data:
+
+```{r tau-boostrap-1}
+dat <- papers[papers$Year == 2006, ]
+```
+
+Compute $\tau$ from these data:
+
+```{r tau-bootstrap-2}
+k <- cor(dat$TitleLength, dat$Cited.by, method = "kendall")
+```
+
+Now calculate $\tau$ in "fake" data sets by randomly scrambling the
+citation counts. Begin by doing this for one fake data set:
+
+```{r tau-bootstrap-3}
+shuffled_citation_counts <- sample(dat$Cited.by)
+k.fake <- cor(dat$TitleLength, shuffled_citation_counts, method = "kendall")
+```
+
+Is the value of $\tau$ closer to zero in this "shuffled" data set?
+
+To get an accurate *p*-value, we should compute $\tau$ for a large
+number of shuffled data sets. Let's try 1,000 of them. This and
+similar randomization techniques are known as "bootstrapping".
+
+```{r tau-boostrap-4}
+nr     <- 1000        # Number of fake data sets.
+k.fake <- rep(0, nr)  # Storage all the "fake" taus.
+```
+
+Since this computation involves lots of repetition, a for-loop makes a
+lot of sense here. Write your for-loop here:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{10em}}
+$$
+
+After running your code, you should have 1,000 correlations calculated
+from 1,000 fake data sets. You have just generated a "null"
+distribution for $\tau$. What does this null distribution look like?
+Try plotting it:
+
+```{r tau-bootstrap-6, fig.show="hide"}
+hist(k.fake, n = 50)
+```
+
+What proportion of the fake data sets have a correlation that
+exceeds the correlation in the actual data? This is the *p*-value.
+Write code to compute the *p*-value:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{3em}}
+$$
+
+How does your new *p*-value compare to the *p*-value computed by
+`cor.test`? Is it smaller or larger?
+
+```{r tau-bootstrap-8}
+cor.test(dat$TitleLength, dat$Cited.by, method = "kendall")
+```
+
+**Question:** Did you get the same result as the instructor, or your
+neighbours? If not, why? How could you ensure that your result is more
+similar, or the same?
+
+In summary, whenever possible, use randomizations rather than relying
+on classical tests. They are more difficult to implement, and more
+computationally expensive, but they allow you to avoid making
+assumptions about your data.
+
+Repeating the analysis for each year
+------------------------------------
+
+```{r tau-bootstrap-all-years-1, echo=FALSE}
+analyze_citations <- function (dat) {
+  nr     <- 1000
+  k      <- cor(dat$TitleLength, dat$Cited.by, method = "kendall")
+  k.fake <- rep(0, nr)
+  for (i in 1:nr)
+    k.fake[i] <- cor(dat$TitleLength, sample(dat$Cited.by), method = "kendall")
+  return(list(k = k, pvalue = mean(k.fake >= k)))
 }
 ```
 
-## Organizing and running code
+Up until this point, we have only analyzed the citation data
+for 2006. Does the result we obtained for 2006 hold up in other years?
+Let's explore this question---we will use a for-loop to repeat the
+analysis for 2004 to 2013. Let's be smart about designing our code and
+use a *function* to decompose the problem into parts. The code for the
+final analysis will look like this:
 
-Now we would like to be able to automate the analysis, such that we can repeat it for each journal. This is a good place to pause and introduce how to go about writing programs that are well-organized, easy to write, and easy to debug.
-
-1. Take the problem, and divide it into its basic building blocks
-2. Write the code for each building block separately, and test it thoroughly.
-3. Extensively document the code, so that you can understand what you did, how you did it, and why.
-4. Combine the building blocks into a master program.
-
-For example, let's say we want to write a program that takes as input the name of a file containing the data on titles, years and citations for a given journal. The program should first run the linear model:
-
-```
-log(citations + 1) ~ Year (categorical) + TitleLength
-```
-
-And output the coefficient associated with `TitleLength` as well as its p-value.
-
-Then, the program should run the Kendall's test for each year separately, again outputting $\tau$ and the p-value obtained with the normal approximation for each year.
-
-Dividing it into blocks, we need to wite:
-
-- code to load the data, calculate title lengths and log citations
-- a function to perform the linear model
-- a function to perform the Kendall's test
-- a master code putting it all together
-
-Our first function:
-```{r}
-load_data <- function(filename){
-  papers <- read.csv(filename, stringsAsFactors = FALSE)
-  papers$TitleLength <- nchar(papers$Title)
-  papers$LogCits <- log10(papers$Cited.by + 1)
-  return(papers)
+```{r tau-bootstrap-all-years-2}
+years <- 2004:2013
+for (i in years){
+  dat <- papers[papers$Year == i, ]
+  out <- analyze_citations(dat)
+  cat("year:", i, "tau:", out$k, "pvalue:", out$pvalue, "\n")
 }
 ```
 
-Make sure that everything is well by testing our function on the data:
-```{r}
-for (my_file in list.files("../data/citations", full.names = TRUE)){
-  print(my_file)
-  print(basename(my_file))
-  papers <- load_data(my_file)
+The missing piece is the R code for function `analyze_citations`. You
+can re-use your code above to write this function.
+
+$$
+\framebox[\textwidth]{\rule{0pt}{15em}}
+$$
+
+Activity: Organizing and running your code
+------------------------------------------
+
+Now we would like to be able to automate the analysis, such that we
+can repeat it for each journal. This is a good place to pause and
+introduce how to go about writing programs that are well-organized,
+easy to write, easy to debug, and easier to reuse.
+
+1. Take the problem, and divide it into smaller tasks (these are the
+   functions).
+
+2. Write the code for each task (function) separately, and make sure
+   it does what it is supposed to do.
+
+3. Document the code so that you can later understand what you did,
+   how you did it, and why.
+
+4. Combine the functions into a master program.
+
+For example, let's say we want to write a program that takes as input
+the name of files containing citation data. The program should first
+fit a linear regression model,
+
+```
+log(citations + 1) ~ as.factor(Year) + TitleLength
+```
+
+then output the coefficient associated with `TitleLength`, and its
+*p*-value.
+
+We could split the program into the following tasks:
+
+1. A function to load and prepare the data for a linear regression
+   analysis.
+
+2. A function to run the linear regression analysis.
+
+3. A master code that puts it all together.
+
+Let's begin with the master code---the bulk of the code is a for-loop
+that repeats the regression analysis for each journal:
+
+```{r lm-all-journals-1, eval=FALSE}
+files <- list.files("citations", full.names = TRUE)
+for (i in files) {
+  cat("Analyzing data from",i,"\n")
+  papers <- load_citation_data(i)
+  out    <- fit_citation_model(papers)
+  cat("coefficient:", out$estimate, "p-value:", out$pvalue, "\n")
 }
 ```
 
-Now the function to fit the linear model:
-```{r}
-linear_model_year_length <- function(papers){
-  my_model <- summary(lm(LogCits ~ as.factor(Year) + TitleLength, data = papers))
-  # Extract the coefficient and the pvalue
-  estimate <- my_model$coefficients["TitleLength","Estimate"]
-  pvalue <- my_model$coefficients["TitleLength","Pr(>|t|)"]
-  return(list(estimate = estimate,
-              pvalue = pvalue))
+This code doesn't work yet because you haven't written the functions
+that are called inside the loop. (What error message to you get when
+you try to run the code?) 
+
+The `load_citaiton_data` function reads in the data from the CSV file,
+then prepares the data for the linear regression analysis:
+
+```{r define-load-citation-data-function}
+load_citation_data <- function (filename) {
+  dat <- read.csv(filename, stringsAsFactors = FALSE)
+  dat$TitleLength <- nchar(dat$Title)
+  dat$LogCits     <- log10(dat$Cited.by + 1)
+  dat$Year        <- as.factor(dat$Year)
+  return(dat)
 }
 ```
 
-Let's run this on all files:
-```{r}
-for (my_file in list.files("../data/citations", full.names = TRUE)){
-  print(basename(my_file))
-  papers <- load_data(my_file)
-  linear_model <- linear_model_year_length(papers)
-  print(paste("Linear model -> coefficient", 
-        round(linear_model$estimate, 5), 
-        "pvalue", round(linear_model$pvalue, 5)))
+Before continuing, check that it works by running it on one of the CSV
+files:
+
+```{r testload-citation-data-function}
+papers <- load_citation_data("citations/nature_neuroscience.csv")
+```
+
+The `fit_citation_model` function fits a linear regression model to
+the input data, then extracts the quantities from the regression
+analysis we are most interested in (the "best-fit" slope and the
+*p*-value corresponding to "TitleLength").
+
+```{r define-fit-citation-model}
+fit_citation_model <- function (papers) {
+  model <- lm(LogCits ~ Year + TitleLength, papers)
+  terms <- summary(model)$coefficients
+  return(list(estimate = terms["TitleLength", "Estimate"],
+              pvalue   = terms["TitleLength", "Pr(>|t|)"]))
 }
 ```
 
-Now the function that calls the Kendall's test for each year: we write two functions. One subsets the data, and the other simply runs the test.
+Check that this function runs, and does what it is supposed to do:
 
-```{r}
-Kendall_test <- function(a, b){
-  my_test <- cor.test(a, b, method = "kendall")
-  return(list(estimate = as.numeric(my_test$estimate),
-              pvalue = my_test$p.value))
-}
-
-call_Kendall_by_year <- function(papers){
-  all_years <- sort(unique(papers$Year))
-  for (yr in all_years){
-    my_test <- Kendall_test(papers$TitleLength[papers$Year == yr],
-                 papers$Cited.by[papers$Year == yr])
-    print(paste("Year", yr, "-> estimate", my_test$estimate, "pvalue", my_test$pvalue))
-  }
-}
+```{r test-fit-citation-model}
+out <- fit_citation_model(papers)
 ```
 
-Now a master function to test that the program is working:
-```{r}
-analyze_journal <- function(my_file){
-  # First, the linear model
-  print(basename(my_file))
-  papers <- load_data(my_file)
-  linear_model <- linear_model_year_length(papers)
-  print(paste("Linear model -> coefficient", 
-        round(linear_model$estimate, 5), 
-        "pvalue", round(linear_model$pvalue, 5)))
-  # Then, Kendall year by year
-  call_Kendall_by_year(papers)
-}
-analyze_journal("../data/citations/nature_genetics.csv")
-```
+Now that you have defined the necessary functions, try running the
+master code above.
 
-Finally, let's analyze all the journals!
-
-
-```{r}
-for (my_file in list.files("../data/citations", full.names = TRUE)){
-  analyze_journal(my_file)
+```{r lm-all-journals-2, echo=FALSE}
+files <- list.files("citations", full.names = TRUE)
+for (i in files) {
+  cat("Analyzing data from",i,"\n")
+  papers <- load_citation_data(i)
+  out    <- fit_citation_model(papers)
+  cat("coefficient:", out$estimate, "p-value:", out$pvalue, "\n")
 }
 ```
 
+**Question:** Suppose you download a fourth CSV file containing data
+on papers from the *American Journal of Human Genetics*. Would any
+changes need to be made to your R code above to run it on the four
+citation data sets?
 
-**Discussion:** How many significant results we should expect, when citations and title lengths are completely independent?
+# Creating computational notebooks using R Markdown
 
-# Documenting the code using `knitr`
+> *Let us change our traditional attitude to the construction of
+> programs: instead of imagining that our main task is to instruct a
+> computer what to do, let us concentrate rather on explaining to
+> humans what we want the computer to do.*
+>
+> Donald E. Knuth, *Literate Programming*, 1984
 
- > *Let us change our traditional attitude to the construction of programs: Instead of imagining that our main task is to instruct a computer what to do, let us concentrate rather on explaining to humans what we want the computer to do. *
+When doing experiments, it is important to develop the habit of
+writing down everything you do in a laboratory notebook. That way,
+when writing your manuscript, responding to queries or discussing
+progress with your advisor, you can go back to your notes to find
+exactly what you did, how you did it, and possibly *why* you did
+it. The same should be true for computational work.
 
-> Donald E. Knuth, Literate Programming, 1984
+`RStudio` makes it very easy to build a computational laboratory
+notebook. First, create a new `R Markdown` file. (Choose **File > New
+File > R Markdown** from the RStudio menu bar.)
 
-When doing experiments, we typically keep track of everything we do in a laboratory notebook, so that when writing the manuscript, or responding to queries, we can go back to our documentation to find exactly what we did, how we did it, and possibly why we did it. The same should be true for computational work.
-
-`RStudio` makes it very easy to build a computational laboratory notebook. First, create a new `R Markdown`  file (choose `File` -> `New File` -> `R Markdown` from the menu). 
-
-The gist of it is that you write a text file (`.Rmd`). The file is then read by an iterpreter that transforms it into an `.html` or `.pdf` file, or even into a Word document. You can use special syntax to render the text in different ways. For example,
+An R Markdown file is simply a text file. But it is interpreted in a
+special way that allows the text to be transformed it into a webpage
+(`.html`) or PDF file. You can use special syntax to render the text
+in different ways. Here are a few examples of R Markdown syntax:
 
 ```
-***********
-
-*Test* **Test2**
+*Italic text* **Bold text**
 
 # Very large header
 
@@ -499,26 +927,18 @@ The gist of it is that you write a text file (`.Rmd`). The file is then read by 
 
 ### Smaller header
 
-## Unordered lists
+Unordered and ordered lists:
 
-* First
-* Second
++ First
++ Second
     + Second 1
     + Second 2
 
-1. This is
-2. A numbered list
-
-You can insert `inline code`
-
------------
+1. This is a
+2. Numbered list
 ```
 
-The code above yields:
-
-***********
-
-*Test* **Test2**
+When rendered as a PDF, the above R Markdown looks like this:
 
 # Very large header
 
@@ -526,68 +946,98 @@ The code above yields:
 
 ### Smaller header
 
-## Unordered lists
+*Italic text* **Bold text**
 
-* First
-* Second
+Unordered and ordered lists:
+
++ First
++ Second
     + Second 1
     + Second 2
 
-1. This is
-2. A numbered list
+1. This is a
+2. Numbered list
 
-You can insert `inline code`
+You can also insert inline code by enclosing it in backticks.
 
------------
+The most important feature of R Markdown is that you can include
+blocks of code, and they will be interpreted and executed by `R`. You
+can therefore combine effectively the code itself with the description
+of what you are doing.
 
-The most important feature of `R Markdown`, however, is that you can include blocks of code, and they will be interpreted and executed by `R`. You can therefore combine effectively the code itself with the description of what you are doing. 
+For example, including a code chunk in your R Markdown file,
 
-For example, including
+$$
+\includegraphics[width=1.85in]{helloworld.png}
+$$
 
-    ```{r, eval=FALSE}  
-    print("hello world!")  
-    ```
+will render a document containing both the results and the code that
+run to generate those results:
 
-will become 
-
-```{r}  
-print("hello world!")  
+```{r hello-world, results="show"}
+cat("Hello world!")
 ```
 
-If you don't want to run the `R` code, but just display it, use `{r, eval = FALSE}`; if you want to show the output but not the code, use `{r, echo = FALSE}`.
+If you don't want to run the `R` code, but just display it, use `{r
+hello-world, eval = FALSE}`; if you want to show the output but not
+the code, use `{r hello-world, echo = FALSE}`.
 
-You can include plots, tables, and even render equations using LaTeX. In summary, when exploring your data or writing the methods of your paper, give `R Markdown` a try!
+You can include plots, tables, and even mathematical equations using
+LaTeX. In summary, when exploring your data, or describing the methods
+for your paper, give R Markdown a try!
 
-You can find inspiration in the notes for the Boot Camp: both the notes for Basic and Advanced Computing are written in `R MarkDown`.
+You can find inspiration in this Boot Camp; the materials for Basic
+and Advanced Computing were written in R MarkDown.
 
-# Programming Challenge
-## Instructions
+Programming challenge
+=====================
 
-You will work with your own group to solve the following exercise. When you have found the solution, go to `https://stefanoallesina.github.io/BSD-QBio4/` and follow the link `Submit solution to challenge 2` to submit your answer (alternatively, you can go directly to [`goo.gl/forms/QJhKmdGqRCIuGNPa2`](https://goo.gl/forms/QJhKmdGqRCIuGNPa2). At the end of the boot camp, the group with the highest number of correct solutions will be declared the winner. If you need extra time, you can work with your group during free time or in the breaks in the schedule.
+Instructions
+------------
 
-## Google Flu Trends
+You will work with your group to solve the exercises below. When
+you have found the solutions, go to
+[`https://stefanoallesina.github.io/BSD-QBio4`](https://stefanoallesina.github.io/BSD-QBio4)
+and follow the link "Submit solution to challenge 2" to submit your
+answer (alternatively, you can go directly to
+[`goo.gl/forms/QJhKmdGqRCIuGNPa2`](https://goo.gl/forms/QJhKmdGqRCIuGNPa2). At
+the end of the bootcamp, the group with the highest number of correct
+solutions will be declared the winner. If you need extra time, you can
+work with your group during free time or in the breaks in the
+schedule.
 
-Google Flu started strong, with a paper in Nature (Ginsberg *et al.*,
-2008) showing that using data on web queries, one could predict the
-number of physician visits for influenza-like symptoms. Over time, the
-quality of predictions degraded considerably, requiring many
-adjustments to the model. Now defunct, Google Flu Trends has been
-proposed as a poster child case of the *Big Data hubris* (Lanzer *et
-al.* Science 2014). In the folder `data/GoogleFlu` you can find the
-data used by Preis & Moat (2014, `dx.doi.org/10.1098/rsos.140095`) to
-show that, once accounted for some additional historical data, Google
-Flu Trends are correlated with outpatient visits due to influenza-like
-illness.
+Google Flu Trends
+-----------------
 
-1. Read the data and plot number of visits vs. `GoogleFluTrends`.
+Google Flu started strong, with a paper in *Nature* (Ginsberg *et al*,
+2009, [doi:10.1038/nature07634](https://doi.org/10.1038/nature07634))
+showing that, using data on Web search engine queries, one could
+predict the number of physician visits for influenza-like symptoms.
+Over time, the quality of predictions degraded considerably, requiring
+many adjustments to the model. Now defunct, Google Flu Trends has been
+proposed as a poster child of "Big Data hubris" (Lanzer *et al*,
+*Science*, 2014,
+[doi:10.1126/science.1248506](https://doi.org/10.1126/science.1248506)).
+In the folder containing the Basic Computing 2 tutorial materials, you
+will find the data used by Preis and Moat in their 2014 paper
+([doi:10.1098/rsos.140095](https://doi.org/10.1098/rsos.140095)) to
+show that, after accounting for some additional historical data,
+Google Flu Trends are correlated with outpatient visits due to
+influenza-like illnesses.
 
-2. Calculate the (Pearson's) correlation using `cor`.
+1. Read the data using function `read.csv`, and plot the number of
+   weekly outpatient visits versus the Google Flu Trends estimates.
 
-3. The data spans 2010-2013. In Aug 2013 Google Flu changed their
-algorithm. Did this lead to improvements? Compare the data from Aug to
-Sep 2013 with the same months in 2010, 2011, and 2012. For each,
-calculate the correlation, and see whether the correlation is higher
-for 2013.
+2. Calculate the (Pearson's) correlation using the `cor` function.
 
-**Hints** You will need to extract the year from a string for each
-row. To do so, you can use `substr(google$WeekCommencing, 1,4)`.
+3. The data span 2010--2013. In August 2013, Google Flu changed their
+   algorithm. Did this lead to improvements? Compare the data from
+   August and September 2013 with the same months in 2010, 2011
+   and 2012. For each, calculate the correlation, and see whether the
+   correlation is higher for 2013.
+
+**Hint:** You will need to extract the year from a string for each
+row. This can be done using `substr(gf$WeekCommencing, 1, 4)`, in
+which `gf` is the data frame containing the Google Flu data.
+
+[rsvd]: https://CRAN.R-project.org/package=rsvd
