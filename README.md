@@ -12,7 +12,7 @@ to get access, email Stefano your GitHub ID.
 
 You can find a webpage explaining how to download the data and prepare
 your laptop for the bootcamp
-[here](https://stefanoallesina.github.io/BSD-QBio5/) [TODO]
+[here](https://stefanoallesina.github.io/BSD-QBio5/) 
 
 #### Notes
 
