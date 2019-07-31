@@ -997,7 +997,7 @@ Instructions
 
 You will work with your group to solve the exercises below. When
 you have found the solutions, go to
-[`https://stefanoallesina.github.io/BSD-QBio4`](https://stefanoallesina.github.io/BSD-QBio4)
+[`https://stefanoallesina.github.io/BSD-QBio5`](https://stefanoallesina.github.io/BSD-QBio5)
 and follow the link "Submit solution to challenge 2" to submit your
 answer (alternatively, you can go directly to
 [`goo.gl/forms/QJhKmdGqRCIuGNPa2`](https://goo.gl/forms/QJhKmdGqRCIuGNPa2). At

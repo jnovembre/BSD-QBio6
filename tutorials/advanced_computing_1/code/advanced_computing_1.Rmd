@@ -573,10 +573,10 @@ The file `data/Chicago_Crimes_May2016.csv` contains a list of all the crimes rep
 
 - **Violent crimes** add a new column to the dataset specifying whether the crime is considered violent (e.g., `HOMICIDE`, `ASSAULT`, `KIDNAPPING`, `BATTERY`, `CRIM SEXUAL ASSAULT`, etc.)
 
-- **Crimes in time** plot the number of violent crimes against time, faceting by community areas.
+- **Crimes in time** plot the number of violent crimes against time, faceting by community areas. (Hint: use the package `lubridate` to work with days, dates, time)
 
-- **Dangerous day** which day of the week is the most dangerous? (Hint: use the package `lubridate` to extract the day of the week)
+- **Dangerous day** which day of the week is the most dangerous? (Extract day of the week from `Date`)
 
-- **Dangerous time** which time of the day is the most dangerous (divide the data by hour of the day).
+- **Dangerous time** which time of the day is the most dangerous (Extract the hour of the day from `Date`).
 
-- **Correlation between crimes** which crimes tend to have the same pattern? Divide the crimes by day and type, and plot the correlation between crimes using `geom_tile` and colouring the cells according to the correlation (see `cor` for a function that computes the correlation between different columns).
+- **Correlation between crimes** [difficult] which crimes tend to have the same pattern? Divide the crimes by day and type, and plot the correlation between crimes using `geom_tile` and colouring the cells according to the correlation (see `cor` for a function that computes the correlation between different columns).

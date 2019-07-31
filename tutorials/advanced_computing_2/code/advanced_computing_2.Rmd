@@ -709,25 +709,15 @@ head(primers)
 
 ### A map of *Science*
 
-Where does science come from? This question has fascinated researchers
-for decades and even led to the birth of the field of "Science of
-Science", where researchers use the same tools they invented to
-investigate nature to gain insights on the development of science
-itself. In this exercise, you will build a map of *Science*, showing
-where articles published in *Science* magazine have originated. 
-You will find two files in the directory `data/MapOfScience`.
-The first, `pubmed_results.txt`, is the output of a
-query to PubMed listing all the papers published in Science in
-2015. You will extract the US ZIP codes from this file, and then use
-the file `zipcodes_coordinates.txt` to extract the geographic
-coordinates for each ZIP code.
+Where does science come from? This question has fascinated researchers for decades and even led to the birth of the field of "Science of Science", where researchers use the same tools they invented to investigate nature to gain insights on the development of science itself. In this exercise, you will build a map of *Science*, showing where articles published in *Science* magazine have originated. 
 
-- Read the file `pubmed_results.txt`, and extract all the
-  US ZIP codes.
+You will find two files in the `data` directory: `Science_2018.csv` contains a list of papers published in *Science* in 2018, including the authors' affiliations. `Zipcodes_coord.csv` contains the latitude and longitude for 33,000 ZIP codes in the US.
+
+- Read the file `Science_2018.csv`, and extract all the US ZIP codes. [There are "short" formats such as `MD  21205, United States`, and "long" formats as in `CA  94305-5441, United States`]
   
-- Count the number of occurrences of each ZIP code using `dplyr`.
+- Count the number of occurrences of each ZIP code.
 
-- Join the table you've created with the data in `zipcodes_coordinates.txt`
+- Join the table you've created with the data in `Zipcodes_coord.csv`.
 
-- Plot the results using `ggplot2` (either use points with different colors/alphas, or render the density in two dimensions)
+- Plot the results using `ggplot2` (either use points with different colors/alphas, or render the density in two dimensions). 
 

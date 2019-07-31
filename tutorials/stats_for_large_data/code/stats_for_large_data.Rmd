@@ -1,24 +1,33 @@
 ---
 title: "Statistics for a data rich world---some explorations"
-author: "Stefano Allesina"
-output: 
+output:
   pdf_document:
-    highlight: kate
-    template: default
-fig_width: 4
----
-
-# Statistics for large data sets
+    keep_tex: false
+    latex_engine: pdflatex
+    template: style/readable.tex
+author:
+  name: Stefano Allesina
+  affiliation: University of Chicago
+date: Aug 2019
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: single
+graphics: yes
+endnote: no
+thanks: "This document is included as part of the Statistics for large data sets packet for the U Chicago BSD qBio5 boot camp, @MBL, 2019. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: sallesina@uchicago.edu."
+abstract: "
 
 - **Goal:** More and more often we need to analyze large and complex data sets. However, the statistical methods we've been taught in college have evolved in a data-poor world. Modern biology requires new tools, which can cope with the new questions and methods that arise in a data-rich world. Here we are going to discuss problems that often arise in the analysis of large data sets. We're going to review hypothesis testing (and what happens when we have many hypotheses) and discuss model selection. We're going to see the effects of selective reporting and p-hacking, and how they contribute to the *reproducibility crisis* in the sciences.
 
-- **Audience:** Biologists with some programming background.
+- **Audience:** Biologists with some programming background."
+---
 
-- **Installation:** To complete the tutorial, we will need to install `R` and `RStudio`. To install `R`, follow instructions at [`cran.rstudio.com`](https://cran.rstudio.com/). Then install `Rstudio` following the instructions at [`goo.gl/a42jYE`](https://www.rstudio.com/products/rstudio/download2/).
+
 
 # Review of hypothesis testing
 
-The basic idea of hypothesis testing is the following: we have devised an hypothesis on our system, which we call $H_1$ (the "alternative hypothesis"). We have collected our data, and we would like to test whether the data is consistent (or not) with the so-called "null-hypothesis" ($H_0$), which is associated with a contradiction to the hypothesis we would like to prove. 
+The basic idea of hypothesis testing is the following: we have devised an hypothesis on our system, which we call $H_1$ (the "alternative hypothesis"). We have collected our data, and we would like to test whether the data are consistent (or not) with the so-called "null-hypothesis" ($H_0$), which is associated with a contradiction to the hypothesis we would like to prove. 
 
 The simplest example is that of a bent coin: we believe that our coin favors heads ($H_1$: the coin is bent). We therefore toss the coin several times and check whether the number of heads we observe is consistent with the null hypothesis of a fair coin ($H_0$). 
 
@@ -65,7 +74,7 @@ heads_distribution <- rbinom(1000, flips, p)
 hist(heads_distribution, main = "distribution number heads", xlab = "number of heads")
 ```
 
-You can see that it is very unlikely to get more than 540 (or less than 460) heads when flipping a fair coin 1000 times. Therefore, if we were to observe say 400 heads (or 800), we would tend to believe that the coin is biased (though of course this could have happened by chance!).
+You can see that it is very unlikely to get more than 560 (or less than 440) heads when flipping a fair coin 1000 times. Therefore, if we were to observe say 400 heads (or 800), we would tend to believe that the coin is biased (though of course this could have happened by chance!).
 
 # Errors
 
@@ -110,7 +119,7 @@ abline(h = 1, col = "red", lty = 2)
 
 Articles reporting positive results are easier to publish than those containing negative results. Authors might have little incentive to publish negative results, which could go directly into the file-drawer. 
 
-This tendency is evidenced in the distribution of p-values in the literature: in many disciplines, one finds a sharp decrease in the number of tests with p-values just above 0.05 (which is customarily--and arbitrarily--chosen as a threshold for "significant results"). For example, we find many a sharp decrease in the number of reported p-values of 0.051 compared to 0.049--while we expect the p-value distribution to decrease smoothly.
+This tendency is evidenced in the distribution of p-values in the literature: in many disciplines, one finds a sharp decrease in the number of tests with p-values just below 0.05 (which is customarily--and arbitrarily--chosen as a threshold for "significant results"). For example, we find many a sharp decrease in the number of reported p-values of 0.051 compared to 0.049--while we expect the p-value distribution to decrease smoothly.
 
 Selective reporting leads to irreproducible results: we always have a (small) probability of finding a "positive" result by chance alone. For example, suppose we toss a fair coin many times, until we find a "signficant" result...
 
@@ -278,7 +287,7 @@ where the right side of the histogram is close to a uniform distribution. We cou
 
 Storey has built an `R`-package for this type of analysis:
 
-```{r}
+```{r, warning=FALSE}
 # To install:
 #install.packages("devtools")
 #library("devtools")
@@ -333,7 +342,7 @@ points(model2$fitted.values~x, type = "l", col = "red")
 
 Our second model has a much greater $R^2$, but also many more parameters. Is the first model more parsimonious?
 
-Model selection tries to address this and similar problems. Most model fitting and model selection procedures are based on likelihoods (e.g., Bayesian models, maximum likelihood, minimum description lenght). The likelihood $L(D|M,\theta)$ is (proportional to) the probability of observing the data $D$ under the model $M$ and parameters $\theta$. Because likelihood can be very small when you have much data, typically one works with log-likelhoods. For example:
+Model selection tries to address this and similar problems. Most model fitting and model selection procedures are based on likelihoods (e.g., Bayesian models, maximum likelihood, minimum description lenght). The likelihood $L(\theta| D, M)$ is (proportional to) the probability of observing the data $D$ under the model $M$ and parameters $\theta$. Because likelihood can be very small when you have much data, typically one works with log-likelhoods. For example:
 
 ```{r}
 logLik(model1)
@@ -446,7 +455,7 @@ We didn't improve our guessing much by considering many parameters! This could b
 
 ## AIC
 
-One of the simplest methods to select among competing models is the Akaike Information Criterion (AIC). It penalizes models accoding to the **number of parameters**: $AIC = 2 p - 2 \log L(D|M, \theta)$, where $p$ is the number of parameters. Note that **smaller** values of AIC stand for "better" models. In `R` you can compute AIC using:
+One of the simplest methods to select among competing models is the Akaike Information Criterion (AIC). It penalizes models accoding to the **number of parameters**: $AIC = 2 p - 2 \log L(\theta | D, M)$, where $p$ is the number of parameters. Note that **smaller** values of AIC stand for "better" models. In `R` you can compute AIC using:
 
 ```{r}
 AIC(model_null)
@@ -463,7 +472,7 @@ AIC is rooted in information theory and measures (asymptotically) the loss of in
 
 ## BIC
 
-In a similar vein, BIC (Bayesian Information Criterion) uses a slightly different penalization: $BIC =  \log(n) p - 2 \log L(D|M, \theta)$, where $n$ is the number of data points. Again, smaller values stand for "better" models:
+In a similar vein, BIC (Bayesian Information Criterion) uses a slightly different penalization: $BIC =  \log(n) p - 2 \log L(\theta |D, M)$, where $n$ is the number of data points. Again, smaller values stand for "better" models:
 
 ```{r}
 BIC(model_null)
@@ -479,7 +488,7 @@ Note that according to BIC, `model_year` is favored.
 ## Cross validation
 One very robust method to perform model selection, often used in machine learning, is cross-validation. The idea is simple: split the data in three parts: a small data set for exploring; a large set for fitting; a small set for testing (for example, 5\%, 75\%, 20\%). You can use the first data set to explore freely and get inspired for a good model. The data will be then discarded. You use the largest data set for accurately fitting your model(s). Finally, you validate your model or select over competing models using the last data set. 
 
-Because you haven't used the test data for fitting, this should dramatically reduce the risk of overfitting. The downside of this is that we're wasting precious data. There are less expensive methods for cross validation, but if you have much data, or data is cheap, then this has the virtue of being fairly robust.
+Because you haven't used the test data for fitting, this should dramatically reduce the risk of overfitting. The downside of this is that we're wasting precious data. There are less expensive methods for cross validation, but if you have much data, or data are cheap, then cross-validation has the virtue of being fairly robust.
 
 Let's try our hand at cross-validation. First, we split the data into three parts:
 
@@ -537,7 +546,7 @@ Another alternative paradigm for model selection is Minimum-Description Length. 
 ## A word of caution
 The "best" model you've selected could still be a terrible model (best among bad ones). Out-of-fit prediction (such as in the cross-validation above) can give you a sense of how well you're modeling the data. 
 
-When in doubt, remember the (in)famous paper in Nature (Tatem et al. 2004), which used some flavor of model selection to claim that, according to their linear regression, in the 2156 olympics the fastest woman would run faster than the fastest man. One of the many memorable letters that ensued reads:
+When in doubt, remember the (in)famous paper in Nature by Tatem et al. 2004, which used some flavor of model selection to claim that, according to their linear regression, in the 2156 olympics the fastest woman would run faster than the fastest man. One of the many memorable letters that ensued reads:
 
 > Sir — A. J. Tatem and colleagues calculate that women may out-sprint men by the middle of the twenty-second century (Nature 
 431,525; 2004). They omit to mention, however, that (according to their analysis) a far more interesting race should occur in about 2636, when times of less than zero seconds will be recorded. 
@@ -550,7 +559,7 @@ When in doubt, remember the (in)famous paper in Nature (Tatem et al. 2004), whic
 
 ## Presidential tweets and crimes in Chicago
 
-To try your hand at p-hacking and overfitting, and show how these practices can lead to completely inane results, you are going to show the strong correlation between the tweets by President Obama (or presidential candidate Donald Trump) in 2016 and the number of crimes in Chicago. For example, here's code showing that the number of tweets by Trump correlates with narcotics violations in Chicago.
+To try your hand at p-hacking and overfitting, and show how these practices can lead to completely inane results, you are going to show the strong correlation between the tweets by President Obama (or then presidential candidate Donald Trump) in 2016 and the number of crimes in Chicago. For example, here's code showing that the number of tweets by Trump correlates with narcotics violations in Chicago.
 
 ```{r, message=FALSE}
 library(dplyr)
@@ -595,7 +604,7 @@ Try your hand at finding something even more striking. You can:
 - use correlation (Pearson, Spearman, Kendall) or generalized linear models
 - etc.
 
-Once you've found something worth reporting in the front page of Chicago's newspapers, post your answer at [`goo.gl/forms/ysqKxxcfogmUKmQq2`](https://goo.gl/forms/ysqKxxcfogmUKmQq2)
+Once you've found something worth reporting in the front page of Chicago's newspapers, post your answer.
 
 
 
