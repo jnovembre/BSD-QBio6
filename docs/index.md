@@ -44,8 +44,8 @@ To accommodate the diverse background of our students, we have created two track
 
 To decide which track you want to choose, please consult the lecture materials, and make sure that the content is at the right level for you:
 
-*   Basic Computing I ([web](https://github.com/StefanoAllesina/BSD-QBio5/blob/master/tutorials/basic_computing_1/code/basic_computing_1.Rmd), [pdf](https://github.com/StefanoAllesina/BSD-QBio5/raw/master/tutorials/basic_computing_1/code/basic_computing_1.pdf))
-*   Basic Computing II ([web](https://github.com/StefanoAllesina/BSD-QBio5/blob/master/tutorials/basic_computing_2/code/basic_computing_2.Rmd), [pdf](https://github.com/StefanoAllesina/BSD-QBio5/raw/master/tutorials/basic_computing_2/code/basic_computing_2.pdf))
+*   Basic Computing I ([web](https://github.com/StefanoAllesina/BSD-QBio5/blob/master/tutorials/basic_computing_1/basic_computing_1.Rmd), [pdf](https://github.com/StefanoAllesina/BSD-QBio5/raw/master/tutorials/basic_computing_1/basic_computing_1.pdf))
+*   Basic Computing II ([web](https://github.com/StefanoAllesina/BSD-QBio5/blob/master/tutorials/basic_computing_2/basic_computing_2.Rmd), [pdf](https://github.com/StefanoAllesina/BSD-QBio5/raw/master/tutorials/basic_computing_2/basic_computing_2.pdf))
 *   Advanced Computing I ([web](https://github.com/StefanoAllesina/BSD-QBio5/blob/master/tutorials/advanced_computing_1/code/advanced_computing_1.Rmd), [pdf](https://github.com/StefanoAllesina/BSD-QBio5/raw/master/tutorials/advanced_computing_1/code/advanced_computing_1.pdf))
 *   Advanced Computing II ([web](https://github.com/StefanoAllesina/BSD-QBio5/blob/master/tutorials/advanced_computing_2/code/advanced_computing_2.Rmd), [pdf](https://github.com/StefanoAllesina/BSD-QBio5/raw/master/tutorials/advanced_computing_2/code/advanced_computing_2.pdf))
 
