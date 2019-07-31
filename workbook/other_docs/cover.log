@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  27 JUL 2019 15:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.13)  31 JUL 2019 11:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -398,108 +398,35 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 6.0pt on input line 24.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 5.0pt on input line 24.
-<../../logo_group/Arabidopsis_thaliana.png, id=2, 142.131pt x 112.13895pt>
-File: ../../logo_group/Arabidopsis_thaliana.png Graphic file (type png)
-<use ../../logo_group/Arabidopsis_thaliana.png>
-Package pdftex.def Info: ../../logo_group/Arabidopsis_thaliana.png  used on inp
-ut line 28.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Caenorhabditis_elegans.png, id=4, 142.131pt x 112.13895pt>
-File: ../../logo_group/Caenorhabditis_elegans.png Graphic file (type png)
-<use ../../logo_group/Caenorhabditis_elegans.png>
-Package pdftex.def Info: ../../logo_group/Caenorhabditis_elegans.png  used on i
-nput line 29.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Danio_rerio.png, id=5, 142.131pt x 112.13895pt>
-File: ../../logo_group/Danio_rerio.png Graphic file (type png)
-<use ../../logo_group/Danio_rerio.png>
-Package pdftex.def Info: ../../logo_group/Danio_rerio.png  used on input line 3
-0.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Drosophila_melanogaster.png, id=6, 142.131pt x 112.13895pt>
-File: ../../logo_group/Drosophila_melanogaster.png Graphic file (type png)
-<use ../../logo_group/Drosophila_melanogaster.png>
-Package pdftex.def Info: ../../logo_group/Drosophila_melanogaster.png  used on 
-input line 31.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Callithrix_jacchus.png, id=7, 189.70876pt x 151.56625pt>
-File: ../../logo_group/Callithrix_jacchus.png Graphic file (type png)
-<use ../../logo_group/Callithrix_jacchus.png>
-Package pdftex.def Info: ../../logo_group/Callithrix_jacchus.png  used on input
- line 32.
-(pdftex.def)             Requested size: 103.50105pt x 82.69331pt.
-<../../logo_group/Mus_musculus.png, id=8, 142.131pt x 112.13895pt>
-File: ../../logo_group/Mus_musculus.png Graphic file (type png)
-<use ../../logo_group/Mus_musculus.png>
-Package pdftex.def Info: ../../logo_group/Mus_musculus.png  used on input line 
-33.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Octopus_bimaculoides.png, id=9, 142.131pt x 112.13895pt>
-File: ../../logo_group/Octopus_bimaculoides.png Graphic file (type png)
-<use ../../logo_group/Octopus_bimaculoides.png>
-Package pdftex.def Info: ../../logo_group/Octopus_bimaculoides.png  used on inp
-ut line 34.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Papilio_polytes.png, id=10, 142.131pt x 112.13895pt>
-File: ../../logo_group/Papilio_polytes.png Graphic file (type png)
-<use ../../logo_group/Papilio_polytes.png>
-Package pdftex.def Info: ../../logo_group/Papilio_polytes.png  used on input li
-ne 35.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Spinosaurus_aegyptiacus.png, id=11, 142.131pt x 112.13895pt>
-File: ../../logo_group/Spinosaurus_aegyptiacus.png Graphic file (type png)
-<use ../../logo_group/Spinosaurus_aegyptiacus.png>
-Package pdftex.def Info: ../../logo_group/Spinosaurus_aegyptiacus.png  used on 
-input line 36.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Tetrahymena_thermophila.png, id=12, 142.131pt x 112.13895pt>
-File: ../../logo_group/Tetrahymena_thermophila.png Graphic file (type png)
-<use ../../logo_group/Tetrahymena_thermophila.png>
-Package pdftex.def Info: ../../logo_group/Tetrahymena_thermophila.png  used on 
-input line 37.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Tiktaalik_roseae.png, id=13, 142.131pt x 112.13895pt>
-File: ../../logo_group/Tiktaalik_roseae.png Graphic file (type png)
-<use ../../logo_group/Tiktaalik_roseae.png>
-Package pdftex.def Info: ../../logo_group/Tiktaalik_roseae.png  used on input l
-ine 38.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
-<../../logo_group/Xenopus_laevis.png, id=14, 142.131pt x 112.13895pt>
-File: ../../logo_group/Xenopus_laevis.png Graphic file (type png)
-<use ../../logo_group/Xenopus_laevis.png>
-Package pdftex.def Info: ../../logo_group/Xenopus_laevis.png  used on input lin
-e 39.
-(pdftex.def)             Requested size: 103.50105pt x 81.66225pt.
+<../../logo_group/Q.png, id=2, 447.3513pt x 448.074pt>
+File: ../../logo_group/Q.png Graphic file (type png)
+<use ../../logo_group/Q.png>
+Package pdftex.def Info: ../../logo_group/Q.png  used on input line 28.
+(pdftex.def)             Requested size: 327.74895pt x 328.28093pt.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 43.
+(Font)              scaled to size 14.4pt on input line 45.
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./BSDLogo.jpg> <../../logo
-_group/Arabidopsis_thaliana.png> <../../logo_group/Caenorhabditis_elegans.png (
-PNG copy)> <../../logo_group/Danio_rerio.png> <../../logo_group/Drosophila_mela
-nogaster.png> <../../logo_group/Callithrix_jacchus.png> <../../logo_group/Mus_m
-usculus.png> <../../logo_group/Octopus_bimaculoides.png> <../../logo_group/Papi
-lio_polytes.png> <../../logo_group/Spinosaurus_aegyptiacus.png> <../../logo_gro
-up/Tetrahymena_thermophila.png> <../../logo_group/Tiktaalik_roseae.png> <../../
-logo_group/Xenopus_laevis.png>] (./cover.aux) ) 
+_group/Q.png>] (./cover.aux) ) 
 Here is how much of TeX's memory you used:
- 3991 strings out of 492982
- 65152 string characters out of 6134895
- 103434 words of memory out of 5000000
- 7493 multiletter control sequences out of 15000+600000
+ 3936 strings out of 492982
+ 62895 string characters out of 6134895
+ 102434 words of memory out of 5000000
+ 7449 multiletter control sequences out of 15000+600000
  84008 words of font info for 49 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  39i,8n,37p,231b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/f
-onts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/share/texlive/texmf-dist/fonts/e
-nc/dvips/libertine/lbtn_nh77jq.enc}</usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/libertine/LinLibertineT.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/libertine/LinLibertineTB.pfb>
-Output written on cover.pdf (1 page, 1532774 bytes).
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/li
+bertine/lbtn_76gpa5.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertin
+e/lbtn_nh77jq.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/libertine/L
+inLibertineT.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libertine/Li
+nLibertineTB.pfb>
+Output written on cover.pdf (1 page, 1304584 bytes).
 PDF statistics:
- 43 PDF objects out of 1000 (max. 8388607)
+ 22 PDF objects out of 1000 (max. 8388607)
  13 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 66 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

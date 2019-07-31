@@ -2,29 +2,23 @@
 
 # MBL Talks
 
-##Tuesday, Sept XXX XXX
+##Tuesday, Sept 10th
 
-**7:15 - 8:25pm Lightning talks!**  
+**7:15 - 7:45pm Lightning talks!**  
 
-- XXX
-- YYY
+- Irina Arkhipova
+- Karen Echeverri
+- Kristin Gribble
+- Jessica Mark Welch
+- Emil Ruff
+- Joe Valllino
 
-**8:30 - 9:00pm**  
+**7:45 - 8:30pm**  
 
 David Remsen
 
-## Thursday, Sept XXX
-**7:15 - 7:35pm**  
-
-XXX
-
-**7:40 - 8:00pm**  
-
-XXX   
-
-
-## Friday, Sept XXX
-**7:15 - 7:45pm**  
+## Friday, Sept 13th
+**7:15 - 8:15pm**  
 
 Nipam Patel
 
