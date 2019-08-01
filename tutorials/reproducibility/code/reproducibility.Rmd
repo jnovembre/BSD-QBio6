@@ -179,7 +179,7 @@ Finally, the most specific comments are **in-line comments**. As a beginning pro
 
 ### Read the code
 
-While comments are useful and necessary, you should always strive to write code that is understandable by itself. Let's look at an example. You can follow along with our changes by cloning the repository at [https://github.com/grahamas/CuteNameHere](https://github.com/grahamas/CuteNameHere) The below code shouldn't really need any comments to be understandable, but see if you can understand its purpose, as-is:
+While comments are useful and necessary, you should always strive to write code that is understandable by itself. Let's look at an example. You can see a this example drawn out to its extremely painful conclusion in the repository at [https://github.com/grahamas/CuteNameHere](https://github.com/grahamas/CuteNameHere). The below code is *technically* fairly simple, and shouldn't really need any comments to be understandable. But *practically* it's another story. See if you can tease out its purpose, as-is:
 
 ```{r,eval=FALSE}
 t0 = 0
@@ -192,7 +192,7 @@ for (i in 1:45) {
 print(acc)
 ```
 
-This code technically "works." It will run, and it will print a result. But what does the result mean? No idea! Here are some good coding principles that it violates, that make it much harder to understand:
+This code technically "works." It will run, and it will print a result. But what does the result mean? No idea! Below are some good coding principles that it violates. We'll rewrite the code using these principles and make the code much more understandable.
 
   * **Use good names**\quad
   Use variable names that are self-explanatory. For example, `a` in the above code would more helpfully be called `annual_income`. Don't worry about using increasingly long (yet descriptive!) names. In RStudio, you can simply type `annual[TAB]` to see a list of all functions you've defined whose name starts with `year`, so the extra characters don't waste time and can only help you.
@@ -213,7 +213,9 @@ calculate_retirement_savings <- function(annual_income, annual_interest_rate,
 calculate_retirement_savings(annual_income=35000, annual_interest_rate=0.05, 
                              years_to_retirement=45, current_savings=0)
 ```
-We can understand this code much more readily, and you might even notice a problem with my calculation. Most grad students can't save their entire annual income. Good programming like this is defensive because you can more easily notice problems like this. Good programming improves reproducibility because now anyone can understand the purpose, capabilities, and limitations of our code. When you re-run old code, you need to understand what's happening. If I give you a function called `calculate_retirement_savings`, you have a pretty good idea of the purpose, but that's it. Does it assume a constant interest rate? Constant income? Constant expenses? Are taxes calculated? Does the function take advantage of Roth or Traditional IRAs? Does it know to hide excessive returns in a secret account in the Caymans? These are all important considerations in planning your retirement, and you'll only know what my function does by actually reading the code, so you can only *reuse* it if you can understand it. And if you want to *extend* it, then understanding it is just the first step.
+We can understand this code much more readily. The code calculates retirement savings after 45 years, making some assumptions about savings and interest rates along the way. 
+
+This code is so well written, you might even notice a problem with the calculation! Most grad students can't save their entire annual income. Good programming like this is defensive because you can more easily notice problems like this. Good programming improves reproducibility because now anyone can understand the purpose, capabilities, and limitations of our code. When you re-run old code, you need to understand what's happening. If I give you a function called `calculate_retirement_savings`, you have a pretty good idea of the purpose, but that's it. Does it assume a constant interest rate? Constant income? Constant expenses? Are taxes calculated? Does the function take advantage of Roth or Traditional IRAs? Does it know to hide excessive returns in a secret account in the Caymans? These are all important considerations in planning your retirement, and you'll only know what my function does by actually reading the code, so you can only *reuse* it if you can understand it. And if you want to *extend* it, then understanding it is just the first step.
 
 ## DIY lottery
 Now let's try some exercises that combine what we've covered so far. In this section, we'll clone a repository containing some bad code, we'll fix the code, and then we'll try to understand the code well enough to analyse the results.
