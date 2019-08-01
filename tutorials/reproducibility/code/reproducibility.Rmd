@@ -179,7 +179,7 @@ Finally, the most specific comments are **in-line comments**. As a beginning pro
 
 ### Read the code
 
-While comments are useful and necessary, you should always strive to write code that is understandable by itself. Let's look at an example. The below code shouldn't really need any comments to be understandable, but see if you can understand its purpose, as-is:
+While comments are useful and necessary, you should always strive to write code that is understandable by itself. Let's look at an example. You can follow along with our changes by cloning the repository at [https://github.com/grahamas/CuteNameHere](https://github.com/grahamas/CuteNameHere) The below code shouldn't really need any comments to be understandable, but see if you can understand its purpose, as-is:
 
 ```{r,eval=FALSE}
 t0 = 0
