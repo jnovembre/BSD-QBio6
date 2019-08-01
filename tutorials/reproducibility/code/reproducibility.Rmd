@@ -194,7 +194,7 @@ print(acc)
 This code technically "works." It will run, and it will print a result. But what does the result mean? No idea! Below are some good coding principles that it violates. We'll rewrite the code using these principles and make the code much more understandable.
 
   * **Use good names**\quad
-  Use variable names that are self-explanatory. For example, `a` in the above code would more helpfully be called `annual_income`. Don't worry about using increasingly long (yet descriptive!) names. In RStudio, you can simply type `annual[TAB]` to see a list of all functions you've defined whose name starts with `year`, so the extra characters don't waste time and can only help you.
+  Use variable names that are self-explanatory. For example, `a` in the above code would more helpfully be called `annual_income`. Don't worry about using increasingly long (yet descriptive!) names. In RStudio, you can simply type `annual[TAB]` to see a list of all functions you've defined whose name starts with `annual`, so the extra characters don't waste time and can only help you.
   * **Do one thing at a time**\quad
   When you put several things on one line, it can make the line more difficult to parse, much like a run-on sentence. Instead, separate multi-part commands into multiple lines.
   * **Don't use magic numbers**  This is a special case of "use self-explanatory variable names." Always name numbers by putting them into variables and using the variable in calculations. For example, the code `area <- 5 * 3` is not as clear as `area <- width * height`.  In our code there's only one magic number: `45`. We should instead name this `years_to_retirement`.
