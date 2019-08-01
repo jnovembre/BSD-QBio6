@@ -216,7 +216,6 @@ div.tocify {
 
 <h1 class="title toc-ignore">Reproducibility of data analysis</h1>
 <h4 class="author"><em>Stephanie Palmer &amp; Stefano Allesina &amp; Graham Smith</em></h4>
-<h4 class="date"><em>September 2-9, 2018</em></h4>
 
 </div>
 
@@ -469,11 +468,11 @@ save(&quot;seed_used&quot;,&quot;RNGkind_used&quot;,file=RNGinfo_for_mycode)</co
 <div id="arthropod-dispersion" class="section level3">
 <h3>Arthropod dispersion</h3>
 <p>In 1941 and 1942, zoologist LaMont Cole, then working at the University of Chicago, set out to survey species diversity and distribution in the woods and pastures of Kendall County, Illinois. He was particularly interested in which species co-occurred in woods versus grazing land and how their numbers varied with changes in humidity and temperature throughout the year. He laid thick oak boards in a variety of locations and counted the number of “cryptozoic” (animals found under stones, rotten logs, tree bark, etc.) individuals found under the boards several times a week, over the course of a year. For his spatial distribution studies, he aimed to determine whether arthropods distributed themselves randomly or if they had a more complex interaction pattern with each other or with their environment.</p>
-<p>If the bugs are randomly distributed, then they should be Poisson distributed. If there is some pattern, we might try to fit them by a Lagrangian Poisson Distribution or LGP, which accounts for the attraction or repulsion of individuals to each other. The LGP has a mean rate parameter, <span class="math inline">\(\lambda_1\)</span>, just like in the Poisson distribution. The LGP has a second parameter, <span class="math inline">\(\lambda_2\)</span>, that describes the deviation from expected Poisson dispersion.<!-- [TODO: the following is technically inaccurate, as then the Poisson distribution would be recovered by lambda2=1, not lambda2=0, as is the case: ], or the ratio of the variance of the distribution to the mean.--></p>
+<p>If the bugs are randomly distributed, then the counts of the bugs under the boards should be Poisson distributed. If there is some pattern, we might try to fit them by a Lagrangian Poisson Distribution or LGP, which accounts for the attraction or repulsion of individuals to each other. The LGP has a mean rate parameter, <span class="math inline">\(\lambda_1\)</span>, just like in the Poisson distribution. The LGP has a second parameter, <span class="math inline">\(\lambda_2\)</span>, that describes the deviation from expected Poisson dispersion.</p>
 <blockquote>
 <p>NB: A Poisson distribution has a variance-to-mean ratio equal to 1. Show that the variance of the spider count distribution is approximately equal to its mean.</p>
 </blockquote>
-<p><span class="math inline">\(\lambda_2 &gt; 0\)</span> implies that organisms are over-dispersed and may be attracted to one another, forming more large-number clusters than expected by chance. <span class="math inline">\(\lambda_2 &lt; 0\)</span> implies that organisms are under-dispersed and are likely repulsed by one another, resulting in a more even distribution across space and, hence, lower count variance. The LGP distribution, in terms of these two paramters, is</p>
+<p><span class="math inline">\(\lambda_2 &gt; 0\)</span> implies that organisms are over-dispersed (i.e. they have a variance greater than their mean number) and may be attracted to one another, forming more large-number clusters than expected by chance. <span class="math inline">\(\lambda_2 &lt; 0\)</span> implies that organisms are under-dispersed and are likely repulsed by one another, resulting in a more even distribution across space and, hence, lower count variance. The LGP distribution, in terms of these two paramters, is</p>
 <p><span class="math inline">\(P(k) = \lambda_1 (\lambda_1 + k\lambda_2)^{k-1}\frac{e^{-(\lambda_1+k\lambda_2)}}{k!}.\)</span></p>
 <p>When <span class="math inline">\(\lambda_2 =0\)</span>, we get precisely the Poisson distribution.</p>
 </div>
