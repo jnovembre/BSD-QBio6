@@ -1,14 +1,13 @@
 ---
 title: "Neural computation workshop"
 author: "Stephanie Palmer & Jeff Johnston"
-date: "September 2-9, 2018"
 output:
-  pdf_document:
-    toc: yes
   html_document:
     theme: cosmo
     toc: yes
     toc_float: yes
+  pdf_document:
+    toc: yes
 urlcolor: blue
 ---
 
@@ -108,7 +107,7 @@ We can see that the data is in a named list format and the list has three elemen
     - **samp_direction_this_trial:** This is the direction in degrees of the first visual motion stimulus. Since MT neurons are thought to be tuned to visual motion, we might expect them to vary their responses with changes in direction.  
     - **test_direction_this_trial:** We will largely ignore this here, but it is the direction of the second visual motion stimulus.  
     
-We can begin to visualize the response of this neuron by creating a "raster plot" where the times of spikes in each trial are marked by a dash or circle, and trials are aligned and stacked along the y-axis.
+We can begin to visualize the response of this neuron by creating a "raster plot" where the times of spikes in each trial are marked (e.g. by a dash or circle), and trials are aligned and stacked along the y-axis.
 
 >
 > **Exercise 1**: Make a raster plot for the MT neuron we loaded earlier.
@@ -137,18 +136,20 @@ qplot(spkpairs[ , 2] - stim_onset, spkpairs[ , 1],
 
 ```
 
-This gives us the overall structure of the trial. We get a response to the first or "sample" stimulus, relatively less firing during the delay period, followed by a strong response to the second, or "test" stimulus. In each trial, a different motion direction was shown, and these were pseudo-randomly interleaved (i.e. not in any particular order in direction space). We would expect, based on what we just learned about area MT, that the neuron will be tuned to its particular favorite direction... so, let's sort this raster by motion direction!
+This gives us the overall structure of the trial. We get a response to the first or "sample" stimulus, relatively less firing during the delay period, followed by a strong response to the second, or "test" stimulus. 
 
->
-> **Exercise 2**: Color the raster plot by the motion direction of the first or "sample" direction. You'll want to grab the sample directions for each trial from the data structure `mt_neuron` and its component `samp_direction_this_trial`. You can try coloring each trial by its direction first, then sort those direction into clusters so you can plot them in contiguous rows.
->
->
+In each trial, a different motion direction was shown, and these were pseudo-randomly interleaved (i.e. not in any particular order in direction space). Let's pull out the trials for one particular direction of motion during the sample period and take a look at that activity. First we can find out which directions were played to the neuron in the experiment (in degrees).
 
-```{r single_dir, out.width='65%'}
+```{r print directions}
 dirs <- mt_neuron[['samp_direction_this_trial']]
 
 unique_dirs <- unique(dirs)
 print(unique_dirs)
+```
+
+Next, let's choose the 240 degree direction and plot just those trials. You can change the direction you choose to plot by modifying "choose_dir" in the core below.
+
+```{r single_dir, out.width='65%'}
 choose_dir <- 240
 
 dir_raster <- mt_raster[dirs == choose_dir,]
@@ -159,6 +160,11 @@ qplot(dir_spks[ , 2] - stim_onset, dir_spks[ , 1],
 
 ```
 
+
+We would expect, based on what we learned about area MT, that the neuron will be tuned to its particular favorite direction... so, let's create a spike raster sorted by motion direction!
+
+>
+> **Exercise 2**: Color the raster plot by the motion direction of the first or "sample" period direction. You'll want to grab the sample directions for each trial from the data structure `mt_neuron` and its component `samp_direction_this_trial`. You can try coloring each trial by its direction first, then sort those direction into clusters so you can plot them in contiguous rows.
 
 There are many ways to create this plot, but here is some code that succintly creates a nice colored raster plot, using the `factor` function in `R`:
 
@@ -182,7 +188,7 @@ qplot(sorted_spkpairs[ , 2] - stim_onset, sorted_spkpairs[ , 1],
 
 This neuron appears to be strongly tuned to motion around 210 and 240 degrees. Let's summarize this by taking some averages.
 
-> **Exercise 3**: Plot the average number of spikes (across trials) for a particular motion direction, as a function of the time within the trial. Spike times are measured with millisecond precision, so you may wish to create a smoothed average of these spike times across trials, to get a clearer picture of the shape of the neuron's response in time. Neuroscientists call this the "peri-stimulus time histogram" or PSTH. 
+> **Exercise 3**: Use the R code in this workshop's directory to plot the average number of spikes (across trials) for a particular motion direction, as a function of the time within the trial. Spike times are measured with millisecond precision, so you may wish to create a smoothed average of these spike times across trials, to get a clearer picture of the shape of the neuron's response in time. Neuroscientists call this the "peri-stimulus time histogram" or PSTH. 
 >
 >
 
@@ -213,12 +219,14 @@ Next, let's let R know we'd like to load the function `plot_PSTH_neuron` so that
 source('source_neuro_workshop_functions.R')
 ```
 
-...and now let's test the plotting function by setting a filter size of 51ms and sending it the MT neuron we've been using so far in this workshop.
+...and now let's test the plotting function by setting a filter size of 51ms and sending it the MT neuron we've been using so far in this workshop, for the 240 degree motion direction.
 
 ```{r psth, out.width = '65%'}
 filter_size <- 51
-plot_PSTH_neuron(mt_neuron_path,filter_size)
+plot_PSTH_neuron(mt_neuron_path,filter_size,240)
 ```
+
+This function is set up so that if you do not specify which motion direction or directions you'd like to plot, it will plot ALL directions. Make a plot of the average number of spikes emitted over time in the experiment, for all motion directions.
 
 > **Exercise 4**: Explore different sizes of smoothing windows. How much smoothing is appropriate? What do we lose by using more smoothing? What do we gain?
 >
@@ -232,8 +240,8 @@ The function you will find most useful is `get_direction_tuning`. This takes as 
 An example call to `get_direction_tuning` is:
 
 ```{r, out.width = '50%'}
-count_start <- 800
-count_end <- 1200
+count_start <- 100
+count_end <- 600
 
 get_direction_tuning(mt_neuron_path, count_start + stim_onset, 
                      count_end + stim_onset)
@@ -275,13 +283,13 @@ get_direction_tuning(lip_neuron_path, count_start + stim_onset,
 ```
 
 This response during the sample period looks a bit more categorical than the MT neuron we started with, but perhaps is tuned to motion at 300 degrees. When we have a look at the delay period, the time in between the presentation of the first sample motion direction and the second, "test", motion direction, however, we see something more interesting.
-```{r, out.width = '65%'}
+```{r, out.width = '65%',eval=FALSE}
 count_start <- 750
 count_end <- 1500
 get_direction_tuning(lip_neuron_path, count_start + stim_onset, 
                      count_end + stim_onset, category_bound)
 ```
-Now we see striking categorical tuning in LIP! The response of our MT neuron was mostly zero during this same delay period. Our LIP neuron is computing something different about the stimulus, something that more closely reflects the abstract category boundary we, as experimental designers, cooked up. The brain of the subject has formed a representation of this arbitrary boundary and we can "see" it. Next up, we'll make this more quantitative. 
+Now we see something striking in LIP! The response of our MT neuron was mostly zero during this same delay period. Our LIP neuron is computing something different about the stimulus, something that more closely reflects the abstract category boundary we, as experimental designers, cooked up. The brain of the subject has formed a representation of this arbitrary boundary and we can "see" it. Next up, we'll make this more quantitative. 
 
 # Comparing MT to LIP
 MT neurons don't have much activity during this delay period, so to compare the two neural responses, we'll start with an analysis window that's the same for both. We'll use the sample period:
