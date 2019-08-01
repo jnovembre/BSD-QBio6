@@ -155,7 +155,7 @@ GitKraken is a graphical user interface (GUI) on top of the older command-line i
 
 # Replicability
 
-So far, we've covered making your code accessible, whether to yourself in the future (via version control) or to other researchers (via *remote* version control). But accessibility is only the first step. To go further, we need to make sure other researchers can understand our code.
+So far, we've covered making your code accessible, whether to yourself in the future (via version control) or to other researchers (via *remote* version control). But accessibility is only the first step. To go further, we need to make sure other researchers can understand our code. You'll learn more about this in defensive programming, but the basics bear repeating.
 
 In order learn how to write understandable code, we're going to try reproducing some figures ourselves.
 
@@ -165,7 +165,7 @@ Well-written code is a lot like a well-written essay: it should be understood fr
 
 At the top level, every project should have a file called simply **README**. The README introduces the project as a whole. It should explain the purpose of the project and direct the reader to important files (e.g. the script that runs the analysis). Thus the README is analogous to the essay's introduction.
 
-Then, analogous to the introduction to a section of your essay, each **file** should begin with a few lines of comments explaining what will be found in that file. Additionally, such comments usually include the author's name.
+Then, analogous to the introduction to a section of your essay, each **file** should begin with a few lines of comments explaining what will be found in that file. Additionally, such comments usually include the author's name so future readers know who to blame and who to contact in case of questions.
 
 Similarly, every **block of code** should have a comment describing its purpose. A block of code is simply contiguous lines of code isolated by whitespace. Blocks are like paragraphs, so there isn't any rule as to how to make them. Loosely, if you can write a concise comment describing the action of some lines of code, that would make a good block. The comment describing the block's purpose is analogous to the topic sentence that should appear near the beginning of a paragraph (usually).
 
@@ -178,30 +178,46 @@ Finally, the most specific comments are **in-line comments**. As a beginning pro
 
 ### Read the code
 
-While comments are useful and necessary, you should always strive to write code that is understandable by itself. Here are a few rules of thumb to help you write understandable code:
+While comments are useful and necessary, you should always strive to write code that is understandable by itself. Let's look at an example. You can see a this example drawn out to a painful conclusion in `somecode.R` in the code folder. The below code is *technically* fairly simple, and shouldn't really need any comments to be understandable. But *practically* it's another story. See if you can tease out its purpose, as-is:
 
-* **Use good names**\quad
-  Use function and variable names that are self-explanatory. For example, \hfill\break `random_locations_of_N_spiders_in_a_box.R` is a much better function name than `eek.R`. Don't worry about forgetting such a long name, or even typing it in. In RStudio, you can simply type `random[TAB]` to see a list of all functions you've defined whose name starts with `random`, so the extra characters don't waste time.
+```{r,eval=FALSE}
+t0 = 0
+a = 35000
+r = 0.05
+acc = 0
+for (i in 1:45) {
+  acc = acc * (1 + r) + a
+}
+print(acc)
+```
+
+This code technically "works." It will run, and it will print a result. But what does the result mean? No idea! Below are some good coding principles that it violates. We'll rewrite the code using these principles and make the code much more understandable.
+
+  * **Use good names**\quad
+  Use variable names that are self-explanatory. For example, `a` in the above code would more helpfully be called `annual_income`. Don't worry about using increasingly long (yet descriptive!) names. In RStudio, you can simply type `annual[TAB]` to see a list of all functions you've defined whose name starts with `year`, so the extra characters don't waste time and can only help you.
   * **Do one thing at a time**\quad
-  When you put several things on one line, it can make the line more difficult to parse, much like a run-on sentence.
-    ```{r,eval=FALSE}
-    dethrone_a_foo(crown_a_foo(make_a_foo()))   # BAD
-    ```
-  Instead, separate multi-part commands into multiple lines.
-    ```{r,eval=FALSE}
-    foo <- make_a_foo()
-    king <- crown_a_foo(foo)
-    dethrone_a_foo(king)
-    ```
-  Similarly, functions should only do one thing, conceptually. They may have many lines that do many different things, but all towards one purpose. So this function name doesn't solve the problem:
-    ```{r,eval=FALSE}
-    make_and_crown_and_dethrone_a_foo()       # BAD
-    ```
-  * **Don't use magic numbers**  When programmers talk about magic numbers, they don't mean 7 (necessarily).
-  They mean any number in your code lacking a name. This is similar to "use self-explanatory variable names." For example, the code `area <- 5 * 3` is not as clear as `area <- width * height`.
+  When you put several things on one line, it can make the line more difficult to parse, much like a run-on sentence. Instead, separate multi-part commands into multiple lines.
+  * **Don't use magic numbers**  This is a special case of "use self-explanatory variable names." Always name numbers by putting them into variables and using the variable in calculations. For example, the code `area <- 5 * 3` is not as clear as `area <- width * height`.  In our code there's only one magic number: `45`. We should instead name this `years_to_retirement`.
+  * **Encapsulate code into functions** Putting code into well named functions is easily the most effective way to write self-documenting, understandable code. You'll understand the code perfectly when I tell you that we should make it a function called `calculate_retirement_savings`.
+  
+```{r,eval=FALSE}
+calculate_retirement_savings <- function(annual_income, annual_interest_rate, 
+                                         years_to_retirement, current_savings=0) {
+  for (i in 1:years_to_retirement) {
+    current_savings = current_savings * (1 + annual_interest_rate)
+    current_savings = current_savings + annual_income
+  }
+  return(current_savings)
+}
+calculate_retirement_savings(annual_income=35000, annual_interest_rate=0.05, 
+                             years_to_retirement=45, current_savings=0)
+```
+We can understand this code much more readily. The code calculates retirement savings after 45 years, making some assumptions about savings and interest rates along the way. 
+
+This code is so well written, you might even notice a problem with the calculation! Most grad students can't save their entire annual income. Good programming like this is defensive because you can more easily notice problems like this. Good programming improves reproducibility because now anyone can understand the purpose, capabilities, and limitations of our code. When you re-run old code, you need to understand what's happening. If I give you a function called `calculate_retirement_savings`, you have a pretty good idea of the purpose, but that's it. Does it assume a constant interest rate? Constant income? Constant expenses? Are taxes calculated? Does the function take advantage of Roth or Traditional IRAs? Does it know to hide excessive returns in a secret account in the Caymans? These are all important considerations in planning your retirement, and you'll only know what my function does by actually reading the code, so you can only *reuse* it if you can understand it. And if you want to *extend* it, then understanding it is just the first step.
 
 ## DIY lottery
-To practice writing good code, let's take a look at some bad code. In this section, we'll write a lottery simulation and analyse the results.
+Now let's try some exercises that combine what we've covered so far. In this section, we'll clone a repository containing some bad code, we'll fix the code, and then we'll try to understand the code well enough to analyse the results.
 
 Follow the instructions in "Clone a Repo" to clone [https://github.com/grahamas/BentCoinLottery](https://github.com/grahamas/BentCoinLottery)
 
@@ -213,7 +229,9 @@ Before you try reading the code, we should tell you that the code uses one of R'
 
 ### Probability interlude
 
-Each flip of a coin with probability, $p$, of heads is an example of a Bernoulli trial, the general term for an experiment with only two output states, success or failure. The number of heads in the sequence of independent coin flips generated by our lottery will follow a binomial distribution, which extends the Bernoulli distribution to many flips.
+No matter how well documented code may be, you'll still need some foundational understanding of the concepts being implemented, so that you can then understand the implementation itself. So let's pause and go over probability, which is key to understanding our lottery.
+
+Each flip of a coin with probability, $p$, of heads is an example of a *Bernoulli trial*, which is the general term for an experiment with only two output states, success or failure. The number of heads in the sequence of independent coin flips generated by our lottery will follow a *binomial distribution*, which extends the Bernoulli trial to many flips.
 
 $P_n(k) = \binom{n}{k} p^k (1-p)^{n-k},$
 
