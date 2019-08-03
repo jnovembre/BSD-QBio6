@@ -2,12 +2,12 @@
 title: "Reproducibility of data analysis"
 author: "Stephanie Palmer & Stefano Allesina & Graham Smith"
 output:
-  pdf_document:
-    toc: yes
   html_document:
     theme: cosmo
     toc: yes
     toc_float: yes
+  pdf_document:
+    toc: yes
 urlcolor: blue
 ---
 
@@ -354,7 +354,7 @@ For the data challenge, you'll be analysing real data from research papers found
 ### Arthropod dispersion
 In 1941 and 1942, zoologist LaMont Cole, then working at the University of Chicago, set out to survey species diversity and distribution in the woods and pastures of Kendall County, Illinois. He was particularly interested in which species co-occurred in woods versus grazing land and how their numbers varied with changes in humidity and temperature throughout the year. He laid thick oak boards in a variety of locations and counted the number of "cryptozoic" (animals found under stones, rotten logs, tree bark, etc.) individuals found under the boards several times a week, over the course of a year. For his spatial distribution studies, he aimed to determine whether arthropods distributed themselves randomly or if they had a more complex interaction pattern with each other or with their environment.
 
-If the bugs are randomly distributed, then the counts of the bugs under the boards should be Poisson distributed. If there is some pattern, we might try to fit them by a Lagrangian Poisson Distribution or LGP, which accounts for the attraction or repulsion of individuals to each other. The LGP has a mean rate parameter, $\lambda_1$, just like in the Poisson distribution. The LGP has a second parameter, $\lambda_2$, that describes the deviation from expected Poisson dispersion.
+If the bugs are randomly distributed, then the counts of the bugs under the boards should be Poisson distributed. If there is some pattern, we might try to fit them by a Lagrangian Poisson Distribution or LGP, which can model the attraction or repulsion of individuals to each other. The LGP has a mean rate parameter, $\lambda_1$, just like in the Poisson distribution. The LGP has a second parameter, $\lambda_2$, that describes the deviation from expected Poisson dispersion.
 
 > NB: A Poisson distribution has a variance-to-mean ratio equal to 1. Show that the variance of the spider count distribution is approximately equal to its mean.
 
