@@ -37,12 +37,12 @@ output:
 **8:30-10:00**        Basic comp. I                             
 **10:00-10:30**       Coffee break                              
 **10:30-12:00**       Basic comp. I                             
-**12:00-12:45**       MBL Orientation                           
+**12:00-12:45**       MBL Orientation + Lunch                   
 **1:00-2:30**         Basic comp. II                            
 **2:30-2:45**         Coffee break                              
 **2:45-4:30**         Basic comp. II                            
 **5:00-6:30**         Dinner                                    
-**7:15-9:00**         Welcome to UChicago Biosciences - Prince  
+**7:15-8:00**         Welcome to UChicago Biosciences - Prince  
 ------------------    ------------------------------------------
 
 ### Tuesday, September 10 
