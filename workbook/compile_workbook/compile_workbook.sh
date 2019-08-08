@@ -13,7 +13,7 @@ gs -o ../other_docs/contact.pdf -dNoOutputFonts -sDEVICE=pdfwrite ../other_docs/
 pdftk tmp.pdf ../other_docs/contact2.pdf cat output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## Block Room Schedule (General) 
-#pdftk tmp.pdf ../../schedule/GeneralRoomSchedule.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+pdftk tmp.pdf ../other_docs/compactschedule2019.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## General schedule  # Revised
 pdftk tmp.pdf ../../schedule/GeneralSchedule.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
@@ -47,7 +47,7 @@ pdftk tmp.pdf ../../tutorials/basic_computing_1/basic_computing_1.pdf output tmp
 pdftk tmp.pdf ../../tutorials/basic_computing_2/basic_computing_2.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## insert blank page
-pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+#pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## Advanced I 
 pdftk tmp.pdf ../../tutorials/advanced_computing_1/code/advanced_computing_1.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
@@ -74,13 +74,13 @@ pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 pdftk tmp.pdf ../../tutorials/reproducibility/code/reproducibility.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## insert blank page
-pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+#pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## Stats for data rich
 pdftk tmp.pdf ../../tutorials/stats_for_large_data/code/stats_for_large_data.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## insert blank page
-pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+#pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## Workshops cover
 pdftk tmp.pdf ../other_docs/cover_workshops.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
