@@ -27,7 +27,7 @@ For any issue/question/comment, please contact the course directors:
 
 ## Schedule
 
-The qBio4 boot camp will be, as the name implies, quite intense. We are going to have **Tutorials** (short primers to a certain topic) and **Workshops** (discipline-specific, hands-on activities). 
+The qBio4 boot camp will be, as the name implies, quite intense. We are going to have **Tutorials** (short primers to a certain topic) and **Workshops** (discipline-specific, hands-on activities).
 
 You will get to know MBL better, with **Talks from MBL researchers**, a tour of the facilities, and even take a **trip on a boat!**.
 
@@ -77,26 +77,33 @@ You will work on your laptop all day long. **If you don't have a laptop, please 
 
     You can find instructions on how to install `R` packages in RStudio [here](https://www.youtube.com/watch?v=3RWb5U3X-T8).
 
-* **Other packages** Two of the packages need to be installed from within `R`. Open Rstudio and in the Console type `library(devtools)`, hit Return (or Enter) and then `install_github("jdstorey/qvalue")`. This will install the library `qvalue` that is needed for one of the tutorials. 
+* **Other packages** Two of the packages need to be installed from within `R`. Open Rstudio and in the Console type `library(devtools)`, hit Return (or Enter) and then `install_github("jdstorey/qvalue")`. This will install the library `qvalue` that is needed for one of the tutorials.
 
 * **Install ImageJ**: go to [this page](http://imagej.net/Fiji/Downloads) and follow the instructions for your platform.
 
-* **UNIX Emulator**: If you are using Windows, you need to install a UNIX emulator. We suggest downloading the version control software `Git` (you will need this anyway!), because it ships with a small emulator (`Git Bash`). Simply go to [this page](https://git-scm.com/download/win) and follow the instructions.
+* **UNIX Emulator**: If you are using Windows, you need to install a UNIX emulator. We suggest downloading the version control software `Git`, because it ships with a small emulator (`Git Bash`). Simply go to [this page](https://git-scm.com/download/win) and follow the instructions.
 
 * **Git**
     * **Join GitHub** click [here](https://education.github.com/pack/join) and make sure you use your uchicago email to get free tools.
-    * **Download GitKracken** click [here](https://support.gitkraken.com/how-to-install) 
+    * **Download GitKraken** click [here](https://support.gitkraken.com/how-to-install)
 
 ## Downloading the data
 
-It is very important to **download the data** before you leave for MBL, as the files are quite large. 
-All you need to do is to download the repository containing all the boot camp lectures and data. There are two options
+It is very important to download the data **before you leave for MBL**, as the files are quite large. (Warning! The repo is about 268MB!)
+All you need to do is to download the repository containing all the boot camp lectures and data.
+We will download the repository using GitKraken (you can alternatively use command-line `git` if you are already familiar with it).
 
-*   If you're familiar with `Git`, clone the repository
-        `git clone https://github.com/StefanoAllesina/BSD-QBio5.git`
-        making sure that the directory is created within your home (Linux: `home/yourname`, Mac OSX: `Users/yourname`, Windows `Users/yourname`). The repo is about 550Mb.
+    1) Follow the instructions above to get a GitHub account
+    2) Follow the instructions above to download and install GitKraken
+    2) Open GitKraken
+    3) Login with your GitHub account
+    4) "Clone a Repo" (in File menu)
+    5) "Clone with URL"
+    6) "Where to Clone:" Browse to the folder in which you want to keep your repository (your home directory is fine)
+    7) "URL": Paste: `https://github.com/StefanoAllesina/BSD-QBio5.git`
+    8) "Clone the Repo!" (this step will take a few minutes)
 
-*   If you're not familiar with `Git`, download the [zip file](https://github.com/StefanoAllesina/BSD-QBio5/archive/master.zip) (about 250Mb), and extract it to your home directory. Make sure to rename the folder to `BSD-QBio5` (it will be extracted as `BSD-QBio5-master`).
+Now if you go to the folder you chose in step 6, you'll see the repository!
 
 ## Programming Challenges
 
@@ -113,4 +120,3 @@ During the boot camp, the 12 groups of students will compete through 6 programmi
 This material is based upon work supported by the National Science Foundation under Grant Number 1734818
 
 Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.
-
