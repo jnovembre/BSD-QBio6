@@ -93,17 +93,17 @@ It is very important to download the data **before you leave for MBL**, as the f
 All you need to do is to download the repository containing all the boot camp lectures and data.
 We will download the repository using GitKraken (you can alternatively use command-line `git` if you are already familiar with it).
 
-    1) Follow the instructions above to get a GitHub account
-    2) Follow the instructions above to download and install GitKraken
-    2) Open GitKraken
-    3) Login with your GitHub account
-    4) "Clone a Repo" (in File menu)
-    5) "Clone with URL"
-    6) "Where to Clone:" Browse to the folder in which you want to keep your repository (your home directory is fine)
-    7) "URL": Paste: `https://github.com/StefanoAllesina/BSD-QBio5.git`
-    8) "Clone the Repo!" (this step will take a few minutes)
+    1. Follow the instructions above to get a GitHub account
+    2. Follow the instructions above to download and install GitKraken
+    3. Open GitKraken
+    4. Login with your GitHub account
+    5. "Clone a Repo" (in File menu)
+    6. "Clone with URL"
+    7. "Where to Clone:" Browse to the folder in which you want to keep your repository (your home directory is fine)
+    8. "URL": Paste: `https://github.com/StefanoAllesina/BSD-QBio5.git`
+    9. "Clone the Repo!" (this step will take a few minutes)
 
-Now if you go to the folder you chose in step 6, you'll see the repository!
+Now if you go to the folder you chose in step 7, you'll see the repository!
 
 ## Programming Challenges
 
