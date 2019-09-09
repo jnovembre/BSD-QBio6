@@ -27,7 +27,7 @@ For any issue/question/comment, please contact the course directors:
 
 ## Schedule
 
-The qBio4 boot camp will be, as the name implies, quite intense. We are going to have **Tutorials** (short primers to a certain topic) and **Workshops** (discipline-specific, hands-on activities).
+The qBio5 boot camp will be, as the name implies, quite intense. We are going to have **Tutorials** (short primers to a certain topic) and **Workshops** (discipline-specific, hands-on activities).
 
 You will get to know MBL better, with **Talks from MBL researchers**, a tour of the facilities, and even take a **trip on a boat!**.
 
