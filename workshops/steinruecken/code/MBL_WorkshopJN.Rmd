@@ -63,7 +63,9 @@ The `MBL_WorkshopJN.Rmd` file has the R code that you can run. Code is provided 
 
 Read in the data table:
 ```{r}
-g <- read.table("../data/H938_chr15.geno", header=TRUE)
+# g <- read.table("../data/H938_chr15.geno", header=TRUE)
+g <- read.table("../data/H938_Euro_chr15.geno", header=TRUE)
+# g <- read.table("../data/H938_chr2.geno", header=TRUE)
 ```
 It will be read in as a dataframe in R.
 
@@ -240,7 +242,7 @@ While statistically significant, the population structure appears to be subtle i
 **Question:** As an exercise, compute the average deficiency of heterozygotes relative to the expectated proportion.  This is the average of $$ \frac{2 p_1 (1-p_1)-p_{12}}{2p_1(1-p_1)}$$  What is this number for this data-set?  A common "rule-of-thumb" for this deficiency in a global sample of humans is approximately 10\%.  Do you find this to be true from the data? 
 
 ```{r echo=FALSE}
-mean(((2 * g$p1 * (1-g$p1)) - g$p12) / (2 * g$p1 * (1-g$p1)))
+mean(((2 * g$p1 * (1-g$p1)) - g$p12) / (2 * g$p1 * (1-g$p1)), na.rm = TRUE)
 g <- mutate(g, F = (2*p1*(1-p1)-p12) / (2*p1*(1-p1)))
 mean(g$F)
 ```
@@ -275,6 +277,7 @@ Wow --- there appears to be one large spike where the average $F$ is approximate
 Let's extract the SNP id for the largest value, and look at the dataframe:
 ```{r}
 outlier=which (movingavg(g$F) == max(movingavg(g$F),na.rm=TRUE))
+outlier=which.max (avgF)
 g[outlier,]
 ```
 
@@ -283,7 +286,7 @@ g[outlier,]
 **Question:** Carry out a literature search on this gene using the term "positive selection" and see what you find. It's thought the high $F$ value observed here is because natural selection led to a geographic clustering of alleles in this gene region.  Discuss with your partners why this might or might not make sense.   
 
 
-### Discussion: The outlier reigon
+### Discussion: The outlier region
 
 The region you've found is one of the most differentiated betwen human populations that is known.  Notice in your literature search, how it is known to affect skin pigmentation and is thought to contribute to differences in skin pigmentation that are seen between human populations.  Finding strong population structure for alleles that affect external morhological phenotypes is not uncommon when looking at other chromosomes.  Some of the most differentiated genes that exist in humans are those that involve morphological phenotypes - such as skin pigmentation, hair color/thickness, and eye color (the genes OCA2/HERC2, SCL45A2, KITLG, EDAR all come to mind).  Many of these are thought to have arisen due to direct or indirect effects of adaptation to local selective pressures (e.g. adaptation to varing levels of UV exposure, local pathogens, local diets, local mating preferences), though in most cases we still do not yet have a fully convincing understanding of their evolutionary histories.  Regardless of the reasons, it is notable that many of the features that humans see externally in each other (i.e. the morphological differences) are controlled by genes that are outliers in the genome.  At most variant SNPs, the patterns of variation are much closer to those of a single random mating populations than they are at variant sites like EDAR.  Put another way, a genomic perspective shows us many of the differences people see in each other are in a sense, just skin-deep. 
 
