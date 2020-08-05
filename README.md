@@ -11,14 +11,15 @@ to get access, email Stefano your GitHub ID.
 ## Participants
 
 You can find a webpage explaining how to download the data and prepare
-your laptop for the bootcamp here: 
+your laptop for the bootcamp here:
+
 [TODO](TODO) 
 
 #### Notes
 
 This material is based upon work supported by the National Science
 Foundation under Grant Number 1734818, and built upon the BSD-QBio 
-program first started by Stefano Alesina and Stephanie Palmer.  
+program first started by Stefano Alesina and Stephanie Palmer.
 
 Any opinions, findings, and conclusions or recommendations expressed
 in this material are those of the author(s) and do not necessarily
