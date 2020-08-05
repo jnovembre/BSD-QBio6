@@ -11,8 +11,8 @@ to get access, email Stefano your GitHub ID.
 ## Participants
 
 You can find a webpage explaining how to download the data and prepare
-your laptop for the bootcamp
-[here TODO](TODO) 
+your laptop for the bootcamp here: 
+[TODO](TODO) 
 
 #### Notes
 
