@@ -1,7 +1,6 @@
 Activity,Description
 checkin,Check-in with TAs (Swope)
-dinner,Dinner (SWC)
-dinnersun,Group compacts
+groupcomp,Group compacts
 coffee,Coffee break (Loeb 3rd floor)
 lunch,Lunch (SWC)
 talksun,Welcome to qBio6 - Novembre and Prince (Lillie)
@@ -9,13 +8,13 @@ talkmon,Welcome to UChicago Biosciences - Prince (Lillie)
 talktue,Science Faculty Star
 happymon,Happy Hour (Monday)
 pdnight,Professional Development Night with CAs
-talkthu,Talk Patel (Lillie)
 wrapup,Wrap up Session
-Computing1a,Basic comp. I (LBG70N) Advanced comp. I (LB263)
-Computing1b,Basic comp. I (LBG70S) Advanced comp. I (LB374)
-Computing2a,Basic comp. II (LBG70N) Advanced comp. II (LB263)
-Computing2b,Basic comp. II (LBG70S) Advanced comp. II (LB374)
+Computing1a,Basic comp. I / Advanced comp I (LBG70N/LB263)
+Computing1b,Basic comp. I / Advanced comp I (LBG70N/LB263)
+Computing2a,Basic comp. II / Advanced comp II (LBG70N/LB263)
+Computing2b,Basic comp. II / Advanced comp II (LBG70N/LB263)
 Off,Free time
+happywed, Wednesday Zoom Happy Hour
 w1,Workshop Khan (LB263)
 w2,Workshop Novembre (LB374)
 w3,Workshop M. Chen (LBG70N)
@@ -24,4 +23,5 @@ t2,Data visualization (LBG70S)
 t3,Statistics for a data rich world (LBG70S)
 team,Team building activities (Swope)
 lunchmon,MBL Orientation + Lunch (Meigs)
-happyfri, Finishing celebration
+happyfri,Finishing celebration
+talkthu,Talk Patel (Lillie)

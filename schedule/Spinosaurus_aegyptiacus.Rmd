@@ -16,108 +16,80 @@ output:
     latex_engine: xelatex
     keep_tex: true
 ---
-# BSD qBio$^5$ @ MBL
+# BSD qBio$^6$ 
 
 ## Group Schedule: *Spinosaurus aegyptiacus*
  ![](https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Spinosaurus_aegyptiacus.png)     
 
-### Sunday, September 8 
+### Sunday, September 13 
 
-------------------    ---------------------------------------------------------------
-**3:00-4:30**         Check-in (Swope)                                               
-**4:45-5:30**         Team building activities (Swope)                               
-**5:30-6:30**         Dinner (SWC)                                                   
-**7:15-8:30**         Welcome to qBio5 - Allesina and Palmer (Lillie)                
-------------------    ---------------------------------------------------------------
+------------------    ---------------------------------------------------
+**3:00-4:00**         Check-in with TAs (Swope)                          
+**4:00-4:20**         Welcome to qBio6 - Novembre and Prince (Lillie)    
+**4:30-5:15**         Team building activities (Swope)                   
+**5:30-6:30**         Group compacts                                     
+------------------    ---------------------------------------------------
 
-### Monday, September 9 
+### Monday, September 14 
 
-------------------    ---------------------------------------------------------------
-**8:30-10:00**        Basic comp. I (LBG70S) Advanced comp. I (LB374)                
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
-**10:30-12:00**       Basic comp. I (LBG70S) Advanced comp. I (LB374)                
-**12:00-12:45**       MBL Orientation + Lunch (Meigs)                                
-**1:00-2:30**         Basic comp. II (LBG70S) Advanced comp. II (LB374)              
-**2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
-**2:45-4:30**         Basic comp. II (LBG70S) Advanced comp. II (LB374)              
-**5:00-6:30**         Dinner (SWC)                                                   
-**7:15-8:00**         Welcome to UChicago Biosciences - Prince (Lillie)              
-------------------    ---------------------------------------------------------------
+------------------    ---------------------------------------------------
+**8:30-10:00**        Basic comp. I / Advanced comp I (LBG70N/LB263)     
+**10:00-10:30**       Coffee break (Loeb 3rd floor)                      
+**10:30-12:00**       Basic comp. I / Advanced comp I (LBG70N/LB263)     
+**12:00-1:00**        MBL Orientation + Lunch (Meigs)                    
+**1:30-3:00**         Basic comp. II / Advanced comp II (LBG70N/LB263)   
+**3:00-3:30**         Coffee break (Loeb 3rd floor)                      
+**3:30-5:00**         Basic comp. II / Advanced comp II (LBG70N/LB263)   
+**5:00-5:30**         Welcome to UChicago Biosciences - Prince (Lillie)  
+**8:00-9:00**         Happy Hour (Monday)                                
+------------------    ---------------------------------------------------
 
-### Tuesday, September 10 
+### Tuesday, September 15 
 
-------------------    ---------------------------------------------------------------
-**8:30-10:00**        Microscopy and ImageJ (LBG70)                                  
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
-**10:30-12:00**       Microscopy and ImageJ (LBG70)                                  
-**12:00-1:00**        Lunch (SWC)                                                    
-**1:00-2:30**         Defensive programming (CH1)                                    
-**2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
-**2:45-4:30**         Defensive programming (CH1)                                    
-**5:00-6:30**         Dinner (SWC)                                                   
-**7:15-9:00**         MBL Lightening Talks (Lillie)                                  
-------------------    ---------------------------------------------------------------
+------------------    ---------------------------------------------------
+**8:30-10:00**        Statistics for a data rich world (LBG70S)          
+**10:00-10:30**       Coffee break (Loeb 3rd floor)                      
+**10:30-12:00**       Statistics for a data rich world (LBG70S)          
+**12:00-1:00**        Lunch (SWC)                                        
+**1:30-3:00**         Reproducibility of data analysis (LBG70N)          
+**3:00-3:30**         Coffee break (Loeb 3rd floor)                      
+**3:30-5:00**         Reproducibility of data analysis (LBG70N)          
+**7:15-8:00**         Science Faculty Star                               
+------------------    ---------------------------------------------------
 
-### Wednesday, September 11 
+### Wednesday, September 16 
 
-------------------    ---------------------------------------------------------------
-**8:30-10:00**        Free time                                                      
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
-**10:30-12:00**       Free time                                                      
-**12:00-1:00**        Lunch (SWC)                                                    
-**1:00-2:30**         Reproducibility of data analysis (LBG70N)                      
-**2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
-**2:45-4:30**         Reproducibility of data analysis (LBG70N)                      
-**5:00-6:30**         Dinner (SWC)                                                   
-**7:15-8:00**         Free time                                                      
-------------------    ---------------------------------------------------------------
+------------------    ---------------------------------------------------
+**8:30-10:00**        Reproducibility of data analysis (LBG70N)          
+**10:00-10:30**       Coffee break (Loeb 3rd floor)                      
+**10:30-12:00**       Reproducibility of data analysis (LBG70N)          
+**7:15-8:00**          Wednesday Zoom Happy Hour                         
+------------------    ---------------------------------------------------
 
-### Thursday, September 12 
+### Thursday, September 17 
 
-------------------    ---------------------------------------------------------------
-**8:30-10:00**        Boat tour (be at the dock 15 mins before scheduled departure)  
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
-**10:30-12:00**       Visit Marine Resources Center (MRC)                            
-**12:00-1:00**        Lunch (SWC)                                                    
-**1:00-2:30**         Data visualization (LBG70S)                                    
-**2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
-**2:45-4:30**         Data visualization (LBG70S)                                    
-**5:00-6:30**         Dinner (SWC)                                                   
-**7:15-8:30**         Talk Patel (Lillie)                                            
-------------------    ---------------------------------------------------------------
+------------------    ---------------------------------------------------
+**8:30-10:00**        Workshop M. Chen (LBG70N)                          
+**10:00-10:30**       Coffee break (Loeb 3rd floor)                      
+**10:30-12:00**       Workshop M. Chen (LBG70N)                          
+**12:00-1:00**        Lunch (SWC)                                        
+**3:00-3:30**         Coffee break (Loeb 3rd floor)                      
+**7:15-9:15**         Professional Development Night with CAs            
+------------------    ---------------------------------------------------
 
-### Friday, September 13 
+### Friday, September 18 
 
-------------------    ---------------------------------------------------------------
-**8:30-10:00**        Workshop Steinrücken (LBG70N)                                  
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
-**10:30-12:00**       Workshop Steinrücken (LBG70N)                                  
-**12:00-1:00**        Lunch (SWC)                                                    
-**1:00-2:30**         Statistics for a data rich world (LBG70S)                      
-**2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
-**2:45-4:30**         Statistics for a data rich world (LBG70S)                      
-**5:00-6:30**         Dinner (SWC)                                                   
-**7:15-8:30**         Professional Development Night with CAs                        
-------------------    ---------------------------------------------------------------
-
-### Saturday, September 14 
-
-------------------    ---------------------------------------------------------------
-**8:30-10:00**        Workshop Eren (LB263)                                          
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                                  
-**10:30-12:00**       Workshop Eren (LB263)                                          
-**12:00-1:00**        Lunch (SWC)                                                    
-**1:00-2:30**         Workshop Palmer (LB374)                                        
-**2:30-2:45**         Coffee break (Loeb 3rd floor)                                  
-**2:45-4:30**         Workshop Palmer (LB374)                                        
-**5:15-8:15**         Wrap up and BBQ (Meigs)                                        
-------------------    ---------------------------------------------------------------
-
-### Sunday, September 15 
-
-------------------    ---------------------------------------------------------------
-**10:00-10:30**       Leave for Chicago                                              
-------------------    ---------------------------------------------------------------
+------------------    ---------------------------------------------------
+**8:30-10:00**        Workshop Khan (LB263)                              
+**10:00-10:30**       Coffee break (Loeb 3rd floor)                      
+**10:30-12:00**       Workshop Khan (LB263)                              
+**12:00-1:00**        Lunch (SWC)                                        
+**1:30-3:00**         Workshop Novembre (LB374)                          
+**3:00-3:30**         Coffee break (Loeb 3rd floor)                      
+**3:30-5:00**         Workshop Novembre (LB374)                          
+**8:00-8:20**         Wrap up Session                                    
+**8:20-9:00**         Finishing celebration                              
+------------------    ---------------------------------------------------
 
 
 
