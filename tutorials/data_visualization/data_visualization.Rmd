@@ -8,7 +8,7 @@ output:
 author:
   name: Peter Carbonetto
   affiliation: University of Chicago
-date: July 29, 2020
+date: August 10, 2020
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
@@ -205,9 +205,8 @@ highlights better the key elements of a ggplot2 plot:
 
 3. A "geom", short for "geometric object", specifies the type of
    plot. ggplot2 has an excellent on-line reference
-   ([ggplot2.tidyverse.org][https://ggplot2.tidyverse.org]) explaining
-   all the "geoms", from bar charts to contour plots, with code
-   examples for each.
+   ([ggplot2.tidyverse.org][ggplot2]) explaining all the "geoms", from
+   bar charts to contour plots, with code examples for each.
 
 4. Rather than draw directly to the screen, ggplot2 creates a *ggplot
    object*, which can be drawn to the screen at any time by calling
