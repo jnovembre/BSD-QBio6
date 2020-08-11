@@ -33,11 +33,11 @@ knitr::opts_chunk$set(comment = "#",collapse = TRUE,results = "hide",
 About this tutorial
 ===================
 
-Up to the "Optional group activity", you can work through the tutorial
-independently. To run the examples before the laptop data have been
-collected in class, use the 2019 data. The 2019 data are stored in
-file `laptops_2019.csv` which is included in the git repository with
-the other tutorial materials.
+We will work through the tutorial examples all together as a class, as
+well as in smaller groups. Feel to free to try the examples on your
+own, before or after the in-class tutorial. To run the examples before
+the data have been collected in class, you may use the 2019 data,
+which are stored in file `laptop_2019.csv`.
 
 Setup
 =====
@@ -244,22 +244,21 @@ In-class activity: Formulate analysis aims
 ==========================================
 
 Before writing any `R` code to explore the data, it is helpful to have
-a focus to our data exploration. Let's start by formulating some
-*guiding questions*. For example, some basic questions we might want
-to know are:
+a focus to the exploration. Suppose you are in charge of designing the
+QBio programaming tutorials for next year's incoming BSD graduate
+cohort.  What information about the students laptops would help in
+designing the course? Here are some basic questions we might want to
+answer:
 
-+ How many samples have been collected?
++ What are the different operating systems used?
 
-+ What are the different operating systems?
++ Which operating system is used most?
 
-+ What is the most common (and least common) operating system?
-
-+ Do Windows computers typically have more (or less) processors than
-  Apple computers?
++ Are all the laptops multicore (more than one processor)?
 
 Write down a few more guiding questions in the space below. Try to
-state your questions using plain language, avoiding statistical
-terms such as "mean", "correlation" and "significant".
+state your questions using plain (non-technical) language, avoiding
+statistical terms such as "mean", "correlation" and "significant".
 
 $$
 \framebox[\textwidth]{\rule{0pt}{10em}}
@@ -876,22 +875,105 @@ As** and **Session > Save Workspace As**?
 Group activity: Analysis of laptops data
 ========================================
 
-Pick two or three of the guiding questions that you and others have
-formulated, and use R to answer these questions. Record your answers
-as well as the code you wrote to generate these answers.
+In this activity, your team will pick two or three of the guiding
+questions that you and others have formulated, and use R to answer
+these questions.
+
+Before writing any code, discuss with your team what steps you will
+take to answer a question. Points of discussion may include: (1)
+What column(s) will you need? (2) What calculations or operations will
+you need to perform? (3) Will you need to perform your calculations on
+all rows, or a subset of the rows?
+
+For each question, record your answer, as well as the code you wrote
+to generate the answer.
 
 Use this code to create a *script*---a text file containing the code
 necessary to run the complete data analysis, starting with the
-`read.csv` call. 
+`read.csv` call, and ending with the calculations that produce the
+answers.
 
-Once you have written your script, make sure that it runs, and save
-the file somewhere on your computer. Give your script a memorable name
-such as `analyze_laptops_data.R`. Also add a few comments (lines
-starting with "`#`") explaining in plain language what the code does.
-We will use Etherpad to share our scripts.
+Once you have written your script, verify that it runs, and save the
+file somewhere on your computer. Give your script a memorable name
+such as `analyze_laptops_data.R`. Also, please add a few comments
+(these are lines starting with "`#`") explaining in plain language
+what the code does. We will use Etherpad to share our scripts.
 
-Other topics
-============
+Programming Challenge
+=====================
+
+Instructions
+------------
+
+Work with your team to solve the following exercise.  When you have
+found the solution, go to
+[`stefanoallesina.github.io/BSD-QBio5`][bsd-qbio-site] and follow the
+link "Submit solution to challenge 1" to submit your answer
+(alternatively, you can go directly to
+[`goo.gl/forms/dDJKvF0dOi7KUDqp1`](https://goo.gl/forms/dDJKvF0dOi7KUDqp1).
+At the end of the boot camp, the group with the highest number of
+correct solutions will be declared the winner. If you need extra time,
+you can work with your group during free time or in the breaks in the
+schedule.
+
+Collaboration strategy
+----------------------
+
+Before diving into the problems, first agree on a collaboration
+strategy with your teammates. Important aspects include communication
+and co-ordination practices, and setting goals and deadlines. How will
+your team collaborate on code, and share solutions? (Consider online
+resources such as Etherpad or the UofC-hosted Google Drive.) The aim
+is not just to complete the challenges, but also to do
+collaboratively; all team members should be included, and should
+have the opportunity to contribute and learn from each other.
+
+Nobel nominations
+-----------------
+
+The file `nobel_nominations.csv` contains data on Nobel Prize
+nominations from 1901 to 1964. There are three columns (the file has
+no "header"): (1) the field (e.g., "Phy" for physics), (2) the year of
+the nomination, and (3) the id and name of the nominee.
+
+1. Take Chemistry (`Che`). Who received the most nominations?
+
+2. Find all researchers who received nominations in more than one
+   field.
+
+3. Take Physics (`Phy`). Which year had the largest number of nominees?
+
+4. For each field, what is the average number of nominees per year?
+   Calculate the number of nominees in each field and year, and take
+   the average across all years.
+
+Hints
+-----
+
++ You will need to subset the data. To make your calculations more
+clear, it may be helpful to give names to the columns. For example,
+suppose you imported the data into a data frame called `nobel`. Then
+`colnames(nobel) <- c("field", "year", "nominee")` should do the
+trick.
+
++ The simplest way to obtain a count from a vector is to use the
+`table` function. For example, the command `sort(table(x))` produces a
+table of the occurrences in `x`, in which the counts are sorted from
+smallest to largest.
+  
++ You can also use the same function, `table`, to build a table using
+more than one vector. For example, suppose `x` and `y` are vectors of
+the same length. Then `table(x,y)` will build a table with counts for
+each unique pair of occurrences in `x` and `y`.
+
++ Some other functions you may find useful for the challenge:
+`colMeans`, `factor`, `head`, `length`, `max`, `read.csv`, `subset`,
+`tail`, `tapply`, `unique`, `which` and `which.max`.
+
++ Save your solution code for each exercise in a file.
+
+Additional topics
+=================
 
 Creating data
 -------------
@@ -1100,79 +1182,6 @@ or `chr6[ ,"nA1A1"]`).
 3. How many SNPs have no heterozygotes (*i.e.*, no "A1A2")?
 
 4. How many SNPs have less than 1% heterozygotes?
-
-Programming Challenge
-=====================
-
-Instructions
-------------
-
-Work with your team to solve the following exercise.  When you have
-found the solution, go to
-[`stefanoallesina.github.io/BSD-QBio5`][bsd-qbio-site] and follow the
-link "Submit solution to challenge 1" to submit your answer
-(alternatively, you can go directly to
-[`goo.gl/forms/dDJKvF0dOi7KUDqp1`](https://goo.gl/forms/dDJKvF0dOi7KUDqp1).
-At the end of the boot camp, the group with the highest number of
-correct solutions will be declared the winner. If you need extra time,
-you can work with your group during free time or in the breaks in the
-schedule.
-
-Collaboration strategy
-----------------------
-
-Before diving into the problems, first agree on a collaboration
-strategy with your teammates. Important aspects include communication
-and co-ordination practices, and setting goals and deadlines. How will
-your team collaborate on code, and share solutions? (Consider online
-resources such as Etherpad or the UofC-hosted Google Drive.) The aim
-is not just to complete the challenges, but also to do
-collaboratively; all team members should be included, and should
-have the opportunity to contribute and learn from each other.
-
-Nobel nominations
------------------
-
-The file `nobel_nominations.csv` contains data on Nobel Prize
-nominations from 1901 to 1964. There are three columns (the file has
-no "header"): (1) the field (e.g., "Phy" for physics), (2) the year of
-the nomination, and (3) the id and name of the nominee.
-
-1. Take Chemistry (`Che`). Who received the most nominations?
-
-2. Find all researchers who received nominations in more than one
-   field.
-
-3. Take Physics (`Phy`). Which year had the largest number of nominees?
-
-4. For each field, what is the average number of nominees per year?
-   Calculate the number of nominees in each field and year, and take
-   the average across all years.
-
-Hints
------
-
-+ You will need to subset the data. To make your calculations more
-clear, it may be helpful to give names to the columns. For example,
-suppose you imported the data into a data frame called `nobel`. Then
-`colnames(nobel) <- c("field", "year", "nominee")` should do the
-trick.
-
-+ The simplest way to obtain a count from a vector is to use the
-`table` function. For example, the command `sort(table(x))` produces a
-table of the occurrences in `x`, in which the counts are sorted from
-smallest to largest.
-  
-+ You can also use the same function, `table`, to build a table using
-more than one vector. For example, suppose `x` and `y` are vectors of
-the same length. Then `table(x,y)` will build a table with counts for
-each unique pair of occurrences in `x` and `y`.
-
-+ Some other functions you may find useful for the challenge:
-`colMeans`, `factor`, `head`, `length`, `max`, `read.csv`, `subset`,
-`tail`, `tapply`, `unique`, `which` and `which.max`.
-
-+ Save your solution code for each exercise in a file.
 
 [cran-rstudio]: https://cran.rstudio.com
 [rstudio-download]: https://www.rstudio.com/products/rstudio/download
