@@ -360,10 +360,10 @@ summary(laptops)
 ```
 
 Some of these commands, like `head`, `str` and `summary`, are
-"generic" functions, meaning that they work for a wide variety of
-object types, not just data frames. Generic functions such as these
-are routinely used, and they will likely become part of your go-to
-data analysis toolkit.
+"generic" functions, meaning that they work for many object types,
+from basic types to complex data structures. Generic functions such as
+these are routinely used, and they will likely become part of your
+go-to data analysis toolkit.
 
 Data subviews
 =============
@@ -499,9 +499,10 @@ Deconstructing the "laptops" data frame
 
 We will continue to explore the laptops data frame. A data frame is an
 example of a *composite* data structure---it is made of simpler data
-objects. These simpler ("atomic") data objects can be thought of as
-`R`'s "building blocks". In a data frame, the columns are the building
-blocks.
+objects. These simpler ("atomic") data objects are `R`'s "building
+blocks" for all other data structures. In a data frame, the *columns*
+are the atomic data objects; in the next sections, we will take a
+close look at the columns of the `laptops` data frame.
 
 Text data
 ---------
