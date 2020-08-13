@@ -1,6 +1,6 @@
 ## Welcome
 
-This page contains important information about the [Fifth BSD-qBio Boot Camp @ MBL](https://biosciences.uchicago.edu/content/mbl-bootcamp), which will be held online from Sept 13-18, 2020.
+This page contains important information about the [Sixth BSD-qBio Boot Camp (https://biosciences.uchicago.edu/content/mbl-bootcamp), which will be held online from Sept 13-18, 2020.
 
 More that 100 incoming graduate students from the different programs in the [Division of Biological Sciences](https://biosciences.uchicago.edu) at the [University of Chicago](http://www.uchicago.edu) will participate.
 

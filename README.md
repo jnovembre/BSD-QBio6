@@ -1,7 +1,7 @@
 # BSD-QBio6
 
-Repository for the fifth University of Chicago's *BSD Quantitative
-Biology Bootcamp @ MBL*
+Repository for the sixth edition of the University of Chicago's *BSD Quantitative
+Biology Bootcamp*
 
 ## Instructors
 
@@ -13,7 +13,7 @@ to get access, email Stefano your GitHub ID.
 You can find a webpage explaining how to download the data and prepare
 your laptop for the bootcamp here:
 
-[TODO](TODO) 
+[Preparing for QBio6](http://https://github.com/jnovembre/BSD-QBio6/blob/master/docs/index.md)
 
 #### Notes
 
