@@ -1,5 +1,5 @@
 ---
-title: "Basic Computing 2 --- Packages, functions and documenting code"
+title: "Basic Computing 2 --- Packages, functions and better code"
 output:
   pdf_document:
     keep_tex: false
@@ -8,7 +8,7 @@ output:
 author:
   name: Stefano Allesina and Peter Carbonetto
   affiliation: University of Chicago
-date: July 31, 2019
+date: August 13, 2020
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
@@ -18,36 +18,237 @@ endnote: no
 header-includes:
   - \usepackage[T1]{fontenc}
   - \usepackage{textcomp}
-thanks: "This document is included as part of the Basic Computing 2---Introduction to R tutorial packet for the BSD qBio Bootcamp, MBL, 2019. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: sallesina@uchicago.edu."
+thanks: "This document is included as part of the Basic Computing 2---Introduction to R tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2020. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: pcarbo@uchicago.edu. Thanks to John Novembre, Stephanie Palmer and Matthew Stephens for their guidance."
 abstract: "The aims of this workshop are to: (1) learn how to install,
   load and use the many of the freely available `R` packages; (2)
   illustrate how to write user-defined functions, and how to organize
-  your code; use basic plotting functions; and (3) introduce the package
-  `knitr` for writing beautiful reports. *This workshop is intended
-  for biologists with basic knowledge of `R`.*"
+  and improve your code; use basic plotting functions; and (3)
+  introduce the package `knitr` for writing beautiful reports. *This
+  workshop is intended for biologists with basic knowledge of `R`.*"
 ---
 
 ```{r knitr-opts, include=FALSE}
 knitr::opts_chunk$set(comment = "#",collapse = TRUE,results = "hide",
-                      fig.align = "center")
+                      fig.keep = "none")
 ```
 
 Setup
 =====
 
-To produce well-documented code, you need to instal the `knitr`
-package. You will also use the package `MASS` for statistics.
+To follow the examples below, you will first need to install the
+**knitr** and **readr** packages. You will also use the **MASS**
+package for statistics (this package is already included with `R`).
+
+Introductory activity: Exploring simple steps for creating better code
+======================================================================
+
+Much of Basic Computing 2---as well as some of the other qBio
+tutorials---is about the *practice* of coding in R. Using R
+effectively for your research projects builds on Good Practice;
+without it, your analyses will quickly become unmanageable, you will
+become discouraged, and your progress will be slow.
+
+It may seem premature to talk about practice when we have only just
+started learning about R (and particularly so if you are new to
+programming!). But you will find that it isn't long into a
+project---sometimes with as little as 40--60 lines of code---when you
+need strategies to help you break out of a jam.
+
+Many researchers, of course, manage to push through without adopting
+Good Practices. This is because they are creative and are able to
+perservere. But perserverance and creativity are finite resources that
+we would rather you use elsewhere!
+
+Incorporating Good Practices into your work is not something that will
+happen overnight; it will take time and experience to develop your
+practice. Our aim here, in this short activity, and in other parts of
+Basic Computing 2, is to give you a head start---in particular, to
+show you that *simple steps* can go a long way to improving your
+coding practice.
+
+We begin this short activity with a *script* implementing the initial
+steps in an exploratory analysis of tornado data from the National
+Weather Service. This script is `tornadoes.R`. For convenience,
+I've added it here:
+
+```{r tornadoes-1, code=readLines("tornadoes.R"), message=FALSE}
+```
+
+If you run this code---say, by copying and pasting the code into the
+Console, or by running `source("tornadoes.R")`---you should see a plot
+showing the number of tornado events that were recorded on each day of
+2011. You should also see a large "spike" in tornadoes at the end of
+April.
+
+This code is quite a bit more complicated than any of the code we've
+seen before in Basic Computing 1. We will not spend much time trying
+to understand it. Before moving on, however, this is a good
+opportunity to point out some of the Good Practices that are
+implemented in this script:
+
+1. It is self-contained---that is, it is a complete script that
+   includes steps such as loading the necessary packages.
+
+2. The steps are written in a logical order, starting with loading
+   the data, and ending with a result.
+
+3. The variable names are helpful.
+
+4. Short, high-level comments explain what the code does.
+
+My hope is that all these elements become part of your coding
+practice over time.
+
+This script only implements the very first step in the analysis. There
+is still much we would like to learn, including the tornadoes'
+severity, and their geographic distribution. For example, are these
+patterns repeated in Illinois? Using `subset`, and copying some of the
+code above, we can investigate this question:
+
+```{r tornadoes-2}
+temp   <- subset(tornadoes,STATE == "ILLINOIS")
+counts <- as.numeric(table(cut(temp$dayofyear, breaks)))
+plot(breaks[-1], counts, type = "l", xaxt = "n")
+axis(1, cex.axis = 0.7, at = first_days, labels = months)
+```
+
+This exploration will quickly become tedious if we do it in this way:
+fiddling with the code, and re-running it to produce a new result. You
+will also find that it makes difficult to keep track of the code that
+produced the most interesting insights.
+
+Fortunately, there is a better way: we can *package* this code into a
+function. Let's begin with the part of the code that does the
+calculation of the daily counts (to be precise, it counts the number
+of events in 3-day intervals):
+
+```{r tornadoes-3}
+count_events <- function (dat) {
+  x <- as.numeric(table(cut(dat$dayofyear, breaks)))
+  return(x)
+}
+```
+
+On its own, this code doesn't do anything except create the new
+function, `count_events`. You need to invoke it to do something
+useful:
+
+```{r tornadoes-4}
+dat    <- subset(tornadoes, STATE == "ILLINOIS")
+counts <- count_events(dat)
+print(counts)
+```
+
+We can now use this function anywhere we choose. For example, suppose
+we wanted to see whether these same patterns hold up in the more
+severe tornadoes (as measured by the "Fujita scale"). The
+`count_events` function allows us to implement this multi-step
+calculation in a one-liner:
+
+```{r tornadoes-5}
+counts <- count_events(subset(tornadoes, TOR_F_SCALE == "EF2"))
+print(counts)
+```
+
+Before turning to the plots, let's take a moment to reflect on the
+immediate benefits of having created the `count_events` function:
+
+1. It simplifies any parts of our analysis that make use of the this
+   calculation.
+
+2. It reduces the potential to make mistakes because we have wrapped these
+   tricky calculations inside a function with a memorable name;
+
+3. Avoids repetition of complicated code.
+
+4. Packaging this code in a function suggests its *generality*
+   (nothing in this code is specific to tornado events), and thereby
+   promotes code reuse.
+
+To further streamline our analysis, let's wrap the complicated
+plotting code inside a function:
+
+```{r tornadoes-6}
+plot_events <- function (dat) {
+  x <- count_events(dat)
+  plot(breaks[-1], x, type = "l", xaxt = "n")
+  axis(1, cex.axis = 0.7, at = first_days, labels = months)
+}
+```
+
+Let's try out this new function:
+
+```{r tornadoes-7}
+plot_events(tornadoes)
+plot_events(subset(tornadoes, TOR_F_SCALE == "EF2"))
+plot_events(subset(tornadoes, STATE == "ALABAMA"))
+```
+
+Note that this function does not output anything; the important action
+is to draw something to the screen.
+
+Observe that we are making good use of our `count_events`
+function. Splitting the analysis into two functions seems logical; we
+have separated the calculation of the counts from plotting of the
+counts.
+
+Again, this function is general---there is nothing about this code
+that is specific to tornadoes. So we may be able to reuse this
+function for similar analyses (e.g., studying annual flooding
+patterns).
+
+Incorporating the above improvements (and a couple other small
+improvements), our new analysis script looks like this (see also
+`tornadoes_better.R`):
+
+```{r tornadoes-8, code=readLines("tornadoes_better.R"), message=FALSE}
+```
+
+As we continue to develop our analysis, can also functions reduce the
+effort of making revisions; for example, if we want to change the
+colour of the lines in all the plots, this requires only one small
+change to the code inside `plot_events`.
+
+Designing functions to improve your code is very much an "art" that
+you will learn as you gain experience. But don't get hung up on
+finding the best way to organize your code into functions---it starts
+with recognizing the most obvious opportunities, and over time you
+will refine your practice.
+
+Group activity: Compare 2011 and 2019 tornado patterns
+------------------------------------------------------
+
+Create a copy of `tornadoes_better.R` and call it
+`tornadoes_generic.R`. Modify the code in `tornadoes_generic.R` so
+that it can be used to analyze either the 2011 or 2019 data. The first
+few lines of your script should look like this:
+
+```{r tornadoes-9, message=FALSE}
+year <- 2011
+library(readr)
+storms <- read_csv(paste0("storms",year,".csv.gz"),guess_max = 5000)
+```
+
+*Hint:* `paste` may be useful.
+
+Run `tornadoes_generic.R` on the 2011 data, then re-run on the 2019
+data by changing the first line to `year <- 2019`. What is the most
+striking difference in the 2011 and 2019 tornado patterns?
+
+A brief tour of packages, functions, loops, and other topics
+============================================================
 
 Packages
-========
+--------
 
 `R` is the most popular statistical computing software among
-biologists due to its highly specialized packages. They are often
-written by biologists for biologists. You can contribute a package
-too! The `RStudio` website ([`goo.gl/harVqF`](http://goo.gl/harVqF))
-provides guidance on how to start developing `R` packages. See also
-Hadley Wickham's free online book
-([`r-pkgs.had.co.nz`](http://r-pkgs.had.co.nz)).
+biologists. One reason for its popularity is the availability of many
+packages for tackling specialized research problems. These packages
+are often written by biologists for biologists. You can contribute a
+package, too! The `RStudio` website
+([`goo.gl/harVqF`](http://goo.gl/harVqF)) provides guidance on how to
+start developing `R` packages. See also Hadley Wickham's free online
+book ([`r-pkgs.had.co.nz`][wickham-book]).
 
 You can often find highly specialized packages to address your
 research questions. Here are some suggestions for finding an
@@ -55,76 +256,79 @@ appropriate package. The Comprehensive R Archive Network (CRAN) offers
 several ways to find specific packages for your task. You can browse
 the full list of CRAN packages
 ([`goo.gl/7oVyKC`](http://goo.gl/7oVyKC)). Or you can go to the CRAN
-Task Views [`goo.gl/0WdIcu`](http://goo.gl/0WdIcu)) and browse a
+Task Views ([`goo.gl/0WdIcu`](http://goo.gl/0WdIcu)) and browse a
 compilation of packages related to a topic or discipline.
 
 From within `R` or `RStudio`, you can also call the function
-`RSiteSearch("KEYWORD")`, which submits a search query to the website
-[`search.r-project.org`](http://search.r-project.org). The website
-[`rseek.org`](http://rseek.org) casts an even wider net, as it not
-only includes package names and their documentation, but also blogs
-and mailing lists related to `R`. If your research interests relate to
-high-throughput genomic data, or other topics in bioinformatics or
-computational biology, you should search the packages provided by
+`RSiteSearch("keyword")`, which submits a search query to the website
+[`search.r-project.org`][cran-search]. The website
+[`rseek.org`][rseek] casts an even wider net, as it not only includes
+package names and their documentation, but also blogs and mailing
+lists related to `R`. If your research interests are to
+high-throughput genomic data or other topics in bioinformatics or
+computational biology, you should also search the packages provided by
 Bioconductor [(`goo.gl/7dwQlq`)](http://goo.gl/7dwQlq).
 
 Installing a package
 --------------------
 
-Suppose you want to install the [rsvd](rsvd) package, which is a
-package for performing singular value decompositions (SVD) and
-principal components analysis (PCA) on large data sets. To install the
-package, run:
+Suppose you want to install the [rsvd][rsvd] package. The **rsvd**
+package provides functions to quickly perform singular value
+decompositions (SVD) and principal components analysis (PCA) on large
+data sets. To install the package, run:
 
 ```{r packages-1, eval=FALSE}
 install.packages("rsvd")
 ```
 
-Or, in RStudio, select the **Packages** panel, then click on
-*Install*.
+Or, in `RStudio`, select the **Packages** panel, and click **Install**.
 
-Loading a package
------------------
+Loading packages
+----------------
 
-Once it is successfully installed, to load the rsvd package into your
-R environment, run:
+Once it is successfully installed, to load the **rsvd** package into
+your `R` environment, run:
 
 ```{r packages-2}
 library(rsvd)
 ```
 
-Another example
----------------
+Once you have loaded the package, you can use, for example, the `rpca`
+function for running PCA. To access the documentation that explains what
+`rpca` does, and how to use it, type
 
-Suppose you would like to access the "bacteria" data set, which
+```{r packages-3, eval=FALSE}
+help(rpca)
+```
+
+Now suppose you would like to access the "bacteria" data set, which
 reports the incidence of *H. influenzae* in Australian children. The
-data set is included in the `MASS` package. If you try to access the
-data set before loading the package, you will get an error:
+data set is included with **MASS** package. If you try to access these
+data before loading the package, you will get an error:
 
-```{r packages-3, warning=FALSE}
+```{r packages-4, eval=FALSE}
 data(bacteria)
 ```
 
 First, you need to load the package:
 
-```{r packages-4}
+```{r packages-5}
 library(MASS)
 ```
 
 Now the data set is available, and you can load it:
 
-```{r packages-5}
+```{r packages-6}
 data(bacteria)
 head(bacteria)
 ```
 
 Random numbers
-==============
+--------------
 
-For many of your analyses, you will need to draw random numbers.
-(These are actually "pseudorandom" numbers because they are not
-perfectly random.) In fact, you will need random numbers to implement
-the analysis of citation data in the "case study" below.
+Your will sometimes need to generate random numbers. (They are
+actually "pseudorandom" numbers because they are not perfectly
+random.) In fact, random numbers are needed in the "case study" below.
 
 `R` has many functions to sample random numbers from different
 statistical distributions. For example, use `runif` to create a vector
@@ -155,20 +359,25 @@ rnorm(3)                   # Three draws from the standard normal.
 rnorm(3, mean = 5, sd = 4) # Change the mean and standard deviation.
 ```
 
-**Exercise:** The normal distribution has a very recognizable
-shape. Use `rnorm` to generate a large number of values from the
-standard normal, then use `hist` to draw a histogram of these values
-(you can adjust the number of bins in the histogram with the `n`
-argument). Is the histogram "bell shaped"? Use `mean`, `median` and
-`sd` to verify that the random numbers recover the expected
-properties of the normal distribution. Write all your code here:
+**Exercise:** The normal distribution has a familiar shape. Use
+`rnorm` to generate a large number of values from the standard normal,
+then use `hist` to draw a histogram of these values (you can adjust
+the number of bins in the histogram with the `n` argument). Is the
+histogram "bell shaped"? Use `mean`, `median` and `sd` to verify that
+the random numbers recover the expected properties of the normal
+distribution. Here is some code to get you started:
 
-$$
-\framebox[\textwidth]{\rule{0pt}{10em}}
-$$
+```{r random-numbers-4}
+set.seed(1)
+x <- rnorm(10000)
+hist(x, n = 64)
+```
+
+Why is `set.seed` useful? What happens if we remove the call to
+`set.seed`?
 
 Writing functions
-=================
+-----------------
 
 It is good practice to subdivide your analysis into functions, and
 then write a short "master" program that calls the functions and
@@ -183,7 +392,7 @@ my_function_name <- function (arg1, arg2, arg3) {
   #
   # Body of the function.
   #
-  return(return_value)  # Not required, but most functions output something.
+  return(return_value) # Not required, but most functions output something.
 }
 ```
 
@@ -210,31 +419,61 @@ sum_and_prod <- function (a, b) {
 sum_and_prod(5, 7.2)
 ```
 
-Activity: Probability density function (PDF) of the normal distribution
------------------------------------------------------------------------
-
-Write a function, `normpdf`, that accepts two arguments, `x` and `s`,
-and returns the density at `x` for the normal distribution with zero
-mean and standard deviation `s`.
-
-Write down the formula for the normal density at $x$ with mean zero and
-standard deviation $s$:
+Here is a more interesting function. It accepts two arguments, `x` and
+`s`, and returns the density of the normal distribution with zero mean
+and standard deviation `s` at `x`. This is the mathematical formula
+for the normal density with mean zero and standard deviation `s`:
 
 $$
-\framebox[\textwidth]{\rule{0pt}{3em}}
+\frac{e^{-(x/s)^2/2}}{\sigma \sqrt{2\pi}}
 $$
 
-Now your write your code for the `normpdf` function:
+Let's call this function `normpdf`:
 
-$$
-\framebox[\textwidth]{\rule{0pt}{6em}}
-$$
+```{r normpdf}
+normpdf <- function (x, s) {
+  y <- exp(-(x/s)^2/2)/(sqrt(2*pi)*s)
+  return(y)
+}
+```
 
-Check that this function gives the correct answers by comparing to
-the built-in function `dnorm`.
+**Exercise:** Check that this function gives the correct answers by
+comparing to the built-in function `dnorm`.
+
+When developing and testing your function, remember this rule:
+*Whatever happens in the function stays in the function.* Inside
+`normpdf`, a new object, `y`, is created. But you will not see `y` in
+your environment (unless you happen to already have an object named
+`y`).
+
+Vectorization
+-------------
+
+`R` has a feature called *vectorization*---many operations in `R`,
+including most of the basic mathematical operations, are automatically
+applied to all values in a vector. (We briefly learned about
+vectorization in Basic Computing 1.) Let's check whether `R`
+automatically vectorizes the `normpdf` function by running this code:
+
+```{r normpdf-plot-2}
+n <- 1000
+x <- seq(-3, 3, length.out = n)
+y <- normpdf(x, 1)
+print(y)
+plot(x, y, type = "l")
+```
+
+**Activity (optional):** Which operations in `normpdf` were applied
+1,000 times, and which were applied just once? It may not be
+immediately obvious just by looking at the code, so to investigate
+this question, try running parts of the code in the console, e.g.,
+`exp(-(x/s)^2/2)`, and see what happens.
+
+Vectorization is very powerful, but it may take time to get
+comfortable with it, and know when it will work.
 
 Conditional branching
-=====================
+---------------------
 
 When we want a block of code to be executed only when a certain
 condition is met, we can write a conditional branching point. The
@@ -273,18 +512,74 @@ Activity: Improved normal probability density function
 The probability density function of the normal distribution is not
 defined if the standard devation is less than zero. When the standard
 deviation is exactly zero, the density is a "spike" at zero; it is
-`Inf` exactly at $x = 0$, and zero everywhere else. Use the `if` and
-`else` keywords, following the example above, to write an improved
-`normpdf` function that returns `NaN` whenever the standard devation
-is negative, and returns zero when the standard devatiion is exactly
-zero (unless $x = 0$, in which case it should return `Inf`):
+`Inf` exactly at $x = 0$, and zero everywhere else. The pseudocode for
+this improved normal probability density function might look something
+like this:
+
+```
+  normpdf(x, s)
+    if s < 0
+      return NaN
+    else if s = 0
+      if x = 0
+        return Inf
+      else
+        return 0
+    else
+      evaluate normal pdf with s.d. s at x
+```
+  
+Using this pseudocode as a guide, write an improved `normpdf`
+function:
 
 $$
-\framebox[\textwidth]{\rule{0pt}{20em}}
+\framebox[\textwidth]{\rule{0pt}{16em}}
 $$
+
+Activity: The quadratic formula
+-------------------------------
+
+There is a famous formula used to solve for $x$ in the quadratic
+equation $ax^2 + bx + c = 0$. It is called the *quadratic formula.*
+Write down the quadratic formula here:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{3em}}
+$$
+
+Write a function, `solvequad`, that takes three numbers as input ($a$,
+$b$ and $c$) and returns the solution(s) $x$ that are real (*i.e.*,
+not complex). **Hint:** Recall that a quadratic equation may have more
+than one real solution---or it may have none! You will need to use
+`if` and `else` to handle all possible cases.
+
+Before writing any R code, first describe your `solvequad` function
+without worrying about R syntax---that is, using pseudocode:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{16em}}
+$$
+
+Guided by your pseudocode, write the R code for your `solvequad`
+function:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{16em}}
+$$
+
+After creating `solvequad`, check that it does the right thing by
+running these tests:
+
+```{r solve-quadratic-2, eval=FALSE}
+solvequad(4, 4, 1)    # Should return -1/2.
+solvequad(1, -1, -2)  # Should return 2 and -1.
+solvequad(1, 1, 1)    # Should return no solutions.
+```
+
+Run a few more tests using [`www.wolframalpha.com`][wolfram-alpha].
 
 Looping
-=======
+-------
 
 Another way to change the flow of your program is to write a loop. A
 loop is simply a series of commands that are repeated a number of
@@ -360,94 +655,72 @@ while (TRUE) {
 }
 ```
 
-**Question:** Above, we ran three different loops that achieved the
-exact same outcome. Is one approach better than the others?
+**Question:** Above, we ran three different loops, we found that each
+of them accomplished the same thing. Is one approach better? Why?
 
-Activity: Plotting the normal density
--------------------------------------
+Programming challenge
+=====================
 
-Using the `normpdf` function you wrote above, write code to compute
-the normal density for 1,000 equally spaced numbers between between -3
-and 3 (insert your code for the loop above the call to `plot`):
+Instructions
+------------
 
-```{r normpdf-plot-1, eval=FALSE}
-n <- 1000
-x <- seq(-3, 3, length.out = n)
-y <- rep(0, n)
+You will work with your group to solve the exercises below. When you
+have found the solutions, go to
+[`https://stefanoallesina.github.io/BSD-QBio4`](https://stefanoallesina.github.io/BSD-QBio4)
+and follow the link "Submit solution to challenge 2" to submit your
+answer (alternatively, you can go directly to
+[`goo.gl/forms/QJhKmdGqRCIuGNPa2`](https://goo.gl/forms/QJhKmdGqRCIuGNPa2)).
+At the end of the bootcamp, the group with the highest number of
+correct solutions will be declared the winner. If you need extra time,
+you can work with your group during free time or in the breaks in the
+schedule.
 
+Google Flu Trends
+-----------------
 
+Google Flu started strong, with a paper in *Nature* (Ginsberg *et al*,
+2009, [`doi:10.1038/nature07634`][ginsberg-2009]) showing that, using
+data on Web search engine queries, one could predict the number of
+physician visits for influenza-like symptoms.  Over time, the quality
+of predictions degraded considerably, requiring many adjustments to
+the model. Now defunct, Google Flu Trends has been proposed as a
+poster child of "Big Data hubris" (Lanzer *et al*, *Science*, 2014,
+[`doi:10.1126/science.1248506`][lanzer-2014]).  In the folder containing
+the Basic Computing 2 tutorial materials, you will find the data used
+by Preis and Moat in their 2014 paper
+([`doi:10.1098/rsos.140095`][preis-moat-2014]) to show that, after
+accounting for some additional historical data, Google Flu Trends are
+correlated with outpatient visits due to influenza-like illnesses.
 
-plot(x, y, type = "l")
-```
+1. Read the data using function `read.csv`, and plot the number of
+   weekly outpatient visits versus the Google Flu Trends estimates.
 
-Footnote: Vectorization
------------------------
+2. Calculate the (Pearson's) correlation using the `cor` function.
 
-A nice surprise is that you should be able perform the above
-computation *without a loop.* This is because R has an advanced
-feature called *vectorization*---many operations in R, including most
-basic mathematical operations, are automatically applied to all values
-in a vector. To check whether R automatically vectorized your
-`normpdf` function, try running this code:
+3. The data span 2010--2013. In August 2013, Google Flu changed their
+   algorithm. Did this lead to improvements? Compare the data from
+   August and September 2013 with the same months in 2010, 2011
+   and 2012. For each, calculate the correlation, and see whether the
+   correlation is higher for 2013.
 
-```{r normpdf-plot-2, eval=FALSE}
-n <- 1000
-x <- seq(-3, 3, length.out = n)
-y <- normpdf(x, 1)
-plot(x, y, type = "l")
-```
+**Hint:** You will need to extract the year from a string for each
+row. This can be done using `substr(gf$WeekCommencing, 1, 4)`, in
+which `gf` is the data frame containing the Google Flu data.
 
-Vectorization is very powerful, but it may take time to get
-comfortable with it, and know when it works well.
-
-Group activity: The quadratic formula
-=====================================
-
-You may remember that there is a formula for solving for the unknown,
-$x$, in a quadratic equation, $ax^2 + bx + c = 0$. It is commonly
-called the *quadratic formula.* Write down the quadratic formula:
-
-$$
-\framebox[\textwidth]{\rule{0pt}{3em}}
-$$
-
-In this exercise, you will work with your team to write a function,
-`solvequad`, that takes three numbers as input ($a$, $b$ and $c$) and
-returns the solution(s) $x$ that are real (*i.e.*, not complex
-numbers). **Hint:** Recall that a quadratic equation may have more
-than one real solution---or it may have none! You will need to make
-use of the `if` and `else` keywords to handle all possible
-cases. Write the code for your `solvequad` function here:
-
-$$
-\framebox[\textwidth]{\rule{0pt}{20em}}
-$$
-
-After creating `solvequad`, check that it does the right thing by
-running these tests:
-
-```{r solve-quadratic-2, eval=FALSE}
-solvequad(4,4,1)    # Should return -1/2.
-solvequad(1,-1,-2)  # Should return 2 and -1.
-solvequad(1,1,1)    # Should return no solutions.
-```
-
-Come up with a few more test cases at
-[www.wolframalpha.com](http://www.wolframalpha.com).
-
-Case study: Do shorter titles lead to more citations?
-=====================================================
+Case study: Do shorter titles lead to more citations? (optional)
+================================================================
 
 To keep learning about `R`, we study the following question:
 
 $$
-\mbox{Is the length of a paper title related to the number ofcitations?}
+\mbox{\em Is the length of a paper title related to the number of
+citations?}
 $$
 
 This is what Letchford *et al* claimed
-([doi:10.1098/rsos.150266](http://dx.doi.org/10.1098/rsos.150266)). In
-2015, they analyzed 140,000 papers, and they found that *shorter
-titles* were associated with a larger number of citations.
+([`doi:10.1098/rsos.150266`][letchford-2015]). In 2015, they analyzed
+140,000 papers, and they found that *shorter titles* were associated
+with a larger number of citations.
 
 In the folder containing the Basic Computing 2 tutorial materials, you
 will find data on scientific articles published between 2004 and 2013
@@ -487,8 +760,8 @@ title for each paper:
 papers$TitleLength <- nchar(papers$Title)
 ```
 
-Basic statistics in `R`
------------------------
+Basic statistics
+----------------
 
 In the original paper, Letchford *et al* used rank-correlation: rank
 all the papers according to their title length and the number of
@@ -511,16 +784,16 @@ Does the output of `cor.test` show that the correlation between the
 ranks is positive or negative? Is this positive or negative
 correlation significant? You should find that the correlation is
 opposite of the one reported by Letchford *et al*---longer titles are
-associated with **more** citations!
+associated with *more* citations!
 
 Now we are going to examine the data in a different way to test
 whether this result is robust.
 
-Basic plotting in `R`
----------------------
+Basic plotting
+--------------
 
-To plot title length vs. number of citations, we need to learn
-about plotting in `R`. To produce a simple scatterplot using the base
+To plot title length vs. number of citations, we need to learn about
+plotting in `R`. To produce a simple scatterplot using the base
 plotting functions, simply run:
 
 ```{r plot-title-length-vs-citations-1, fig.show="hide"}
@@ -528,7 +801,7 @@ plot(papers$TitleLength, papers$Cited.by)
 ```
 
 The problem with this very simple plot is that it is hard to detect
-any trend because a few papers have many more citations than the rest,
+any trend---a few papers have many more citations than the rest,
 obscuring the data at the bottom of the plot. This suggests that
 plotting the data on the *logarithmic scale* is a better approach:
 
@@ -537,8 +810,8 @@ plot(papers$TitleLength, log10(papers$Cited.by))
 ```
 
 **Question:** This is a better plot, but there is one problem with
-it. What is the problem? How can we fix it? Write your code to fix the
-problem:
+it. What is the problem, and what fix would you suggest? Write your
+code to fix the problem:
 
 $$
 \framebox[\textwidth]{\rule{0pt}{3em}}
@@ -548,13 +821,13 @@ Again, it is hard to see any trend in here. Maybe we should plot the
 best fitting line and overlay it on top of the graph. To do so, we
 first need to learn about linear regressions in `R`.
 
-Linear regression in `R`
-------------------------
+Linear regression
+-----------------
 
 `R` was born for statistics --- the fact that it is very easy to fit a
 linear regression in is not surprising! To build a linear model
-comparing columns `x` and `y` in data frame `dat`, use `lm`, which is
-the "Swiss army knife" for linear regression in `R`:
+comparing columns `x` and `y` in data frame, `dat`, use `lm`, the
+"Swiss army knife" for linear regression in `R`:
 
 ```{r lm, eval=FALSE}
 model <- lm(y ~ x, dat)  # y = a + b*x + error
@@ -591,7 +864,7 @@ should control for this effect. But first, we should explore whether
 this is an important factor to consider.
 
 First, let's plot the distribution of the number of citations for all
-the papers. To produce an histogram in `R`, use `hist`:
+the papers:
 
 ```{r plot-citations-histogram-1, fig.show="hide"}
 hist(papers$LogCits)
@@ -630,9 +903,9 @@ summary(model_citations_better)
 Does the regression coefficient (slope) for year confirm that older
 papers have more citations?
 
-This is an improvement, but might be even better to have a separate
-"baseline" for each year. This can be done by converting the "Year"
-column to a factor:
+Our new analysis is better than before, but might be even better to
+have a separate "baseline" for each year. This can be done by
+converting the "Year" column to a factor:
 
 ```{r lm-title-length-vs-citations-3}
 papers$Year            <- factor(papers$Year)
@@ -703,13 +976,17 @@ k.fake <- rep(0, nr)  # Storage all the "fake" taus.
 ```
 
 Since this computation involves lots of repetition, a for-loop makes a
-lot of sense here. Write your for-loop here:
+lot of sense here:
 
-$$
-\framebox[\textwidth]{\rule{0pt}{10em}}
-$$
+```{r tau-bootstrap-5}
+for (i in 1:nr){
+  shuffled_citation_counts <- sample(dat$Cited.by)
+  k.fake[i] <- cor(dat$TitleLength, shuffled_citation_counts,
+                   method = "kendall")
+}
+```
 
-After running your code, you should have 1,000 correlations calculated
+After running this loop, you should have 1,000 correlations calculated
 from 1,000 fake data sets. You have just generated a "null"
 distribution for $\tau$. What does this null distribution look like?
 Try plotting it:
@@ -720,11 +997,10 @@ hist(k.fake, n = 50)
 
 What proportion of the fake data sets have a correlation that
 exceeds the correlation in the actual data? This is the *p*-value.
-Write code to compute the *p*-value:
 
-$$
-\framebox[\textwidth]{\rule{0pt}{3em}}
-$$
+```{r tau-bootstrap-7}
+pvalue <- mean(k.fake >= k)
+```
 
 How does your new *p*-value compare to the *p*-value computed by
 `cor.test`? Is it smaller or larger?
@@ -737,10 +1013,10 @@ cor.test(dat$TitleLength, dat$Cited.by, method = "kendall")
 neighbours? If not, why? How could you ensure that your result is more
 similar, or the same?
 
-In summary, whenever possible, use randomizations rather than relying
-on classical tests. They are more difficult to implement, and more
-computationally expensive, but they allow you to avoid making
-assumptions about your data.
+Whenever possible, use randomizations rather than relying on classical
+tests. They are more difficult to implement, and more computationally
+expensive, but they allow you to avoid making assumptions about your
+data.
 
 Repeating the analysis for each year
 ------------------------------------
@@ -772,12 +1048,21 @@ for (i in years){
 }
 ```
 
-The missing piece is the R code for function `analyze_citations`. You
-can re-use your code above to write this function.
+The missing piece is the code implementing function
+`analyze_citations`. You can re-use your code above to write this
+function.
 
-$$
-\framebox[\textwidth]{\rule{0pt}{15em}}
-$$
+```{r tau-bootstrap-all-years-3}
+analyze_citations <- function (dat) {
+  nr     <- 1000
+  k      <- cor(dat$TitleLength, dat$Cited.by, method = "kendall")
+  k.fake <- rep(0, nr)
+  for (i in 1:nr) {
+    k.fake[i] <- cor(dat$TitleLength, sample(dat$Cited.by), method = "kendall")
+  }
+  return(list(k = k, pvalue = mean(k.fake >= k)))
+}
+```
 
 Activity: Organizing and running your code
 ------------------------------------------
@@ -835,7 +1120,7 @@ This code doesn't work yet because you haven't written the functions
 that are called inside the loop. (What error message to you get when
 you try to run the code?) 
 
-The `load_citaiton_data` function reads in the data from the CSV file,
+The `load_citation_data` function reads in the data from the CSV file,
 then prepares the data for the linear regression analysis:
 
 ```{r define-load-citation-data-function}
@@ -893,7 +1178,8 @@ on papers from the *American Journal of Human Genetics*. Would any
 changes need to be made to your R code above to run it on the four
 citation data sets?
 
-# Creating computational notebooks using R Markdown
+Creating computational notebooks using R Markdown (optional)
+============================================================
 
 > *Let us change our traditional attitude to the construction of
 > programs: instead of imagining that our main task is to instruct a
@@ -987,57 +1273,14 @@ LaTeX. In summary, when exploring your data, or describing the methods
 for your paper, give R Markdown a try!
 
 You can find inspiration in this Boot Camp; the materials for Basic
-and Advanced Computing were written in R MarkDown.
+and Advanced Computing were written in R Markdown.
 
-Programming challenge
-=====================
-
-Instructions
-------------
-
-You will work with your group to solve the exercises below. When
-you have found the solutions, go to
-[`https://stefanoallesina.github.io/BSD-QBio5`](https://stefanoallesina.github.io/BSD-QBio5)
-and follow the link "Submit solution to challenge 2" to submit your
-answer (alternatively, you can go directly to
-[`goo.gl/forms/QJhKmdGqRCIuGNPa2`](https://goo.gl/forms/QJhKmdGqRCIuGNPa2). At
-the end of the bootcamp, the group with the highest number of correct
-solutions will be declared the winner. If you need extra time, you can
-work with your group during free time or in the breaks in the
-schedule.
-
-Google Flu Trends
------------------
-
-Google Flu started strong, with a paper in *Nature* (Ginsberg *et al*,
-2009, [doi:10.1038/nature07634](https://doi.org/10.1038/nature07634))
-showing that, using data on Web search engine queries, one could
-predict the number of physician visits for influenza-like symptoms.
-Over time, the quality of predictions degraded considerably, requiring
-many adjustments to the model. Now defunct, Google Flu Trends has been
-proposed as a poster child of "Big Data hubris" (Lanzer *et al*,
-*Science*, 2014,
-[doi:10.1126/science.1248506](https://doi.org/10.1126/science.1248506)).
-In the folder containing the Basic Computing 2 tutorial materials, you
-will find the data used by Preis and Moat in their 2014 paper
-([doi:10.1098/rsos.140095](https://doi.org/10.1098/rsos.140095)) to
-show that, after accounting for some additional historical data,
-Google Flu Trends are correlated with outpatient visits due to
-influenza-like illnesses.
-
-1. Read the data using function `read.csv`, and plot the number of
-   weekly outpatient visits versus the Google Flu Trends estimates.
-
-2. Calculate the (Pearson's) correlation using the `cor` function.
-
-3. The data span 2010--2013. In August 2013, Google Flu changed their
-   algorithm. Did this lead to improvements? Compare the data from
-   August and September 2013 with the same months in 2010, 2011
-   and 2012. For each, calculate the correlation, and see whether the
-   correlation is higher for 2013.
-
-**Hint:** You will need to extract the year from a string for each
-row. This can be done using `substr(gf$WeekCommencing, 1, 4)`, in
-which `gf` is the data frame containing the Google Flu data.
-
+[rseek]: http://rseek.org
+[cran-search]: http://search.r-project.org
 [rsvd]: https://CRAN.R-project.org/package=rsvd
+[wickham-book]: http://r-pkgs.had.co.nz
+[wolfram-alpha]: http://www.wolframalpha.com
+[letchford-2015]: http://dx.doi.org/10.1098/rsos.150266
+[ginsberg-2009]: https://doi.org/10.1038/nature07634
+[lanzer-2014]: https://doi.org/10.1126/science.1248506
+[preis-moat-2014]: https://doi.org/10.1098/rsos.140095
