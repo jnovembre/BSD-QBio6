@@ -13,7 +13,7 @@ to get access, email Stefano your GitHub ID.
 You can find a webpage explaining how to download the data and prepare
 your laptop for the bootcamp here:
 
-[Preparing for QBio6](http://https://github.com/jnovembre/BSD-QBio6/blob/master/docs/index.md)
+[Preparing your computer and yourself for QBio6...](http://https://github.com/jnovembre/BSD-QBio6/blob/master/docs/index.md)
 
 #### Notes
 
