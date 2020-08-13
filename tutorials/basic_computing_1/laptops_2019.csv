@@ -1,0 +1,71 @@
+# Source: University of Chicago BSD qBio5 cohort
+# September 9, 2019
+# Marine Biological Labs, Woods Hole, MA
+# https://etherpad.wikimedia.org/p/basic-computing-1-mbl-2019
+#
+name,os,mem,cpus
+armun,mac,8,2
+Stephanie,mac,16,4
+peter,mac,16,4
+Peishu,mac,16,2
+Matthew,Windows,8,4
+Yichen,mac,4,2
+Mena,mac,8,2
+Wiola,mac,16,2
+Matthew,Windows,8,4
+Urszula,mac,16,2
+Senna,Windows,16,2
+Jacob,mac,8,2
+Cody Cole,Mac,8,2
+Kierstin,Mac,8,2
+Mira,Mac,8,4
+Marie,Mac,8,2
+Greer,Windows,8,2
+Nick,mac,16,4
+Stella,Windows,8,3
+Abby,mac,16,4
+Sierra,Windows,16,2
+Erik,mac,16,4
+Tegan,Mac,8,4
+Sandra,Mac,16,4
+Emma,Mac,8,2
+Jasmine,Windows,8,2
+Andy,Windows,8,2
+Hannah,Mac,8,2
+Jacob,Mac,8,2
+Matt W,Win,12,4
+Christopher,Windows,16,4
+Sean,Windows,8,4
+Nikita,Mac,8,2
+Tyler,Windows,8,4
+Jack Bechtel,Windows,16,4
+Juan Ibarra,Mac,16,2
+Robert (Rob) Rodriguez,Mac,8,2
+Sohrab Salimian,Windows,16,4
+Zhitao,Windows,6,2
+Jorden L,Windows,6,3
+Loren,Mac,16,4
+Caroline,Windows,16,4
+Linnea Kremer,Mac,8,2
+Rosemary,mac,4,4
+Chufan Cai,mac,8,4
+Riley,WIndows,16,6
+Althea,Mac,8,2
+Bridget Chak,Mac,16,2
+Isaac,Windows,16,4
+Patrick,Mac,8,2
+Briana Banks,Mac,8,2
+Evan,mac,16,4
+Sean,Windows,8,4
+David,Windows,8,2
+Daozheng,Mac,16,4
+Jill,Windows,32,4
+Sylvia Edoigiawerie,Mac,8,4
+Hadley,Windows,16,8
+Ankeeta,Mac,8,2
+Grace,Ubuntu,10,4
+Ashique,Windows,8,2
+Shuo Huang,Windows,8,2
+Ange Uwimana,Windows,64,4
+Jorge,Windows,8,4
+Gabi,Windows,8,4

@@ -1,0 +1,423 @@
+---
+title: Overview of tidyverse 
+author: Stefano Allesina
+output:
+  html_document:
+    theme: united
+    highlight: tango
+---
+
+## Plan for today
+
+- You should have worked through the material on advanced computing.
+- As a scientist, you want to master several programming languages and software packages, allowing you to attack difficult problems. 
+- For this tutorial, we are going to work with `tidyverse`, which is often named as the strongest reason for which scientists that know other programming languages should consider `R`.
+- First, I will give a high-level overview of `tidyverse`, highlighting concepts that might be unfamiliar. 
+- Feel free to interrupt and ask questions. You can also write your questions in the chat, and I will read them once I went through this document.
+- Next, I am going to assign a *Data Jujutsu* problem, and assign you to random breakout rooms. Your goal is to produce an answer in 60 minutes. We will then reconvene in the main room to discuss the solution to the problem.
+- We have three problems in total. We should be able to discuss the solution of the first problem before lunch, the second immediately after lunch and the third one when we wrap up for the afternoon. 
+
+## Tidyverse philosophy
+
+`tidyverse` is a set of packages for data manipulation, plotting, and analysis. They are seamlessly integrated, and are designed using the same principles. In particular, they share a common data representation (the `tibble`) and interface. The bundle contains a set of "core" packages: `ggplot2` for visualization, `dplyr` for manipulation, `tidyr` to massage data into tidy form, `readr` for reading data, `purrr` for functional programming, and `stringr` for string manipulations and regular expressions. These packages are complemented by a vast (and growing) body of "satellite" packages, meant to extend the capabilities of the tidyverse. For example, `lubridate` is used to manipulate dates and times, `readxl` for reading Excel files, etc. 
+
+The core principles of tidyverse's package interfaces are: 
+
+1. Reuse existing data structures (i.e., do not build a separate data structure for each package)
+2. Compose simple functions with the pipe (i.e., like in the UNIX command line)
+3. Embrace functional programming (i.e., a different programming style, cfr. procedural, object-oriented)
+4. Design for humans (i.e., names are expressive, functions are intuitive)
+
+In this tutorial, we are going to examine some of the main ideas behind `tidyverse`. For a more extensive introduction, see the freely available *R for Data Science* by Garrett Grolemund and Hadley Wickham. The website `tidyverse.org` contains extensive documentation, as well as pointers to tutorials and books. 
+
+It goes without saying that *mastering* the `tidyverse` (as opposed to *hacking together some code*) will make you a much stronger scientist, and allow you to produce the data analysis for your research more quickly and less painfully.
+
+## Tibbles and tidy data
+
+The [`tibble`](https://tibble.tidyverse.org/) (or `tbl_df`) is the next generation `data.frame`. Tibbles tend to do more (just print what fits on the screen, remind you of the data size and column types) and to do less (do not change variable names, do not change types) than `data.frame`s. They also complain more, making it easier to spot bugs and problems with your code.
+
+- You can convert a `data.frame` into a tibble using [`as_tibble(my_data_frame)`](https://tibble.tidyverse.org/reference/as_tibble.html)
+- You can create a new tibble using `tibble(a = 1:5, b = letters[1:5])` etc.
+- `readr` and `readxl` create tibbles by default
+
+As the name implies, the tidyverse is rooted in the idea of tidy data: tables in which the rows are observations, columns are variables, and values are cells of the table. Most importantly, each variable is stored in its own column. An example to make this clear:
+
+**COVID-19 Cases reported; ZIP codes 60637 and 60615**
+
+In tidy form:
+
+```
+     zip  week cases
+   <dbl> <int> <dbl>
+ 1 60615    20    32
+ 2 60637    20    83
+ 3 60615    21    30
+ 4 60637    21    56
+ 5 60615    22    21
+ 6 60637    22    36
+ ...
+```
+
+Each *observation* is composed by the values for three variables: the ZIP code (`zip`), the week of reporting (`week`) and the number of cases reported (`cases`). With the data in this format, it is easy to sum the number of cases by ZIP code or by week. Contrast this with the same data organized as:
+
+```
+# A tibble: 11 x 3
+    week `60615` `60637`
+   <int>   <dbl>   <dbl>
+ 1    20      32      83
+ 2    21      30      56
+ 3    22      21      36
+ 4    23      11      19
+ 5    24      12      16
+...
+```
+
+Here, it is not clear what the values represent (the label for the variable is gone), and summing by week would operating by rows, while summing by ZIP code would require working by column. Similarly, the data organized as:
+
+```
+   zip  `20`  `21`  `22`  `23`  ...
+  <dbl> <dbl> <dbl> <dbl> <dbl> ...
+1 60615    32    30    21    11 ...
+2 60637    83    56    36    19 ...
+```
+
+suffer from the same problems. To move data from *messy* form (often, better for human consumption) to *tidy* form (better for computing), the package `tidyr` uses these main functions:
+
+- [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) (a user-friendly version of [`gather`](https://tidyr.tidyverse.org/reference/gather.html)): transform wide-format table (*messy*) into narrow-format table (*tidy*). For example, we can transform the second table (say stored in `dd2`) into the first table by calling `pivot_longer(dd2, -week, names_to = "zip", values_to = "cases")`; similarly, we can turn the third table into the first using `pivot_longer(dd3, -zip, names_to = "week", values_to = "cases")`
+- [`pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html) (a user-friendly version of [`spread`](https://tidyr.tidyverse.org/reference/spread.html)) yields the opposite result, going from narrow- to wide-format tables. For example, you can turn the first table into the second by calling `pivot_wider(names_from = zip, values_from = cases)`
+- the functions `gather()` and `spread()` are the lower-level interfaces to wrangling data, and are explained in detail in the tutorial you have read.
+
+### Subsetting rows and columns
+
+Extracting particular rows or columns is easy: just use [`filter`](https://dplyr.tidyverse.org/reference/filter.html) to select particular rows, and [`select`](https://dplyr.tidyverse.org/reference/select.html) to select particular columns. 
+
+- `filter(my_tibble, weight > mean(weigth))` selects the observations (rows) for which the variable (column) `weight` has a value above the mean. Use `filter` by specifying one or several expressions that return a logical value, and are defined in terms of the variables in the tibble. If multiple expressions are included, they are combined with the `&` operator. Only rows for which all conditions evaluate to TRUE are kept.
+
+- `select(my_tibble, weight, height)` selects only the specified columns. You can use `select(my_tibble, -weight)` or `select(my_tibble, !weight)` to exclude one or more columns. Some cool features (more [here](https://dplyr.tidyverse.org/reference/select.html)):
+  * `select(my_tibble, last_col())` selects the last column
+  * `select(my_tibble, starts_with("a"))` select all columns with names starting with `a`
+  * `select(my_tibble, contains("apple"))` all columns with names containing the string `apple`
+  * `select(my_tibble, matches("temp_\\d+"))` uses regular expressions to match column names
+
+### Pipes
+
+`R` code can become difficult to read, with several nested function calls, and numerous parentheses and brackets. These features can make the code difficult to read, debug, and extend. `tidyverse` data manipulation is based on the *pipe* operator, `%>%` (Ctrl + Shift + M), which takes a tibble as an input on the left, and returns a tibble as an output on the right. This aspect of functional programming is inspired by the UNIX command line interface.
+
+For example,
+
+```
+arrange(distinct(select(my_tibble, a, b)), a, desc(b))
+```
+
+takes a tibble `my_tibble`, selects two columns `a` and `b`, remove duplicate rows, and then sorts the value according to `a` (increasing), with ties ordered according to `b` (decreasing order). The pipe operator allows you to unnest the functions, producing a *pipeline*:
+
+```
+my_tibble %>% select(a, b) %>% distinct() %>% arrange(a, desc(b))
+```
+
+Even better, when writing code, you can put each piece of the pipeline in its own line:
+
+```
+my_tibble %>% 
+  select(a, b) %>% 
+  distinct() %>%  # a comment here
+  arrange(a, desc(b))
+```
+
+Now it's easy to a) comment especially difficult passages; b) comment some pieces of the pipeline out for testing/debugging; c) insert new pipeline pieces in the middle of the code. This makes also the code very easy to read, as each operation is relatively minor.
+
+### Joining tables
+
+Another neat feature in tidyverse is the ease with which you can join tables that have common columns. This is an idea that is central to relational databases, and arguably their most useful feature, because it allows to store data in an efficient format (without redundant, duplicated information). 
+
+tidyverse offers a number of joins, which are useful in different situations. Here we assume that we have two tibbles, `a` and `b` that have a column (`val1`) in common (the same holds if they have multiple columns in common):
+
+```
+> a
+# A tibble: 5 x 3
+    ids val1   val2
+  <dbl> <chr> <dbl>
+1     1 d         3
+2     2 e         1
+3     3 g         4
+4     4 k         1
+5     5 z         5
+
+> b
+# A tibble: 4 x 2
+  val1  val3 
+  <chr> <chr>
+1 d     p    
+2 k     i    
+3 m     e    
+4 z     2  
+```
+
+- [`inner_join(a, b)`](https://dplyr.tidyverse.org/reference/mutate-joins.html) combines the two tables, retaining only the rows in `a` and `b` for which `val1` is the same. A row in `a` for which we don't have a corresponding `val1` in `b` is discarded (e.g., the second row); a row in `b` for which we don't have a corresponding `val1` in `a` is also discarded (e.g., the third row):
+
+```
+> a
+# A tibble: 5 x 3
+    ids val1   val2
+  <dbl> <chr> <dbl>
+1     1 d         3
+2     2 e         1
+3     3 g         4
+4     4 k         1
+5     5 z         5
+
+> b
+# A tibble: 4 x 2
+  val1  val3 
+  <chr> <chr>
+1 d     p    
+2 k     i    
+3 m     e    
+4 z     2  
+
+> inner_join(a, b)
+Joining, by = "val1"
+# A tibble: 3 x 4
+    ids val1   val2 val3 
+  <dbl> <chr> <dbl> <chr>
+1     1 d         3 p    
+2     4 k         1 i    
+3     5 z         5 2  
+```
+
+- [`left_join(a, b)`](https://dplyr.tidyverse.org/reference/mutate-joins.html) all rows in `a` are retained, and values from `b` are associated when available; if not available, you will find `NA` (which is interpreted as not available by all `R` functions):
+
+```
+> a
+# A tibble: 5 x 3
+    ids val1   val2
+  <dbl> <chr> <dbl>
+1     1 d         3
+2     2 e         1
+3     3 g         4
+4     4 k         1
+5     5 z         5
+
+> b
+# A tibble: 4 x 2
+  val1  val3 
+  <chr> <chr>
+1 d     p    
+2 k     i    
+3 m     e    
+4 z     2  
+
+> left_join(a, b)
+Joining, by = "val1"
+# A tibble: 5 x 4
+    ids val1   val2 val3 
+  <dbl> <chr> <dbl> <chr>
+1     1 d         3 p    
+2     2 e         1 NA   
+3     3 g         4 NA   
+4     4 k         1 i    
+5     5 z         5 2 
+```
+
+- [`right_join(a, b)`](https://dplyr.tidyverse.org/reference/mutate-joins.html) all rows in `b`, `a` when available:
+
+```
+> a
+# A tibble: 5 x 3
+    ids val1   val2
+  <dbl> <chr> <dbl>
+1     1 d         3
+2     2 e         1
+3     3 g         4
+4     4 k         1
+5     5 z         5
+
+> b
+# A tibble: 4 x 2
+  val1  val3 
+  <chr> <chr>
+1 d     p    
+2 k     i    
+3 m     e    
+4 z     2  
+
+> right_join(a, b)
+Joining, by = "val1"
+# A tibble: 4 x 4
+    ids val1   val2 val3 
+  <dbl> <chr> <dbl> <chr>
+1     1 d         3 p    
+2     4 k         1 i    
+3    NA m        NA e    
+4     5 z         5 2 
+```
+
+Note that:
+
+```
+> left_join(a, b)
+Joining, by = "val1"
+# A tibble: 5 x 4
+    ids val1   val2 val3 
+  <int> <chr> <dbl> <chr>
+1     1 d         3 p    
+2     2 e         1 NA   
+3     3 g         4 NA   
+4     4 k         1 i    
+5     5 z         5 2    
+
+> right_join(b, a)
+Joining, by = "val1"
+# A tibble: 5 x 4
+  val1  val3    ids  val2
+  <chr> <chr> <int> <dbl>
+1 d     p         1     3
+2 e     NA        2     1
+3 g     NA        3     4
+4 k     i         4     1
+5 z     2         5     5
+```
+
+- [`full_join(a, b)`](https://dplyr.tidyverse.org/reference/mutate-joins.html) combine all rows of `a` and `b` and fill with `NA` when not available:
+
+```
+> a
+# A tibble: 5 x 3
+    ids val1   val2
+  <dbl> <chr> <dbl>
+1     1 d         3
+2     2 e         1
+3     3 g         4
+4     4 k         1
+5     5 z         5
+
+> b
+# A tibble: 4 x 2
+  val1  val3 
+  <chr> <chr>
+1 d     p    
+2 k     i    
+3 m     e    
+4 z     2  
+
+> full_join(b, a)
+Joining, by = "val1"
+# A tibble: 6 x 4
+  val1  val3    ids  val2
+  <chr> <chr> <dbl> <dbl>
+1 d     p         1     3
+2 k     i         4     1
+3 m     e        NA    NA
+4 z     2         5     5
+5 e     NA        2     1
+6 g     NA        3     4
+```
+
+- [`anti_join(a, b)`](https://dplyr.tidyverse.org/reference/filter-joins.html) only rows in `a` that do not have a match in `b`:
+
+```
+> a
+# A tibble: 5 x 3
+    ids val1   val2
+  <dbl> <chr> <dbl>
+1     1 d         3
+2     2 e         1
+3     3 g         4
+4     4 k         1
+5     5 z         5
+
+> b
+# A tibble: 4 x 2
+  val1  val3 
+  <chr> <chr>
+1 d     p    
+2 k     i    
+3 m     e    
+4 z     2  
+
+> anti_join(a, b)
+Joining, by = "val1"
+# A tibble: 2 x 3
+    ids val1   val2
+  <dbl> <chr> <dbl>
+1     2 e         1
+2     3 g         4
+```
+
+- [`semi_join(a, b)`](https://dplyr.tidyverse.org/reference/filter-joins.html) returns only the rows in `a` that have a match in `b` (i.e., we filter using `b`):
+
+```
+> a
+# A tibble: 5 x 3
+    ids val1   val2
+  <dbl> <chr> <dbl>
+1     1 d         3
+2     2 e         1
+3     3 g         4
+4     4 k         1
+5     5 z         5
+
+> b
+# A tibble: 4 x 2
+  val1  val3 
+  <chr> <chr>
+1 d     p    
+2 k     i    
+3 m     e    
+4 z     2  
+
+> semi_join(a, b)
+Joining, by = "val1"
+# A tibble: 3 x 3
+    ids val1   val2
+  <dbl> <chr> <dbl>
+1     1 d         3
+2     4 k         1
+3     5 z         5
+```
+
+### Working with grouped data
+
+Another amazing feature taken from the data base workflows is the idea to work on grouped data. In many cases, we need to take statistics on different populations, and `dplyr` makes this extremely easy, and only requires to master the function [`group_by`](https://dplyr.tidyverse.org/reference/group_by.html) (use [`ungroup`](https://dplyr.tidyverse.org/reference/group_by.html) to remove group membership):
+
+```
+dd %>% 
+  group_by(sex) %>% 
+  summarize(reported_cases = sum(cases))
+```
+
+You can group by several variables as well, and compute as many summaries as needed. The `summarize()` function will return a tibble with one observation per group. For example:
+
+```
+temperatures %>% 
+  group_by(location, season) %>% 
+  summarize(
+    mean_precipitation = mean(precipitation),
+    sunny_days = sum(sunny == TRUE)
+  )
+```
+
+Importantly, you can also use [`mutate`](https://dplyr.tidyverse.org/reference/mutate.html) on grouped data. For example, compute a z-score by sex:
+
+```
+dd %>% 
+  group_by(sex) %>% 
+  mutate(zscore = scale(height))
+```
+
+### Plotting
+
+Finally, a few words on `ggplot2`. If you are unfamiliar with the sintax, it might seem a very strange way to compose graphs for your paper. However, it is by far the best option available for 2D plotting in `R`, with a very large number of connected packages to draw also networks, 3D graphs, etc. 
+
+The reason for which `ggplot2` code looks so different from say `matplotlib` is that `ggplot2` approaches plotting from a different angle. `ggplot2` is based on the *grammar of graphics* (hence `gg`): the idea that any plot can be described by a proper grammar, as for a natural language. In English, to build a sentence you need a subject, a predicate (verb) and possibly an object. Similarly, in `ggplot` you have:
+
+- the `data` to plot, stored in a tibble (e.g., `ggplot(data = dd)`)
+- the `mapping`, associating variables in the tibble with features of the graph (e.g., `ggplot(data = dd) + aes(x = year, y = salary))` 
+- a `geometry`, specifying how to represent the data (e.g., `ggplot(data = dd) + aes(x = year, y = salary)) + geom_point()`)
+
+In a natural language changing one word can change completely the meaning of the sentence. Similarly, in `ggplot2` we can jump from a type of graph to another by changing a single command (e.g., `ggplot(data = dd) + aes(x = year, y = salary)) + geom_col()`).
+
+The great feature of `ggplot2` is that, once you've familiarized yourself with the grammar, producing any plot is easy---contrary to base-`R` graphics in which each type of graph has a different syntax.
+
+
+

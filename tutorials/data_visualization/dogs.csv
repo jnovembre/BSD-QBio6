@@ -1,0 +1,149 @@
+breed,aod,height,weight,shortcoat
+Affenpinscher,13,10.25,8,0
+Afghan Hound,12,27,60,0
+Airedale Terrier,11.2,23,55,0
+Akita,11,27,107.5,0
+Alaskan Malamute,12,24,80,0
+American Cocker Spaniel,12.5,15,27.5,0
+American Eskimo Dog,13.5,13.5,15,0
+American Pit Bull Terrier,11,19.5,62.5,NA
+American Staffordshire Terrier,13,15,33,1
+American Water Spaniel,11,16.5,37.5,0
+Australian Cattle Dog,13.5,19,45,1
+Australian Shepherd,13,21.5,60,0
+Australian Terrier,15,10,11.5,0
+Basenji,11,17,24,1
+Bassett Hound,12.8,14,45,1
+Beagle,13.3,14,26,1
+Bearded Collie,12.3,23.25,56.25,0
+Bedlington Terrier,14.3,16,20,0
+Belgian Malinois,11,25,67.5,0
+Belgian Sheepdog,12.2,24,68,0
+Belgian Tervuren,13,25,72.5,0
+Bernese Mountain Dog,7,26,85,0
+Bichon Frise,15.5,10,14,0
+Black Russian Terrier,12,28.5,110,0
+Bloodhound,8.5,26,90,1
+Border Collie,13,22.75,56.25,0
+Border Terrier,13.8,14,14,0
+Borzoi,11,28,90,0
+Boston Terrier,15,16,20,1
+Bouvier Des Flanders,11,25.5,95,0
+Boxer,10.4,23.5,70,1
+Briard,11,25,85,0
+Brittany,12.5,18.5,35,0
+Brussels Griffon,13.5,7.5,9,0
+Bull Terrier,12.9,19.5,62.5,1
+Bulldog,6.7,23.5,50,1
+Bullmastiff,8.6,28,143.75,1
+Cairn Terrier,13.2,10,14,0
+Cardigan Welsh Corgi,13,11,27.5,1
+Cavalier King Charles Spaniel,10.7,12.5,15.5,0
+Cesky Terrier,11.5,11.5,18,0
+Chesapeake Bay Retriever,11,24.5,72.5,0
+Chihuahua,13,6,4,NA
+Chinese Crested,12,12,9,NA
+Chinese Shar-Pei,9,19,52.5,1
+Chow Chow,13.5,18.5,60,0
+Clumber Spaniel,12.5,19.5,77.5,0
+Collie,12,25,67.5,0
+Curly Coated Retriever,13,26,82.5,0
+Dachshund,12.2,7,15,NA
+Dalmatian,13,21.5,60,1
+Dandie Dinmont Terrier,12,9.5,21,0
+Doberman Pinscher,9.8,27,75,1
+Dogue de Bordeaux,10,26.5,132.5,1
+English Bulldog,11,23.5,50,1
+English Cocker Spaniel,11.8,16.5,31,0
+English Setter,11.2,25.5,67.5,0
+English Springer Spaniel,13,20,50,0
+Field Spaniel,13,18,45,0
+Flat Coated Retriever,9.5,23.5,67.5,0
+Fox Terrier,13,15,17.5,1
+Fox Terrier toy,14,10,6,1
+French Bulldog,10,17.75,36.75,1
+German Shepherd,10.3,25,82.5,0
+German Shorthaired Pointer,12.3,23,57.5,1
+German Wirehaired Pointer,13,24,65,0
+Giant Schnauzer,11,26,70,0
+Glen of Imaal Terrier,13.5,14,35,0
+Golden Retriever,12,23.5,70,0
+Gordon Setter,11.3,25.5,67.5,0
+Great Dane,8.4,32,140,1
+Greater Swiss Mountain Dog,10.17,26.5,135,1
+Greyhound,13.2,29,67.5,1
+Havanese,14.5,9.5,10,0
+Hungarian Vizsla,12.5,23,50,1
+Ibizan Hound,11,25,50,1
+Irish Red and White Setter,12.9,24,63,0
+Irish Setter,11.8,27,70,0
+Irish Terrier,14,18,27,0
+Irish Water Spaniel,11,23,60,0
+Irish Wolfhound,6.2,32,120,0
+Italian Greyhound,15,21.5,37.75,1
+Italian Spinone,13,24.5,70,0
+Jack Russell Terrier,13.6,13,15,1
+Japanese Chin,13,9.5,9,0
+Japanese Shiba Inu,13.5,15,25,0
+Keeshond,13,18,55,0
+Kerry Blue Terrier,13,18,36.5,0
+Komondor,12,27,100,0
+Labrador Retriever,12.6,23,72.5,1
+Lakeland Terrier,13.5,14,17,0
+Leonberger,12,29,135,0
+Lhasa Apso,16,10.5,14,0
+Maltese,13.5,9,7,0
+Manchester Terrier,15,16,18,1
+Mastiff,7.5,30,160,1
+Miniature Bull Terrier,12.5,19.5,62.5,1
+Miniature Pinscher,15,11,9,1
+Miniature Poodle,16,13,16,0
+Miniature Schnauzer,15,13,14,0
+Newfoundland,10,28,140,0
+Norfolk Terrier,10,9.5,11.5,0
+Norwegian Elkhound,11.5,20,55,0
+Norwich Terrier,13,10,11,0
+Nova Scotia Duck Tolling Retriever,13,19,42.5,0
+Old English Sheepdog,11.8,22,65,0
+Papillon,13.5,9.5,9,0
+Pekingese,13.3,7.5,9,0
+Pembroke Welsh Corgi,12,11,34,0
+Petit Basset Griffon Vendeen,12,7.5,9,0
+Pharaoh Hound,12,24,50,1
+Pit Bull Terrier,11,19.5,62.5,1
+Pointer,14,26.5,65,1
+Pomeranian,15,8.5,5,0
+Poodle,15,13,16,NA
+Portuguese Water Dog,12,21.5,55,0
+Pug,13,13,16,1
+Pyrenean Mountain Dog,12,28,93,0
+Rhodesian Ridgeback,9.1,26,85,1
+Rottweiler,9.8,25,112.5,1
+Saint Bernard,9,28,150,0
+Saluki,12.5,25,52.5,1
+Samoyed,11,22,55,0
+Schipperke,17,12,14,0
+Schnauzer,13,19,37.5,NA
+Scottish Deerhound,9.5,31,87.5,0
+Scottish Terrier,12,10,20.5,0
+Sealyham Terrier,13,10,23.5,0
+Shetland Sheepdog,13.3,14,25,0
+Shih Tzu,13.4,10,12.5,0
+Siberian Husky,12,22,52.5,0
+Silky Terrier,12.5,9,9,0
+Soft Coated Wheaten Terrier,13.5,18,37.5,0
+Staffordshire Bull Terrier,10,17.25,47.75,1
+Standard Poodle,12,24,55,0
+Standard Schnauzer,13,19,37.5,0
+Sussex Spaniel,11.5,14,40,0
+Tibetan Spaniel,15,10,12,0
+Tibetan Terrier,14.3,15,24,0
+Toy Manchester Terrier,15.5,9,10,1
+Toy Poodle,16,10,9,0
+Weimaraner,10,25.5,62.5,1
+Welsh Springer Spaniel,11.5,18,42.5,0
+Welsh Terrier,11,15,20,0
+West Highland White Terrier,12.8,11,18.5,0
+Whippet,14.3,19,23,1
+Wirehaired Pointing Griffon,12,23,55,0
+Yorkshire Terrier,12.8,6,6,0
