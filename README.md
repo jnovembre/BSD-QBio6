@@ -6,14 +6,14 @@ Biology Bootcamp*
 ## Instructors
 
 Please upload your tutorials/workshops in the right place. If you need
-to get access, email Stefano your GitHub ID.
+to get access, email John your GitHub ID.
 
 ## Participants
 
 You can find a webpage explaining how to download the data and prepare
 your laptop for the bootcamp here:
 
-[Preparing your computer and yourself for QBio6...](http://https://github.com/jnovembre/BSD-QBio6/blob/master/docs/index.md)
+Link: [Preparing your computer and yourself for QBio6.](http://https://github.com/jnovembre/BSD-QBio6/blob/master/docs/index.md)
 
 #### Notes
 
