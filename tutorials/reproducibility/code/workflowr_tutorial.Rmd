@@ -4,10 +4,10 @@ subtitle: "workflowr version `r utils::packageVersion('workflowr')`"
 author: "John Blischak and Matthew Stephens"
 date: "`r Sys.Date()`"
 output:
-  rmarkdown::pdf_document: default
   rmarkdown::html_vignette:
     toc: true
     toc_depth: 2
+  rmarkdown::pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -178,11 +178,11 @@ internet and saving it correctly. The data set `ToothGrowth` contains the
 length of the teeth for 60 guinea pigs given 3 different doses of vitamin C
 either via orange juice (`OC`) or directly with ascorbic acid (`VC`). 
 
-1. To
-explore the data set, run the following in the R console.
+1. To get a quick sense of the data set, run the following in the R console.
 
     ```{r teeth, eval=TRUE}
     data("ToothGrowth")
+    head(ToothGrowth)
     summary(ToothGrowth)
     str(ToothGrowth)
     ```
@@ -194,21 +194,40 @@ explore the data set, run the following in the R console.
     write.csv(ToothGrowth, file = "data/teeth.csv")
     ```
 
-Note on paths: When you start or open a workflowr project in RStudio
-(e.g. by clicking on `myproject.Rproj`) RStudio will set the "working directory" 
-to the location of the workflowr project on your computer. (You can run `getwd()` in the R console to check this if you like.)
-This means that to save (or load) a file in the data subdirectory you need to type `data/` before the name of the file. Note that you don't need
-to give the "full path". That is you don't need to type something like
-    ```{r}
-    write.csv(ToothGrowth, file = "C:/Users/GraceHopper/myproject/data/teeth.csv")
-    ```
+## Understanding paths
 
-Specifying a file name like "data/teeth.csv", is called using
-a "relative path" because
-it specifies the file name relative to the current working directory.
-You should use relative paths where possible because it can help
-make your code easier for others to run and to run on different computers
-and different operating systems.
+Look at that last line of code. Where will the file be saved on your computer?
+To understand this very important issue
+you need to understand the idea of "relative paths" and
+"working directory".
+
+Before explaining these ideas, let us consider a different way we could have
+saved the file. Suppose we had typed
+```{r}
+    write.csv(ToothGrowth, file = "C:/Users/GraceHopper/Documents/myproject/data/teeth.csv")
+```
+Then it is clear exactly where on the computer we want the file to be saved. 
+Specifying the file location this very explicit way is called specifying the "full path" to the file. It is conceptually simple. But it is also a pain for many reasons -- it is more typing, and (more importantly) if we move the project to a different computer it will likely no longer work because the paths will change!
+
+Instead we typed 
+```{r}
+    write.csv(ToothGrowth, file = "data/teeth.csv")
+```
+Specifying the file location this way is called specifying the "relative path" because it specifies the path to the file *relative to the current working directory*. This means the full path to the file will be obtained by appending
+the specified relative path to the (full) path of the current working directory. For example, if the current working directory is
+`C:/Users/GraceHopper/Documents/myproject/` then the file will be saved to
+`C:/Users/GraceHopper/Documents/myproject/data/teeth.csv`.
+If the current working directory is `C:/Users/Matt124/myproject` then the file will be saved to `C:/Users/Matt124/myproject/data/teeth.csv`.
+
+So, what is your current working directory? When you start or open a workflowr project in RStudio
+(e.g. by clicking on `myproject.Rproj`) RStudio will set the working directory
+to the location of the workflowr project on your computer. 
+So your current working directory should be the location you chose when you started your workflowr project. 
+You can check this by typing `getwd()` in the R console.
+
+Notice how, by using relative paths, the code used here
+works for you whatever operating system
+you are on and however your computer is set up! *You should always use relative paths where possible because it can help make your code easier for others to run and easier for you to run on different computers and different operating systems.* 
 
 
 ## Create a new analysis
@@ -220,9 +239,10 @@ small analysis. To start a new analysis in RStudio, use the `wflow_open()` comma
     ```{r open-teeth}
     wflow_open("analysis/teeth.Rmd")
     ```
-It should create and open a new `.Rmd` file for editing in RStudio. The file looks pretty much like other `.Rmd` files, but in the header 
-note that workflowr provides its own custom output format, `workflowr::wflow_html`. The only other minor difference is that `wflow_open()` adds the editor option `chunk_output_type: console`, which causes the code to be
-    executed in the R console instead of within the document. If you'd prefer
+Notice that we again used a relative path! Relative paths are good for opening files as well as saving files. This command should create a new `.Rmd` file 
+in the `analysis` subdirectory of your workflowr project, and open it for editing in RStudio. The file looks pretty much like other `.Rmd` files, but in the header 
+note that workflowr provides its own custom output format, `workflowr::wflow_html`. The other minor difference is that `wflow_open()` adds the editor option `chunk_output_type: console`, which causes the code to be
+    executed in the R console instead of within the document. If you prefer
     the results of the code chunks be embedded inside the document while you
     perform the analysis, you can delete those lines (note that this has no
     effect on the final results, only on the display within RStudio).
@@ -276,7 +296,7 @@ the supplement method column, it is more likely to be a true signal not due to
 chance alone. We are not going to perform the full
 permutation test here, but we will just demonstrate the idea of a permutation.
 Copy the code chunk below, paste it at the bottom of of the file
-`teeth.Rmd`, and execute it. Try executing it several tiems -- does it give you a different answer each time?
+`teeth.Rmd`, and execute it. Try executing it several times -- does it give you a different answer each time?
 
     ````
     ```{r permute}`r ''`
@@ -452,24 +472,27 @@ to create a hyperlink to the tooth analysis. The text
 between the square brackets is displayed on the webpage, and the text in
 parentheses is the relative path to the teeth webpage. Note that you don't need
 to include the subdirectory `docs/` because `index.html` and `teeth.html` are
-both already in `docs/`. Also note that you need to use the file extension
+both already in `docs/`. (In an html file relative paths are specified relative to the current page which in this case will be `index.html`.)
+Also note that you need to use the file extension
 `.html` since that is the file that needs to be opened by the web browser.
 
     ```
-    * [Teeth growth](teeth.html)
+    * [Teeth growth analysis](teeth.html)
     ```
 
 1.  Maybe you would like to write a short introductory message in your index file  e.g.  "Welcome to my
 first workflowr website"! 
+
+1. You might also want to add a bit more details on what the tooth growth analysis did -- a little detail in your index can be really helpful when it starts getting bigger...
 
 1. Run `wflow_build()` and then confirm that clicking on the link "Teeth growth"
 takes you to your teeth analysis page.
 
 1. Run `wflow_publish()` to publish this new index file.
 
-1. Run `wflow_git_push()` to push the changes to GitHub.
-
 1. Run `wflow-status()` to check everything is OK.
+
+1. Run `wflow_git_push()` to push the changes to GitHub.
 
 1. Now go to your GitHub page again, and check out your website! (It can take a couple of minutes to refresh after pushing, so you may need to be patient).
 Navigate to the tooth analysis. Click on the links in the "Past versions"
@@ -483,7 +506,8 @@ of the Rmd file on GitHub. Enjoy!
 
 ## Conclusion
 
-You have successfully created and shared a reproducible research website. Using
+You have successfully created and shared a reproducible research website.
+The key commands are a pretty short list: `wflow_build()`, `wflow_publish()`, `wflow_status()`, and `wflow_git_push()`. Using
 the same workflowr commands, you can do the same for one of your own research
 projects and share it with collaborators and colleagues.
 
