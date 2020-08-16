@@ -102,11 +102,11 @@ practice over time.
 This script only implements the very first step in the analysis. There
 is still much we would like to learn, including the tornadoes'
 severity, and their geographic distribution. For example, are these
-patterns repeated in Illinois? Using `subset`, and copying some of the
-code above, we can investigate this question:
+patterns repeated in the state of New York? Using `subset`, and
+copying some of the code above, we can investigate this question:
 
 ```{r tornadoes-2}
-temp   <- subset(tornadoes,STATE == "ILLINOIS")
+temp   <- subset(tornadoes,STATE == "NEW YORK")
 counts <- as.numeric(table(cut(temp$dayofyear, breaks)))
 plot(breaks[-1], counts, type = "l", xaxt = "n")
 axis(1, cex.axis = 0.7, at = first_days, labels = months)
