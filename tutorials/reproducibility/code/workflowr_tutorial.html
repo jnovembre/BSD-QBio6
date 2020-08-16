@@ -12,7 +12,7 @@
 
 <meta name="author" content="John Blischak and Matthew Stephens" />
 
-<meta name="date" content="2020-08-14" />
+<meta name="date" content="2020-08-16" />
 
 <title>Reproducible research with workflowr</title>
 
@@ -320,7 +320,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">Reproducible research with workflowr</h1>
 <h3 class="subtitle">workflowr version 1.6.2</h3>
 <h4 class="author">John Blischak and Matthew Stephens</h4>
-<h4 class="date">2020-08-14</h4>
+<h4 class="date">2020-08-16</h4>
 
 
 <div id="TOC">
@@ -511,8 +511,9 @@ mean(teeth$len[supp_perm == &quot;OJ&quot;]) - mean(teeth$len[supp_perm == &quot
 <h2>Share your results</h2>
 <p>So, now you have a website, with an analysis in it. But it is only on your computer, not the internet. To share your website with the world we will use the free service GitHub Pages.</p>
 <ol style="list-style-type: decimal">
-<li><p>In the R console, run the function <code>wflow_use_github()</code>. The only required argument is your GitHub username. The name of the repository will automatically be named the same as the directory containing the workflowr project, in this case “myproject”. When the function asks if you would like it to create the repository on GitHub for you, enter <code>y</code> for “yes”. This will open your web browser so that you can authenticate with GitHub and then give permission for workflowr to create the repository on your behalf. Additionally, this function connects to your local repository with the remote GitHub repository and inserts a link to the GitHub repository into the navigation bar. If this fails to create a GitHub repository, go to <a href="#no-repo">Troubleshooting</a>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">wflow_use_github</span>(<span class="st">&quot;your-github-username&quot;</span>)</span></code></pre></div></li>
+<li><p>In the R console, run the function <code>wflow_use_github()</code>. The only required argument is your GitHub username. The name of the repository will automatically be named the same as the directory containing the workflowr project, in this case “myproject”.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw">wflow_use_github</span>(<span class="st">&quot;your-github-username&quot;</span>)</span></code></pre></div>
+<p>When the function asks if you would like it to create the repository on GitHub for you, enter <code>1</code>. This should open your web browser so that you can authenticate with GitHub and then give permission for workflowr to create the repository on your behalf. Additionally, this function connects to your local repository with the remote GitHub repository and inserts a link to the GitHub repository into the navigation bar. If this fails to create a GitHub repository, go to <a href="#no-repo">Troubleshooting</a>.</p></li>
 <li><p>To update your workflowr website to use GitHub links to past versions of the files (as well as update the navigation bar to include the GitHub link), republish the files. (You would not have to do this in future)</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">wflow_publish</span>(<span class="dt">republish =</span> <span class="ot">TRUE</span>)</span></code></pre></div></li>
 <li><p>To send your project to GitHub, run <code>wflow_git_push()</code>. This will prompt you for your GitHub username and password. If this fails, go to <a href="#failed-push">Troubleshooting</a>.</p>

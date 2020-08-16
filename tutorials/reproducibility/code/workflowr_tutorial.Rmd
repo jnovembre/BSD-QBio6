@@ -4,10 +4,10 @@ subtitle: "workflowr version `r utils::packageVersion('workflowr')`"
 author: "John Blischak and Matthew Stephens"
 date: "`r Sys.Date()`"
 output:
+  rmarkdown::pdf_document: default
   rmarkdown::html_vignette:
     toc: true
     toc_depth: 2
-  rmarkdown::pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -412,17 +412,18 @@ free service GitHub Pages.
 1. In the R console, run the function `wflow_use_github()`. The only required
 argument is your GitHub username. The name of the repository will automatically
 be named the same as the directory containing the workflowr project, in this
-case "myproject". When the function asks if you would like it to create the
-repository on GitHub for you, enter `y` for "yes". This will open your web
+case "myproject".
+    ```{r wflow-use-github}
+    wflow_use_github("your-github-username")
+    ```
+When the function asks if you would like it to create the
+repository on GitHub for you, enter `1`. This should open your web
 browser so that you can authenticate with GitHub and then give permission for
 workflowr to create the repository on your behalf. Additionally, this function
 connects to your local repository with the remote GitHub repository and
 inserts a link to the GitHub repository into the navigation bar. If this fails
 to create a GitHub repository, go to [Troubleshooting](#no-repo).
 
-    ```{r wflow-use-github}
-    wflow_use_github("your-github-username")
-    ```
 
 1. To update your workflowr website to use GitHub links to past versions of the
 files (as well as update the navigation bar to include the GitHub link),
