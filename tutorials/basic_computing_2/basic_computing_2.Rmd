@@ -29,7 +29,7 @@ abstract: "The aims of this workshop are to: (1) learn how to install,
 
 ```{r knitr-opts, include=FALSE}
 knitr::opts_chunk$set(comment = "#",collapse = TRUE,results = "hide",
-                      fig.keep = "none")
+                      fig.keep = "none",eval=FALSE)
 ```
 
 Setup
@@ -665,11 +665,10 @@ Instructions
 ------------
 
 You will work with your group to solve the exercises below. When you
-have found the solutions, go to
-[`https://stefanoallesina.github.io/BSD-QBio4`](https://stefanoallesina.github.io/BSD-QBio4)
+have found the solutions, go to 
+[`https://jnovembre.github.io/BSD-QBio6`](https://jnovembre.github.io/BSD-QBio6)
 and follow the link "Submit solution to challenge 2" to submit your
-answer (alternatively, you can go directly to
-[`goo.gl/forms/QJhKmdGqRCIuGNPa2`](https://goo.gl/forms/QJhKmdGqRCIuGNPa2)).
+answer.
 At the end of the bootcamp, the group with the highest number of
 correct solutions will be declared the winner. If you need extra time,
 you can work with your group during free time or in the breaks in the

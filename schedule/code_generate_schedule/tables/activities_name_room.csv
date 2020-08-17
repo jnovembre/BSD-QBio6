@@ -1,27 +1,27 @@
 Activity,Description
-checkin,Check-in with TAs (Swope)
+checkin,Check-in with TAs
 groupcomp,Group compacts
-coffee,Coffee break (Loeb 3rd floor)
-lunch,Lunch (SWC)
-talksun,Welcome to qBio6 - Novembre and Prince (Lillie)
-talkmon,Welcome to UChicago Biosciences - Prince (Lillie)
+coffee,Coffee break
+lunch,Lunch
+talksun,Welcome to qBio6 - Novembre and Prince
+talkmon,Welcome to UChicago Biosciences - Prince
 talktue,Science Faculty Star
-happymon,Happy Hour (Monday)
+happymon,Happy Hour
 pdnight,Professional Development Night with CAs
 wrapup,Wrap up Session
-Computing1a,Basic comp. I / Advanced comp I (LBG70N/LB263)
-Computing1b,Basic comp. I / Advanced comp I (LBG70N/LB263)
-Computing2a,Basic comp. II / Advanced comp II (LBG70N/LB263)
-Computing2b,Basic comp. II / Advanced comp II (LBG70N/LB263)
+Computing1a,Basic comp. I / Advanced comp I
+Computing1b,Basic comp. I / Advanced comp I
+Computing2a,Basic comp. II / Advanced comp II
+Computing2b,Basic comp. II / Advanced comp II
 Off,Free time
 happywed, Wednesday Zoom Happy Hour
-w1,Workshop Khan (LB263)
-w2,Workshop Novembre (LB374)
-w3,Workshop M. Chen (LBG70N)
-t1,Reproducibility of data analysis (LBG70N)
-t2,Data visualization (LBG70S)
-t3,Statistics for a data rich world (LBG70S)
-team,Team building activities (Swope)
-lunchmon,MBL Orientation + Lunch (Meigs)
+w1,Workshop Khan
+w2,Workshop Novembre
+w3,Workshop M. Chen
+t1,Reproducibility of data analysis
+t2,Data visualization
+t3,Statistics for a data rich world
+team,Team building activities
+lunchmon,MBL Orientation + Lunch
 happyfri,Finishing celebration
-talkthu,Talk Patel (Lillie)
+talkthu,Talk Patel

@@ -27,7 +27,7 @@ abstract: "The aim of this workshop is to introduce `R` and `RStudio`,
 
 ```{r knitr-opts, include=FALSE}
 knitr::opts_chunk$set(comment = "#",collapse = TRUE,results = "hide",
-                      fig.align = "center")
+                      fig.align = "center", eval = FALSE)
 ```
 
 About this tutorial
@@ -907,11 +907,10 @@ Instructions
 ------------
 
 Work with your team to solve the following exercise.  When you have
-found the solution, go to
-[`stefanoallesina.github.io/BSD-QBio5`][bsd-qbio-site] and follow the
-link "Submit solution to challenge 1" to submit your answer
-(alternatively, you can go directly to
-[`goo.gl/forms/dDJKvF0dOi7KUDqp1`](https://goo.gl/forms/dDJKvF0dOi7KUDqp1).
+found the solution, go to the
+[`jnovembre.github.io/BSD-QBio6`][bsd-qbio-site] and follow the
+link "Submit solution to challenge 1" to submit your answer.
+
 At the end of the boot camp, the group with the highest number of
 correct solutions will be declared the winner. If you need extra time,
 you can work with your group during free time or in the breaks in the
