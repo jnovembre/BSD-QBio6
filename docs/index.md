@@ -74,7 +74,9 @@ You will work on your laptop all day long. **If you don't have a laptop, please 
     *   lubridate
     *   rmatio
     *   cowplot
+    *   formatR
     *   Rtsne
+    *   ggseqlogo
     *   workflowr
 
 

@@ -6,14 +6,13 @@ editor_options:
   chunk_output_type: console
 ---
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(fig.width=6, fig.height=4, fig.path='Figs/',
+knitr::opts_chunk$set(fig.width=6, fig.height=4, fig.path='figs/',
                       echo=TRUE, eval=FALSE, warning=FALSE, message=FALSE)
 ```
 
 # Population genetics workshop
 
-Instructor: **Matthias Steinrücken**  
-Course Assistant: **Zach Miller**  
+Instructor: **John Novembre**  
 
 ### Welcome 
 

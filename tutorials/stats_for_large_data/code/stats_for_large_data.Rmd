@@ -9,6 +9,7 @@ output:
     keep_tex: no
     latex_engine: pdflatex
     template: style/readable.tex
+
   html_document:
     df_print: paged
 fontfamily: mathpazo
@@ -24,6 +25,9 @@ abstract: |2-
    **Audience:** Biologists with some programming background.
 ---
 
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, eval=FALSE, warning=FALSE, message=FALSE)
+```
 
 
 # I. Review of hypothesis testing
@@ -449,7 +453,8 @@ We now build a model in which the probability to review declines steadily from y
 
 ```{r}
 # Take 2003 as baseline
-model_year <- glm(ReviewerAgreed~I(Year - 2003), data = small, family = "binomial") #The I() function acts to convert the argument to "as.is"
+model_year <- glm(ReviewerAgreed~I(Year - 2003), data = small, family = "binomial") 
+#The I() function acts to convert the argument to "as.is"
 summary(model_year)
 ```
 
@@ -537,7 +542,8 @@ datatest <- reviews[reviews$cv == 3,]
 # Let's fit the data using model_journal
 # and model_journal_yr, which seem to be the most promising
 cv_model1 <- glm(ReviewerAgreed~I(Year-2003), data = datafit, family = "binomial")
-cv_model2 <- glm(ReviewerAgreed~Journal:I(Year-2003), data = datafit, family = "binomial")
+cv_model2 <- glm(ReviewerAgreed~Journal:I(Year-2003), data = datafit,
+      family = "binomial")
 ```
 
 Now that we've fitted the models, we can use the function `predict` to find the fitted values for the `testdata`:
@@ -596,43 +602,40 @@ Prediction for population outside the current data is prophecy.
 # V. Programming Challenge
 
 
-## The secret alphabetic relationship to COVID-19
+## P-hacking COVID-19
 
-To try your hand at p-hacking and overfitting, and show how these practices can lead to completely inane results.
+To show firsthand how p-hacking and overfitting are possible, we want you to show how these practices can lead to completely inane results.
 
-You can download today's data on the geographic distribution of COVID-19 cases worldwide from the source below. The data is updated daily and contains the lastest publicly available data on COVID-19 by country. Our task is to show significant and secret/superstitious relationships between the number of COVID-19 cases and the country name's first letter. Those relationships can be alphabetic order, or some secret patterns (e.g., vowels versus consonants, letters before M versus after). For example, you may show that the number of COVID-19 cases is increasingly/decreasingly associated with the alphabetic position of the first letter of the country name in a particular day. 
+You can download today's data on the geographic distribution of COVID-19 cases worldwide from the source below. The data is updated daily and contains the lastest publicly available data on COVID-19 by country.The data report the "cumulative number for 14 days of COVID-19 cases per 100k individuals" for each country or territory. There are also several other covariates in the data set. 
 
-The data reported the "cumulative number for 14 days of COVID-19 cases per 100k individuals" for each country or territory. There are also several other covariates in the data set and you may also consider their interaction effects with the country name's alphabetic order. You may choose one particular day and report your findings, or choose an overall average to date. Note that if you analyze multiple days in your analysis, you may need to consider the longitudinal data analysis issues and we do not recommend here.
+The challenge is to build an analysis pipeline that produces a "significant" p-value for a relationship between COVID-19 cases and another variable, where the relationship can't possibly be causal. Prepare an Rmarkdown document with the results. At the end of the document write a paragraph to explain your "findings". Argue for an underlying non-statistical explanation for your group's fake result, and/or critique your statistcal approach and why your group got an apparently significant p-value.
 
+Hint: At certain dates in the pandemic, COVID-19 cases counts had a statistically significant (but not a real causal) relationship with the alphabetic position of the first letter of the country's name.  You might also consider other meaningless aspects of country name (e.g., vowels versus consonants, letters before M versus after). 
 
+Useful sample code: 
 ```{r, message=FALSE}
 
 # read data
 library(utils)
 
 #read the Dataset sheet into “R”. The dataset will be called "data".
-data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", na.strings = "", fileEncoding = "UTF-8-BOM")
+data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", 
+                 na.strings = "", fileEncoding = "UTF-8-BOM")
 
-# the code below shows how you may recode the country name's first letter to a numeric alphabetic position.
-## also you may pick a particular date and analyze data for only that day. 
-data1 <- data[(data$dateRep=="11/08/2020"), ]  ## you may code a for loop and search for a day that supports your superstition.
+# the code below shows how you may recode the country name's 
+# first letter to a numeric alphabetic position.
+data1 <- data[(data$dateRep=="11/08/2020"), ]  
 CountryAb <- as.integer(as.factor(substr(data1$countriesAndTerritories,1,1)))
 
-
-# analyze the correlation between Cumulative_number_for_14_days_of_COVID.19_cases_per_100000 and the alphabetic position of country name's first letter.
-
-
-plot(CountryAb, data1$Cumulative_number_for_14_days_of_COVID.19_cases_per_100000, xlab="Alphabetic Position of the First Letter in Country Name", ylab="COVID19 Cases per 100k people in 14 days")
-
-```
-
-Not surprisingly, by choosing a random day 8/11/2020, I did not find a significant relationship between alphabetic order of country name and COVID-19 cases. 
-
-```{r, message=FALSE}
-
-model1<- lm(Cumulative_number_for_14_days_of_COVID.19_cases_per_100000~CountryAb, data=data1)
+# build a linear model for the relationship between 
+# Cumulative_number_for_14_days_of_COVID.19_cases_per_100000 and 
+# the alphabetic position of country name's first letter.
+model1<- lm(Cumulative_number_for_14_days_of_COVID.19_cases_per_100000~CountryAb, 
+            data=data1)
 summary(model1)
+# On 8/11/2020, we did not find a significant relationship 
+# between alphabetic order of country name and COVID-19 cases. 
+# But what if we keep looking at other dates? 
 ```
 
-Now try other days and possibly consider interaction terms and other alphabetic patterns, can you find a secret relationship to tell?
-Finally, the ultimate task, can you explain your findings in a scientific way? Either supporting your conclusions and explaining it, or criticizing what you have done  and explaining why you got a significant p-value would be fine.
+

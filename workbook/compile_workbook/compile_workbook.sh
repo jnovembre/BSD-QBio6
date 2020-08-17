@@ -5,7 +5,7 @@ cd ../compile_workbook
 echo Initializing manual pdf...
 
 cp ../other_docs/cover.pdf tmp.pdf
-#pdftk ../other_docs/cover.pdf ../other_docs/blank.pdf cat output tmp.pdf
+pdftk ../other_docs/cover.pdf ../other_docs/blank.pdf cat output tmp.pdf
 
 ## Map # Revised
 #pdftk tmp.pdf ../other_docs/map.pdf cat output tmp2.pdf; mv tmp2.pdf tmp.pdf
@@ -45,15 +45,13 @@ pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 #pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 # R-cheat-sheet.pdf
-pdftk ../../tutorials/basic_computing_1/R-cheat-sheet.\
-pdf rotate output tmp3.pdf
-pdftk tmp.pdf tmp3.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
-
 ## Basic I 
+pdftk tmp.pdf ../other_docs/R-cheat-sheet.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+
 pdftk tmp.pdf ../../tutorials/basic_computing_1/basic_computing_1.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## insert blank page
-#pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## Basic II 
 pdftk tmp.pdf ../../tutorials/basic_computing_2/basic_computing_2.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
@@ -68,6 +66,10 @@ pdftk tmp.pdf ../../tutorials/advanced_computing/Jujutsu/PhD_trends/PhD_trends.p
 pdftk tmp.pdf ../../tutorials/advanced_computing/Jujutsu/Papers_UofC/Papers_UofC.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## insert blank page
+#pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+
+
+## insert blank page
 pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## Defensive programming 
@@ -77,10 +79,10 @@ pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 pdftk tmp.pdf ../../tutorials/data_visualization/data_visualization.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## insert blank page
-pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+#pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## Reproducibility
-pdftk tmp.pdf ../../tutorials/reproducibility/code/reproducibility.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+pdftk tmp.pdf ../../tutorials/reproducibility/code/workflowr_tutorial.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## insert blank page
 #pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
@@ -89,7 +91,7 @@ pdftk tmp.pdf ../../tutorials/reproducibility/code/reproducibility.pdf output tm
 pdftk tmp.pdf ../../tutorials/stats_for_large_data/code/stats_for_large_data.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## insert blank page
-#pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 echo Adding workshops...
 
@@ -113,7 +115,7 @@ pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 pdftk tmp.pdf ../../workshops/akhan/code/Immuno.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## insert blank page
-pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+#pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## Novembre
 pdftk tmp.pdf ../../workshops/jnovembre/code/MBL_WorkshopJN.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
