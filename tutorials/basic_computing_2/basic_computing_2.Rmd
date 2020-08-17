@@ -204,10 +204,10 @@ improvements), our new analysis script looks like this (see also
 ```{r tornadoes-8, code=readLines("tornadoes_better.R"), message=FALSE}
 ```
 
-As we continue to develop our analysis, can also functions reduce the
-effort of making revisions; for example, if we want to change the
-colour of the lines in all the plots, this requires only one small
-change to the code inside `plot_events`.
+As we continue to develop our analysis, functions can also reduce
+effort of *revising code*; for example, to change the colour of the
+lines in all the plots, only one small change needs to be made to the
+code inside `plot_events`.
 
 Designing functions to improve your code is very much an "art" that
 you will learn as you gain experience. But don't get hung up on
