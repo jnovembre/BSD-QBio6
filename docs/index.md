@@ -21,8 +21,8 @@ For any issue/question/comment, please contact the course directors:
 
 * [Stefano Allesina](mailto:sallesina@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](http://allesinalab.uchicago.edu/))
 * [Peter Carbonetto](mailto:pcarbo@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](https://pcarbo.github.io/))
-* [Lin Chen](mailto:lchen@health.bsd.uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage])(http://home.uchicago.edu/lchen11/))
-* [Mengjie Chen](mailto:mengjiechen@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage])(http://www.mengjiechen.com))
+* [Lin Chen](mailto:lchen@health.bsd.uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](http://home.uchicago.edu/lchen11/))
+* [Mengjie Chen](mailto:mengjiechen@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](http://www.mengjiechen.com))
 * [Aly Khan](mailto:aakhan@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](https://ttic.uchicago.edu/~aakhan/))
 * [Samantha Riesenfield](mailto:sriesenfeld@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](https://pme.uchicago.edu/group/riesenfeld-group))
 * [Matthew Stephens](mailto:mstephens@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](https://stephenslab.uchicago.edu)) 
