@@ -19,13 +19,13 @@ For any issue/question/comment, please contact the course directors:
 
 ## Instructors
 
-* [Stefano Allesina]
-* [Peter Carbonetto](mailto:pcarbo@uchicago.edu) ([webpage](https://pcarbo.github.io/))
-* [Lin Chen]
-* [Mengjie Chen]
-* [Aly Khan]
-* [Samanthan Riesenfield]
-* [Matthew Stephens] 
+* [Stefano Allesina](mailto:sallesina@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](http://allesinalab.uchicago.edu/))
+* [Peter Carbonetto](mailto:pcarbo@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](https://pcarbo.github.io/))
+* [Lin Chen](mailto:lchen@health.bsd.uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](http://home.uchicago.edu/lchen11/))
+* [Mengjie Chen](mailto:mengjiechen@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](http://www.mengjiechen.com))
+* [Aly Khan](mailto:aakhan@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](https://ttic.uchicago.edu/~aakhan/))
+* [Samantha Riesenfield](mailto:sriesenfeld@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](https://pme.uchicago.edu/group/riesenfeld-group))
+* [Matthew Stephens](mailto:mstephens@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](https://stephenslab.uchicago.edu)) 
 
 ## Schedule
 
@@ -46,8 +46,7 @@ To decide which track you want to choose, please consult the lecture materials, 
 
 *   Basic Computing I ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_1/basic_computing_1.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_1/basic_computing_1.pdf))
 *   Basic Computing II ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_2/basic_computing_2.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_2/basic_computing_2.pdf))
-*   Advanced Computing I ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/advanced_computing_1/code/advanced_computing_1.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/advanced_computing_1/code/advanced_computing_1.pdf))
-*   Advanced Computing II ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/advanced_computing_2/code/advanced_computing_2.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/advanced_computing_2/code/advanced_computing_2.pdf))
+*   Advanced Computing: Read the challenges here: ([Data Jujutsu] (https://github.com/jnovembre/BSD-QBio6/tree/master/tutorials/advanced_computing/Jujutsu) 
 
 ## Preparing your laptop
 
@@ -79,10 +78,9 @@ You will work on your laptop all day long. **If you don't have a laptop, please 
     *   ggseqlogo
     *   workflowr
 
-
     You can find instructions on how to install `R` packages in RStudio [here](https://www.youtube.com/watch?v=3RWb5U3X-T8).
 
-* **Other packages** Two of the packages need to be installed from within `R`. Open Rstudio and in the Console type `library(devtools)`, hit Return (or Enter) and then `install_github("jdstorey/qvalue")`. This will install the library `qvalue` that is needed for one of the tutorials.
+* **Other packages** One of the packages need to be installed from within `R`. Open Rstudio and in the Console type `library(devtools)`, hit Return (or Enter) and then `install_github("jdstorey/qvalue")`. This will install the library `qvalue` that is needed for one of the tutorials.
 
 * **UNIX Emulator**: If you are using Windows, you need to install a UNIX emulator. We suggest downloading the version control software `Git`, because it ships with a small emulator (`Git Bash`). Simply go to [this page](https://git-scm.com/download/win) and follow the instructions.
 
@@ -92,7 +90,7 @@ You will work on your laptop all day long. **If you don't have a laptop, please 
 
 ## Downloading the data
 
-It is very important to download the data **before you leave for MBL**, as the files are quite large. (Warning! The repo is about 268MB!)
+It is very important to download the data **before the workshop**, as the files are quite large. (Warning! The repo is about >200MB!)
 All you need to do is to download the repository containing all the boot camp lectures and data.
 We will download the repository using GitKraken (you can alternatively use command-line `git` if you are already familiar with it).
 
@@ -110,12 +108,11 @@ Now if you go to the folder you chose in step 5, you'll see the repository!
 
 During the boot camp, the 12 groups of students will compete through 6 programming challenges. Here are the links to the webpages where the groups should post their solutions (one answer per group, please):
 
-* Submit your answer to [Programming Challenge 1 (Basic Programming I)](TODO ADD LINK)
-* Submit your answer to [Programming Challenge 2 (Basic Programming II)](TODO ADD LINK TO GOOGLE FORM)
-* Submit your answer for the tutorial on [Defensive Programming](TODO ADD LINK TO GOOGLE FORM)
-* Submit your answer for the tutorial on [Reproducibility](TODO ADD LINK TO GOOGLE FORM)
-* Submit your answer for the tutorial on [Data Visualization](TODO ADD LINK TO GOOGLE FORM)
-* Submit your answer for the tutorial on [Stats for large data](TODO ADD LINK TO GOOGLE FORM)
+* Submit your answer to [Programming Challenge 1 (Basic Programming I)](https://forms.gle/t3Y5V6w49zrJ1bcM6)
+* Submit your answer to [Programming Challenge 2 (Basic Programming II)](https://forms.gle/b1HVbbdPuaGsgNw78)
+* Submit your answer for the tutorial on [Reproducibility](https://forms.gle/iN4zwE9WufYgTeYJ7)
+* Submit your answer for the tutorial on [Data Visualization](https://forms.gle/Rt7b6XgkEyJf2PNg9)
+* Submit your answer for the tutorial on [Stats for large data](https://forms.gle/N3ebjMCRq9guHxBr9)
 
 ### Notes
 This material is based upon work supported by the National Science Foundation under Grant Number 1734818
