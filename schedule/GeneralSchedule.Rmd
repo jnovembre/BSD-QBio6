@@ -69,13 +69,13 @@ output:
 ### Wednesday, September 16 
 
 ------------------    ------------------------------------------
-**8:30-10:00**        Data visualization                         (*A.thaliana M.musculus O.bimaculoides X.laevis*)
-                      Reproducibility of data analysis           (*D.melanogaster D.rerio S.aegyptiacus T.thermophila*)
-                      Statistics for a data rich world           (*C.elegans C.jacchus P.polytes T.roseae*)
+**8:30-10:00**        Data visualization                         (*C.elegans D.melanogaster S.aegyptiacus T.roseae*)
+                      Reproducibility of data analysis           (*C.jacchus M.musculus O.bimaculoides P.polytes*)
+                      Statistics for a data rich world           (*A.thaliana D.rerio T.thermophila X.laevis*)
 **10:00-10:30**       Coffee break                              
-**10:30-12:00**       Data visualization                         (*A.thaliana M.musculus O.bimaculoides X.laevis*)
-                      Reproducibility of data analysis           (*D.melanogaster D.rerio S.aegyptiacus T.thermophila*)
-                      Statistics for a data rich world           (*C.elegans C.jacchus P.polytes T.roseae*)
+**10:30-12:00**       Data visualization                         (*C.elegans D.melanogaster S.aegyptiacus T.roseae*)
+                      Reproducibility of data analysis           (*C.jacchus M.musculus O.bimaculoides P.polytes*)
+                      Statistics for a data rich world           (*A.thaliana D.rerio T.thermophila X.laevis*)
 **7:15-8:00**          Wednesday Zoom Happy Hour                
 ------------------    ------------------------------------------
 

@@ -23,82 +23,75 @@ output:
 
 ### Sunday, September 13 
 
-------------------    ---------------------------------------------------
-**3:00-4:00**         Check-in with TAs (Swope)                          
-**4:00-4:20**         Welcome to qBio6 - Novembre and Prince (Lillie)    
-**4:30-5:15**         Team building activities (Swope)                   
-**5:30-6:30**         Group compacts                                     
-------------------    ---------------------------------------------------
+------------------    -----------------------------------------------------
+**3:00-4:00**         Check-in with TAs (DISCORD Team Rooms)               
+**4:00-4:20**         Welcome to qBio6 - Novembre and Prince (ZOOM A)      
+**4:30-5:15**         Team building activities (DISCORD Team Rooms)        
+**5:30-6:30**         Group compacts (DISCORD Team Rooms)                  
+------------------    -----------------------------------------------------
 
 ### Monday, September 14 
 
-------------------    ---------------------------------------------------
-**8:30-10:00**        Basic comp. I / Advanced comp I (LBG70N/LB263)     
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                      
-**10:30-12:00**       Basic comp. I / Advanced comp I (LBG70N/LB263)     
-**12:00-1:00**        MBL Orientation + Lunch (Meigs)                    
-**1:30-3:00**         Basic comp. II / Advanced comp II (LBG70N/LB263)   
-**3:00-3:30**         Coffee break (Loeb 3rd floor)                      
-**3:30-5:00**         Basic comp. II / Advanced comp II (LBG70N/LB263)   
-**5:00-5:30**         Welcome to UChicago Biosciences - Prince (Lillie)  
-**8:00-9:00**         Happy Hour (Monday)                                
-------------------    ---------------------------------------------------
+------------------    -----------------------------------------------------
+**8:30-10:00**        Basic comp. I / Advanced comp I (ZOOM A / ZOOM C)    
+**10:00-10:30**       Coffee break (DISCORD)                               
+**10:30-12:00**       Basic comp. I / Advanced comp I (ZOOM A / ZOOM C)    
+**12:00-1:30**        MBL Orientation + Lunch                              
+**1:30-3:00**         Basic comp. II / Advanced comp II (ZOOM A / ZOOM C)  
+**3:00-3:30**         Coffee break (DISCORD)                               
+**3:30-5:00**         Basic comp. II / Advanced comp II (ZOOM A / ZOOM C)  
+**5:00-5:30**         Welcome to UChicago Biosciences - Prince (ZOOM A)    
+**8:00-9:00**         Happy Hour (DISCORD)                                 
+------------------    -----------------------------------------------------
 
 ### Tuesday, September 15 
 
-------------------    ---------------------------------------------------
-**8:30-10:00**        Data visualization (LBG70S)                        
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                      
-**10:30-12:00**       Data visualization (LBG70S)                        
-**12:00-1:00**        Lunch (SWC)                                        
-**1:30-3:00**         Reproducibility of data analysis (LBG70N)          
-**3:00-3:30**         Coffee break (Loeb 3rd floor)                      
-**3:30-5:00**         Reproducibility of data analysis (LBG70N)          
-**7:15-8:00**         Science Faculty Star                               
-------------------    ---------------------------------------------------
+------------------    -----------------------------------------------------
+**8:30-10:00**        Data visualization (DISCORD Reg)                     
+**10:00-10:30**       Coffee break (DISCORD)                               
+**10:30-12:00**       Data visualization (DISCORD Reg)                     
+**12:00-1:30**        Lunch                                                
+**1:30-3:00**         Reproducibility of data analysis (DISCORD Crerar)    
+**3:00-3:30**         Coffee break (DISCORD)                               
+**3:30-5:00**         Reproducibility of data analysis (DISCORD Crerar)    
+**7:15-8:00**         Science Faculty Star (ZOOM A)                        
+------------------    -----------------------------------------------------
 
 ### Wednesday, September 16 
 
-------------------    ---------------------------------------------------
-**8:30-10:00**        Reproducibility of data analysis (LBG70N)          
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                      
-**10:30-12:00**       Reproducibility of data analysis (LBG70N)          
-**7:15-8:00**          Wednesday Zoom Happy Hour                         
-------------------    ---------------------------------------------------
+------------------    -----------------------------------------------------
+**8:30-10:00**        Statistics for a data rich world (DISCORD Harper)    
+**10:00-10:30**       Coffee break (DISCORD)                               
+**10:30-12:00**       Statistics for a data rich world (DISCORD Harper)    
+**7:15-8:00**          Wednesday Zoom Happy Hour (DISCORD)                 
+------------------    -----------------------------------------------------
 
 ### Thursday, September 17 
 
-------------------    ---------------------------------------------------
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                      
-**12:00-1:00**        Lunch (SWC)                                        
-**1:30-3:00**         Workshop Khan (LB263)                              
-**3:00-3:30**         Coffee break (Loeb 3rd floor)                      
-**3:30-5:00**         Workshop Khan (LB263)                              
-**7:15-9:15**         Professional Development Night with CAs            
-------------------    ---------------------------------------------------
+------------------    -----------------------------------------------------
+**10:00-10:30**       Coffee break (DISCORD)                               
+**12:00-1:30**        Lunch                                                
+**1:30-3:00**         Workshop Khan (DISCORD Crerar)                       
+**3:00-3:30**         Coffee break (DISCORD)                               
+**3:30-5:00**         Workshop Khan (DISCORD Crerar)                       
+**7:15-9:15**         Professional Development Night with CAs              
+------------------    -----------------------------------------------------
 
 ### Friday, September 18 
 
-------------------    ---------------------------------------------------
-**8:30-10:00**        Workshop M. Chen (LBG70N)                          
-**10:00-10:30**       Coffee break (Loeb 3rd floor)                      
-**10:30-12:00**       Workshop M. Chen (LBG70N)                          
-**12:00-1:00**        Lunch (SWC)                                        
-**1:30-3:00**         Workshop Novembre (LB374)                          
-**3:00-3:30**         Coffee break (Loeb 3rd floor)                      
-**3:30-5:00**         Workshop Novembre (LB374)                          
-**8:00-8:20**         Wrap up Session                                    
-**8:20-9:00**         Finishing celebration                              
-------------------    ---------------------------------------------------
+------------------    -----------------------------------------------------
+**8:30-10:00**        Workshop M. Chen (DISCORD Harper)                    
+**10:00-10:30**       Coffee break (DISCORD)                               
+**10:30-12:00**       Workshop M. Chen (DISCORD Harper)                    
+**12:00-1:30**        Lunch                                                
+**1:30-3:00**         Workshop Novembre (DISCORD Reg)                      
+**3:00-3:30**         Coffee break (DISCORD)                               
+**3:30-5:00**         Workshop Novembre (DISCORD Reg)                      
+**8:00-8:20**         Wrap up Session (ZOOM A)                             
+**8:20-9:00**         Finishing celebration (DISCORD)                      
+------------------    -----------------------------------------------------
 
 
 
 -------
 
-
-**Rooms** *CH1:* ground floor room in Candle House; *LB263:* Loeb 263; *LB374:* Loeb 374; 
-*LBG70N/S:* Loeb lower level, room G70; *Lillie:* Lillie Auditorium; 
-*Meigs:* Meigs room, Swope Center; 
-*MRC:* Marine Resources Center; 
-*Speck:* Speck Auditorium, Rowe Lab; *SWC:* Swope cafeteria.
-  
