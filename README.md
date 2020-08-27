@@ -13,7 +13,7 @@ to get access, email John your GitHub ID.
 You can find a webpage explaining how to download the data and prepare
 your laptop for the bootcamp here:
 
-Link: [Preparing your computer and yourself for QBio6.](http://https://github.com/jnovembre/BSD-QBio6/docs/index.md)
+Link: [Preparing your computer and yourself for QBio6.](https://github.com/jnovembre/BSD-QBio6/docs/index.md)
 
 #### Notes
 
