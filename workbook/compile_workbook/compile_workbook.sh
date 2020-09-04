@@ -112,10 +112,10 @@ pdftk tmp.pdf ../../workshops/mchen/code/Workshop_RNAseq_analysis.pdf output tmp
 pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## Khan
-pdftk tmp.pdf ../../workshops/akhan/code/Immuno.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+pdftk tmp.pdf ../../workshops/akhan/lecture/qbio6_khan.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## insert blank page
-#pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
+pdftk tmp.pdf ../other_docs/blank.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf
 
 ## Novembre
 pdftk tmp.pdf ../../workshops/jnovembre/code/MBL_WorkshopJN.pdf output tmp2.pdf; mv tmp2.pdf tmp.pdf

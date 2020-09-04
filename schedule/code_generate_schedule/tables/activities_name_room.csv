@@ -1,27 +1,27 @@
 Activity,Description
-checkin,Check-in with TAs
-groupcomp,Group compacts
-coffee,Coffee break
-lunch,Lunch
-talksun,Welcome to qBio6 - Novembre and Prince
-talkmon,Welcome to UChicago Biosciences - Prince
-talktue,Science Faculty Star
-happymon,Happy Hour
+checkin,Check-in with TAs (DISCORD Team Rooms)
+groupcomp,Group compacts (DISCORD Team Rooms)
+coffee,Coffee break (DISCORD)
+lunch,Lunch 
+talksun,Welcome to qBio6 - Novembre and Prince (ZOOM A)
+talkmon,Welcome to UChicago Biosciences - Prince (ZOOM A)
+talktue,Science Faculty Star (ZOOM A)
+happymon,Happy Hour (DISCORD)
 pdnight,Professional Development Night with CAs
-wrapup,Wrap up Session
-Computing1a,Basic comp. I / Advanced comp I
-Computing1b,Basic comp. I / Advanced comp I
-Computing2a,Basic comp. II / Advanced comp II
-Computing2b,Basic comp. II / Advanced comp II
+wrapup,Wrap up Session (ZOOM A)
+Computing1a,Basic comp. I / Advanced comp I (ZOOM A / ZOOM C)
+Computing1b,Basic comp. I / Advanced comp I (ZOOM A / ZOOM C)
+Computing2a,Basic comp. II / Advanced comp II (ZOOM A / ZOOM C)
+Computing2b,Basic comp. II / Advanced comp II (ZOOM A / ZOOM C)
 Off,Free time
-happywed, Wednesday Zoom Happy Hour
-w1,Workshop Khan
-w2,Workshop Novembre
-w3,Workshop M. Chen
-t1,Reproducibility of data analysis
-t2,Data visualization
-t3,Statistics for a data rich world
-team,Team building activities
+happywed, Wednesday Zoom Happy Hour (DISCORD)
+w1,Workshop Khan (DISCORD Crerar)
+w2,Workshop Novembre (DISCORD Reg)
+w3,Workshop M. Chen (DISCORD Harper)
+t1,Reproducibility of data analysis (DISCORD Crerar)
+t2,Data visualization (DISCORD Reg)
+t3,Statistics for a data rich world (DISCORD Harper)
+team,Team building activities (DISCORD Team Rooms)
 lunchmon,MBL Orientation + Lunch
-happyfri,Finishing celebration
+happyfri,Finishing celebration (DISCORD)
 talkthu,Talk Patel
