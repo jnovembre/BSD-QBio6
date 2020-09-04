@@ -1,6 +1,6 @@
 ## Welcome
 
-This page contains important information about the [Sixth BSD-qBio Boot Camp (https://biosciences.uchicago.edu/content/mbl-bootcamp), which will be held online from Sept 13-18, 2020.
+This page contains important information about the [Sixth BSD-qBio Boot Camp](https://biosciences.uchicago.edu/content/mbl-bootcamp), which will be held online from Sept 13-18, 2020.
 
 More that 100 incoming graduate students from the different programs in the [Division of Biological Sciences](https://biosciences.uchicago.edu) at the [University of Chicago](http://www.uchicago.edu) will participate.
 
@@ -12,20 +12,30 @@ You can see the **schedule** of the boot camp, and find the contact information 
 
 ## Contacts
 
-For any issue/question/comment, please contact the course directors:
+For any issue/question/comment, please contact the course directors via discord:
 
 *   [John Novembre](mailto:jnovembre@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](http://jnpopgen.org/))
 *   [Victoria Prince](mailto:vprince@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](https://voices.uchicago.edu/princelab/))
 
 ## Instructors
+* Stefano Allesina  ([webpage](http://allesinalab.uchicago.edu/))
+* Peter Carbonetto   ([webpage](https://pcarbo.github.io/))
+* Lin Chen ([webpage](http://home.uchicago.edu/lchen11/))
+* Mengjie Chen  ([webpage](http://www.mengjiechen.com))
+* Aly Khan ([webpage](https://ttic.uchicago.edu/~aakhan/))
+* Samantha Riesenfield ([webpage](https://pme.uchicago.edu/group/riesenfeld-group))
+* Matthew Stephens ([webpage](https://stephenslab.uchicago.edu))
 
-* [Stefano Allesina](mailto:sallesina@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](http://allesinalab.uchicago.edu/))
-* [Peter Carbonetto](mailto:pcarbo@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](https://pcarbo.github.io/))
-* [Lin Chen](mailto:lchen@health.bsd.uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](http://home.uchicago.edu/lchen11/))
-* [Mengjie Chen](mailto:mengjiechen@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](http://www.mengjiechen.com))
-* [Aly Khan](mailto:aakhan@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](https://ttic.uchicago.edu/~aakhan/))
-* [Samantha Riesenfield](mailto:sriesenfeld@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](https://pme.uchicago.edu/group/riesenfeld-group))
-* [Matthew Stephens](mailto:mstephens@uchicago.edu?Subject=Help%20BSD%20QBio)([webpage](https://stephenslab.uchicago.edu)) 
+## TAs
+* Jill Rosenberg
+* Graham Smith 
+* Zepeng (Phoenix) Mu 
+* Katie Aracena 
+* Brendan MacNabb
+* Dylan Sosa 
+* Evan Kiefl 
+* Kate Farris
+* Neil Sheth  
 
 ## Schedule
 
@@ -40,19 +50,22 @@ You can also browse the schedule [by group](https://github.com/jnovembre/BSD-QBi
 To accommodate the diverse background of our students, we have created two tracks for the computing tutorials.
 
 *   Basic Computing I and II: dedicated to new users who are not familiar with `R` or programming in general. It will guide students step-by-step, introducing the `R` syntax and showing how to write well-organized code for data analysis and scientific research.
-*   Advanced Computing I and II: dedicated to experienced `R` users, will focus on manipulating large data sets, plotting, and the use of regular expressions.
+*   Advanced Computing I and II: dedicated to experienced `R` users, thesee will focus on manipulating large data sets, plotting, and the use of regular expressions.
 
-To decide which track you want to choose, please consult the lecture materials, and make sure that the content is at the right level for you:
+**You will need to decide which track's sessions to attend on Day 1 of the Bootcamp**.  After Day 1, you will move throught the material in teams with mixed skill levels.  **Choose which track to join for Day 1 by consulting the lecture materials and making sure that the content is at the right level for you**:
 
 *   Basic Computing I ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_1/basic_computing_1.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_1/basic_computing_1.pdf))
 *   Basic Computing II ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_2/basic_computing_2.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_2/basic_computing_2.pdf))
-*   Advanced Computing: Read the challenges here: ([Data Jujutsu] (https://github.com/jnovembre/BSD-QBio6/tree/master/tutorials/advanced_computing/Jujutsu) 
+*   Advanced Computing: Read the challenges here: ([Data Jujutsu] (https://github.com/jnovembre/BSD-QBio6/tree/master/tutorials/advanced_computing/Jujutsu)
+
+**Special preparation for Advanced Computing:** You should work through the Advanced Computing preparatory material before the session begins. [Link to preparatory material](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/advanced_computing/tutorial/advanced_computing.Rmd)
+
 
 ## Preparing your laptop
 
-We are going to start working right away. Therefore, it is very important you **prepare your laptop** for the boot camp before you leave for MBL. This will take you about one hour, so schedule accordingly.
+We are going to start working right away. Therefore, it is very important you **prepare your laptop** for the boot camp before the first session on Monday. This will take you about one hour, so schedule accordingly.
 
-You will work on your laptop all day long. **If you don't have a laptop, please contact Stefano or Stephanie immediately**.
+You will work on your laptop all day long. **If you don't have a laptop, please contact the course directors immediately**.
 
 ### Installation of `R` and `R` packages
 
@@ -62,25 +75,21 @@ You will work on your laptop all day long. **If you don't have a laptop, please 
 
 *   Once installed R and RStudio, open RStudio and **install the following packages**:
 
-    *   tidyverse
     *   devtools
+    *   tidyverse
     *   knitr
-    *   ggthemes
-    *   stringr
-    *   plyr
-    *   reshape2
-    *   vegan
-    *   lubridate
-    *   rmatio
-    *   cowplot
-    *   formatR
-    *   Rtsne
-    *   ggseqlogo
     *   workflowr
+    *   ggthemes
+    *   cowplot
+    *   Rtsne
+    *   BiocManager
+    *   ggseqlogo
+    *   pheatmap
 
     You can find instructions on how to install `R` packages in RStudio [here](https://www.youtube.com/watch?v=3RWb5U3X-T8).
 
-* **Other packages** One of the packages need to be installed from within `R`. Open Rstudio and in the Console type `library(devtools)`, hit Return (or Enter) and then `install_github("jdstorey/qvalue")`. This will install the library `qvalue` that is needed for one of the tutorials.
+* **Other packages** After the package installs above, two more sets of the packages need to be installed using special installers within `R`. First, open Rstudio and in the Console type `library(devtools)`, hit Return (or Enter) and then `install_github("jdstorey/qvalue")`. This will install the library `qvalue` that is needed for one of the tutorials.  Second, type `libary(BioCManager)` hit Return (or Enter) and then,
+`BiocManager::install(c("airway","Rsamtools","Rsubread","DESeq2","vsn", "org.Hs.eg.db","GenomicFeatures", "clusterProfiler"))``.`  This should install 8 libraries that will be used for the RNAseq workshop.
 
 * **UNIX Emulator**: If you are using Windows, you need to install a UNIX emulator. We suggest downloading the version control software `Git`, because it ships with a small emulator (`Git Bash`). Simply go to [this page](https://git-scm.com/download/win) and follow the instructions.
 
