@@ -35,7 +35,7 @@ For any issue/question/comment, please contact the course directors via discord:
 * Dylan Sosa 
 * Evan Kiefl 
 * Kate Farris
-* Neil Sheth  
+* Neil Sheth 
 
 ## Schedule
 
@@ -56,7 +56,7 @@ To accommodate the diverse background of our students, we have created two track
 
 *   Basic Computing I ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_1/basic_computing_1.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_1/basic_computing_1.pdf))
 *   Basic Computing II ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_2/basic_computing_2.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_2/basic_computing_2.pdf))
-*   Advanced Computing: Read the challenges here: ([Data Jujutsu] (https://github.com/jnovembre/BSD-QBio6/tree/master/tutorials/advanced_computing/Jujutsu)
+*   Advanced Computing: Read the challenges here: ([Data Jujutsu](https://github.com/jnovembre/BSD-QBio6/tree/master/tutorials/advanced_computing/Jujutsu)
 
 **Special preparation for Advanced Computing:** You should work through the Advanced Computing preparatory material before the session begins. [Link to preparatory material](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/advanced_computing/tutorial/advanced_computing.Rmd)
 
@@ -113,7 +113,7 @@ We will download the repository using GitKraken (you can alternatively use comma
 
 Now if you go to the folder you chose in step 5, you'll see the repository!
 
-## Programming Challenges (8/13/20 in developement)
+## Programming Challenges
 
 During the boot camp, the 12 groups of students will compete through 6 programming challenges. Here are the links to the webpages where the groups should post their solutions (one answer per group, please):
 
