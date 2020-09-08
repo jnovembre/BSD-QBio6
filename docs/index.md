@@ -99,7 +99,7 @@ You will work on your laptop all day long. **If you don't have a laptop, please 
 
 ## Downloading the data
 
-It is very important to download the data **before the workshop**, as the files are quite large. (Warning! The repo is about >200MB!)
+It is very important to download the data **before the workshop**, as the files are quite large. (Warning! The repo is >200MB!)
 All you need to do is to download the repository containing all the boot camp lectures and data.
 We will download the repository using GitKraken (you can alternatively use command-line `git` if you are already familiar with it).
 
