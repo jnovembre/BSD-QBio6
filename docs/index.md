@@ -56,7 +56,7 @@ To accommodate the diverse background of our students, we have created two track
 
 *   Basic Computing I ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_1/basic_computing_1.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_1/basic_computing_1.pdf))
 *   Basic Computing II ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_2/basic_computing_2.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_2/basic_computing_2.pdf))
-*   Advanced Computing: Read the challenges here: ([Data Jujutsu](https://github.com/jnovembre/BSD-QBio6/tree/master/tutorials/advanced_computing/Jujutsu)
+*   Advanced Computing: Read the challenges here: ([Data Jujutsu](https://github.com/jnovembre/BSD-QBio6/tree/master/tutorials/advanced_computing/Jujutsu))
 
 **Special preparation for Advanced Computing:** You should work through the Advanced Computing preparatory material before the session begins. [Link to preparatory material](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/advanced_computing/tutorial/advanced_computing.Rmd)
 
