@@ -56,9 +56,9 @@ To accommodate the diverse background of our students, we have created two track
 
 *   Basic Computing I ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_1/basic_computing_1.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_1/basic_computing_1.pdf))
 *   Basic Computing II ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_2/basic_computing_2.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_2/basic_computing_2.pdf))
-*   Advanced Computing: Read the challenges here: ([Data Jujutsu](https://github.com/jnovembre/BSD-QBio6/tree/master/tutorials/advanced_computing/Jujutsu)
+*   Advanced Computing: Read the challenges here: ([Data Jujutsu](https://github.com/jnovembre/BSD-QBio6/tree/master/tutorials/advanced_computing/Jujutsu))
 
-**Special preparation for Advanced Computing:** You should work through the Advanced Computing preparatory material before the session begins. [Link to preparatory material](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/advanced_computing/tutorial/advanced_computing.Rmd)
+**Special preparation for Advanced Computing:** You should work through the Advanced Computing preparatory material before the session begins. [Link to preparatory material](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/advanced_computing/tutorial/advanced_computing.pdf)
 
 
 ## Preparing your laptop
@@ -99,7 +99,7 @@ You will work on your laptop all day long. **If you don't have a laptop, please 
 
 ## Downloading the data
 
-It is very important to download the data **before the workshop**, as the files are quite large. (Warning! The repo is about >200MB!)
+It is very important to download the data **before the workshop**, as the files are quite large. (Warning! The repo is >200MB!)
 All you need to do is to download the repository containing all the boot camp lectures and data.
 We will download the repository using GitKraken (you can alternatively use command-line `git` if you are already familiar with it).
 
