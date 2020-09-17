@@ -62,8 +62,8 @@ The `MBL_WorkshopJN.Rmd` file has the R code that you can run. Code is provided 
 
 Read in the data table:
 ```{r}
-# g <- read.table("../data/H938_chr15.geno", header=TRUE)
-g <- read.table("../data/H938_Euro_chr15.geno", header=TRUE)
+g <- read.table("../data/H938_chr15.geno", header=TRUE)
+#g <- read.table("../data/H938_Euro_chr15.geno", header=TRUE)
 # g <- read.table("../data/H938_chr2.geno", header=TRUE)
 ```
 It will be read in as a dataframe in R.
